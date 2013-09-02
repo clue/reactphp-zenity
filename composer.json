@@ -1,0 +1,18 @@
+{
+    "name": "clue/zenity-react",
+    "description": "Async Zenity",
+    "require": {
+        "react/promise": "~1",
+        "icecave/mephisto": "dev-develop"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Lück",
+            "email": "christian@lueck.tv"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Clue\\Zenity\\React": "src/" }
+    }
+}
