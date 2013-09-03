@@ -43,6 +43,10 @@ class Zenity implements PromiseInterface
 
     public function run(Launcher $launcher)
     {
+        if ($this->process !== null) {
+            return $this;
+        }
+
         $args = $this->getArgs();
 
         $this->process = $process = $launcher->run($args);
@@ -63,6 +67,11 @@ class Zenity implements PromiseInterface
         $process->outputStream()->on('end', array($this, 'onEnd'));
 
         return $this;
+    }
+
+    public function wait(Launcher $launcher)
+    {
+        return $launcher->wait($this);
     }
 
     public function getType()
@@ -119,9 +128,12 @@ class Zenity implements PromiseInterface
         if ($this->process !== null) {
             $this->process->kill();
 
-            $this->process->outputStream()->close();
-            $this->process->inputStream()->close();
-            $this->process->errorStream()->close();
+            $streams = array($this->process->outputStream(), $this->process->inputStream(), $this->process->errorStream());
+            foreach ($streams as $stream) {
+                if ($stream !== null) {
+                    $stream->close();
+                }
+            }
 
             $this->process = null;
         }

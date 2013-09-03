@@ -300,4 +300,26 @@ class Launcher
         /* @var $process ProcessInterface */
         return $process;
     }
+
+    public function wait(Zenity $zenity)
+    {
+        $done = false;
+        $ret  = null;
+        $loop = $this->loop;
+
+        $zenity->then(function ($result) use (&$ret, &$done, $loop) {
+            $ret = $result;
+            $done = true;
+
+            $loop->stop();
+        });
+
+        if (!$done) {
+            $zenity->run($this);
+
+            $loop->run();
+        }
+
+        return $ret;
+    }
 }
