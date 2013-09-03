@@ -25,6 +25,8 @@ $form->run();
 
 $form->then(function($result) {
     var_dump('result', $result);
+}, function() {
+    var_dump('form canceled');
 });
 
 $loop->run();
