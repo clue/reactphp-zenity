@@ -9,7 +9,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $loop = Factory::create();
 
-$builder = new Launcher($loop);
+$launcher = new Launcher($loop);
 $builder = new Builder($launcher);
 
 $main = function() use (&$main, $builder) {

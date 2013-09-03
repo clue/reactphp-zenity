@@ -10,7 +10,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 $launcher = new Launcher($loop);
 
-$form = new Forms();
+$form = new Forms($launcher);
 $form->setWindowIcon('info');
 $form->setText('Enter user information');
 
@@ -21,7 +21,7 @@ $form->addCalendar('Birthday');
 $form->addEntry('Nickname');
 $form->addList('Gender', array('Male', 10, 'Female', 0), array('Gender', 'Number'));
 
-$form->run($launcher);
+$form->run();
 
 $form->then(function($result) {
     var_dump('result', $result);
