@@ -15,11 +15,12 @@ $name = $builder->entry('Search package')->waitReturn();
 if ($name === false) {
     exit;
 }
-var_dump($name);
 
-$builder->pulsateFor(3.0, 'Searching packagist.org for "' . $name . '"...')->wait();
+$pulser = $builder->pulsate('Searching packagist.org for "' . $name . '"...')->run();
+sleep(3);
+$pulser->close();
 
 $packages = array('mink', 'behat', 'phpunit', 'box', 'boris');
-$pid = $builder->listRadio($packages, 'Select package')->wait();
+$pid = $builder->listRadio($packages, 'Select package')->waitReturn();
 
 var_dump($packages[$pid]);
