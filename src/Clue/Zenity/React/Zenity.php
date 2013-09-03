@@ -111,17 +111,16 @@ abstract class Zenity implements PromiseInterface
         $process->outputStream()->on('end', function() use ($process, &$result, $that, $deferred) {
             $code = $process->status()->exitCode();
             if ($code !== 0) {
-                //$deferred->reject($code);
-                $result = false;
+                $deferred->reject($code);
             } else {
                 if ($result === null) {
                     $result = true;
                 } else {
                     $result = $this->parseValue(trim($result));
                 }
+                $deferred->resolve($result);
             }
 
-            $deferred->resolve($result);
             $that->close();
         });
 
@@ -134,7 +133,10 @@ abstract class Zenity implements PromiseInterface
      * If the dialog is already closed, this returns immediately, without doing
      * much at all. If the dialog is not yet opened, it will be opened and this
      * method will wait for the dialog to be handled (i.e. either completed or
-     * closed).
+     * closed). Clicking "ok" will result in a boolean true value, clicking
+     * "cancel" or hitten escape key will or running into a timeout will result
+     * in a boolean false. For all other input fields, their respective (parsed)
+     * value will be returned.
      *
      * For this to work, this method will temporarily start the event loop and
      * stop it afterwards. Thus, it is *NOT* a good idea to mix this if anything

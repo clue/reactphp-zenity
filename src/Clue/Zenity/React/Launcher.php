@@ -76,6 +76,11 @@ class Launcher
             $done = true;
 
             $loop->stop();
+        }, function () use (&$ret, &$done, $loop) {
+            $ret = false;
+            $done = true;
+
+            $loop->stop();
         });
 
         if (!$done) {
