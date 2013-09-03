@@ -12,9 +12,10 @@ asking the user for his name and presenting it in another info dialog.
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
+$builder = new Builder($launcher);
 
-$launcher->entry('What\'s your name?', getenv('USER'))->then(function ($name) use ($launcher) {
-    $launcher->info('Welcome to zenity-react, ' . $name .'!');
+$builder->entry('What\'s your name?', getenv('USER'))->then(function ($name) use ($builder) {
+    $builder->info('Welcome to zenity-react, ' . $name .'!');
 });
 
 ```
@@ -25,8 +26,9 @@ For more examples, take a look at the `examples` folder.
 
 The API is modelled closely after Zenity's command line API, so it should be
 familar if you're already using it from within any other command line script.
-Additionally, the `Launcher` implements an even simpler interface for commonly
-used functionality. 
+
+Additionally, the `Builder` implements an even simpler interface for commonly
+used dialogs.
 
 ## Install
 

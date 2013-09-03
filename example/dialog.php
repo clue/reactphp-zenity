@@ -2,29 +2,31 @@
 
 use React\EventLoop\Factory;
 use Clue\Zenity\React\Launcher;
+use Clue\Zenity\React\Builder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
+$builder = new Builder($launcher);
 
-$launcher->entry('What\'s your name?', getenv('USER'));
+$builder->entry('What\'s your name?', getenv('USER'));
 
-$launcher->info('Welcome to the introduction of zenity')->then(function ($ret) use ($launcher) {
+$builder->info('Welcome to the introduction of zenity')->then(function ($ret) use ($builder) {
     var_dump('info', $ret);
 
-    $launcher->question('Do you want to quit?')->then(function ($answer) use ($launcher) {
+    $builder->question('Do you want to quit?')->then(function ($answer) use ($builder) {
         var_dump('question', $answer);
 
         if ($answer === false) {
-            $launcher->warning('You should have selected yes!');
+            $builder->warning('You should have selected yes!');
         } else {
-            $launcher->error('Oh noes!');
+            $builder->error('Oh noes!');
         }
     });
 });
 
-$launcher->warning('Warn');
+$builder->warning('Warn');
 
 $loop->run();
