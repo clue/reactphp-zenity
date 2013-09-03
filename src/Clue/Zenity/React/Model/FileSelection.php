@@ -19,11 +19,15 @@ class FileSelection extends Zenity
     public function setFilename($filename)
     {
         $this->filename = $filename;
+
+        return $this;
     }
 
     public function setMultiple($multiple)
     {
         $this->multiple = !!$multiple;
+
+        return $this;
     }
 
     /**
@@ -34,21 +38,29 @@ class FileSelection extends Zenity
     public function setDirectory($directory)
     {
         $this->directory = !!$directory;
+
+        return $this;
     }
 
     public function setSave($save)
     {
         $this->save = !!$save;
+
+        return $this;
     }
 
     public function setConfirmOverwrite($confirm)
     {
         $this->confirmOverwrite = !!$confirm;
+
+        return $this;
     }
 
     public function setFileFilter($filter)
     {
         $this->fileFilter = $filter;
+
+        return $this;
     }
 
     protected function parseValue($value)

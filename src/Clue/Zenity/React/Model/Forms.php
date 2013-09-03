@@ -17,21 +17,29 @@ class Forms extends Zenity
     public function setText($text)
     {
         $this->text = $text;
+
+        return $this;
     }
 
     public function addEntry($name)
     {
         $this->fields[] = '--add-entry=' . $name;
+
+        return $this;
     }
 
     public function addPassword($name)
     {
         $this->fields[] = '--add-password=' . $name;
+
+        return $this;
     }
 
     public function addCalendar($name)
     {
         $this->fields[] = '--add-calendar=' . $name;
+
+        return $this;
     }
 
     /**
@@ -67,6 +75,8 @@ class Forms extends Zenity
         if ($columns !== null) {
             $this->fields[] = '--column-values=' . implode('|', $columns);
         }
+
+        return $this;
     }
 
     public function getArgs()

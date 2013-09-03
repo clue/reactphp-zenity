@@ -17,21 +17,29 @@ class Calendar extends Zenity
     public function setText($text)
     {
         $this->text = $text;
+
+        return $this;
     }
 
     public function setYear($year)
     {
         $this->year = $year;
+
+        return $this;
     }
 
     public function setMonth($month)
     {
         $this->month = $month;
+
+        return $this;
     }
 
     public function setDay($day)
     {
         $this->day = $day;
+
+        return $this;
     }
 
     public function setDateTime(\DateTime $date)
@@ -39,6 +47,8 @@ class Calendar extends Zenity
         $this->setYear($date->format('Y'));
         $this->setMonth($date->format('m'));
         $this->setDay($date->format('d'));
+
+        return $this;
     }
 
     protected function parseValue($value)

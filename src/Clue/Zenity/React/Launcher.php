@@ -32,6 +32,8 @@ class Launcher
     public function setBin($bin)
     {
         $this->bin = $bin;
+
+        return $this;
     }
 
     public function run(array $args = array())

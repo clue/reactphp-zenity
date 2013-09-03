@@ -32,41 +32,57 @@ abstract class Zenity implements PromiseInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     public function setWindowIcon($icon)
     {
         $this->windowIcon = $icon;
+
+        return $this;
     }
 
     public function setTimeout($timeout)
     {
         $this->timeout = (int)$timeout;
+
+        return $this;
     }
 
     public function setModal($modal)
     {
         $this->modal = !!$modal;
+
+        return $this;
     }
 
     public function setWidth($width)
     {
         $this->width = $width;
+
+        return $this;
     }
 
     public function setHeight($height)
     {
         $this->height = $height;
+
+        return $this;
     }
 
     public function setOkLabel($label)
     {
         $this->okLabel = $label;
+
+        return $this;
     }
 
     public function setCancelLabel($label)
     {
         $this->cancelLabel = $label;
+
+        return $this;
     }
 
     public function run()
@@ -190,6 +206,8 @@ abstract class Zenity implements PromiseInterface
 
             // $this->process = null;
         }
+
+        return $this;
     }
 
     protected function writeln($line)

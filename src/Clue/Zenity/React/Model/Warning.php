@@ -11,5 +11,7 @@ class Warning extends Zenity
     public function setText($text)
     {
         $this->text = $text;
+
+        return $this;
     }
 }

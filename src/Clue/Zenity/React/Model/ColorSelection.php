@@ -12,11 +12,15 @@ class ColorSelection extends Zenity
     public function setColor($color)
     {
         $this->color = $color;
+
+        return $this;
     }
 
-    public function showPalette($palette)
+    public function setShowPalette($palette)
     {
         $this->showPalette = !!$palette;
+
+        return $this;
     }
 
     protected function parseValue($value)

@@ -33,51 +33,71 @@ class Listing extends Zenity
             // this will break
             $this->columns[] = '--hide-column=' . count($this->columns);
         }
+
+        return $this;
     }
 
     public function setText($text)
     {
         $this->text = $text;
+
+        return $this;
     }
 
     public function setChecklist($check)
     {
         $this->checklist = !!$check;
+
+        return $this;
     }
 
     public function setRadiolist($radio)
     {
         $this->radiolist = !!$radio;
+
+        return $this;
     }
 
     public function setImagelist($image)
     {
         $this->imagelist = !!$image;
+
+        return $this;
     }
 
     public function setMultiple($multiple)
     {
         $this->multiple = !!$multiple;
+
+        return $this;
     }
 
     public function setEditable($editable)
     {
         $this->editable = !!$editable;
+
+        return $this;
     }
 
     public function setPrintColumn($column)
     {
         $this->printColumn = $column;
+
+        return $this;
     }
 
     public function setHideHeader($hide)
     {
         $this->hideHeader = !!$hide;
+
+        return $this;
     }
 
     public function writeLine($line)
     {
         $this->writeln($line);
+
+        return $this;
     }
 
     public function getArgs()

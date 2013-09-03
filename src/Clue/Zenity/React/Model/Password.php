@@ -18,6 +18,8 @@ class Password extends Zenity
     public function setUsername($username)
     {
         $this->username = !!$username;
+
+        return $this;
     }
 
     protected function parseValue($value)
