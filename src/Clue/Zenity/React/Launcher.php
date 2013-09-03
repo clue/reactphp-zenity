@@ -77,8 +77,6 @@ class Launcher
         });
 
         if (!$done) {
-            $zenity->run();
-
             $loop->run();
         }
 

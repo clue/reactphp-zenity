@@ -164,6 +164,9 @@ abstract class Zenity implements PromiseInterface
 
     public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)
     {
+        if ($this->process === null) {
+            $this->run();
+        }
         return $this->deferred->then($fulfilledHandler, $errorHandler, $progressHandler);
     }
 
@@ -179,7 +182,7 @@ abstract class Zenity implements PromiseInterface
                 }
             }
 
-            $this->process = null;
+            // $this->process = null;
         }
     }
 

@@ -11,12 +11,12 @@ $loop = Factory::create();
 $launcher = new Launcher($loop);
 $builder = new Builder($launcher);
 
-$builder->entry('What\'s your name?', getenv('USER'));
+$builder->entry('What\'s your name?', getenv('USER'))->run();
 
 $builder->info('Welcome to the introduction of zenity')->then(function ($ret) use ($builder) {
     var_dump('info', $ret);
 
-    $builder->question('Do you want to quit?')->then(function ($answer) use ($builder) {
+    $builder->question('Do you want to quit?')->run()->then(function ($answer) use ($builder) {
         var_dump('question', $answer);
 
         if ($answer === false) {
@@ -27,6 +27,6 @@ $builder->info('Welcome to the introduction of zenity')->then(function ($ret) us
     });
 });
 
-$builder->warning('Warn');
+$builder->warning('Warn')->run();
 
 $loop->run();

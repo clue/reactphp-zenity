@@ -32,7 +32,7 @@ class Builder
         $zenity->setText($text);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function warning($text, $title = null)
@@ -41,7 +41,7 @@ class Builder
         $zenity->setText($text);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function error($text, $title = null)
@@ -50,7 +50,7 @@ class Builder
         $zenity->setText($text);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function question($question, $title = null)
@@ -59,7 +59,7 @@ class Builder
         $zenity->setText($question);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function entry($prompt = null, $prefill = null)
@@ -68,7 +68,7 @@ class Builder
         $zenity->setText($prompt);
         $zenity->setEntryText($prefill);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function fileSelection($title = null, $multiple = false)
@@ -77,7 +77,7 @@ class Builder
         $zenity->setTitle('Select any file');
         $zenity->setMultiple($multiple);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function fileSave($title, $previous = null)
@@ -88,7 +88,7 @@ class Builder
         $zenity->setSave(true);
         $zenity->setConfirmOverwrite(true);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function directorySelection($title = null, $multiple = false)
@@ -98,7 +98,7 @@ class Builder
         $zenity->setTitle($title);
         $zenity->setMultiple($multiple);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function progress($text = null)
@@ -107,7 +107,7 @@ class Builder
         $zenity->setText($text);
         $zenity->setAutoClose(true);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function pulsate($text = null)
@@ -117,7 +117,7 @@ class Builder
         $zenity->setPulsate(true);
         $zenity->setAutoClose(true);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function notification($text, $icon = null)
@@ -126,15 +126,16 @@ class Builder
         $zenity->setText($text);
         $zenity->setIcon($icon);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function notifier()
     {
         $zenity = new Notification($this->launcher);
         $zenity->setListen(true);
+        $zenity->run();
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function text($filename, $title = null)
@@ -143,7 +144,7 @@ class Builder
         $zenity->setFilename($filename);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function editable($filename, $title = null)
@@ -153,7 +154,7 @@ class Builder
         $zenity->setTitle($title);
         $zenity->setEditable(true);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function confirmLicense($filename, $confirmation, $title = null)
@@ -163,7 +164,7 @@ class Builder
         $zenity->setCheckbox($confirmation);
         $zenity->setTitle($title);
 
-        return $this->run($zenity);
+        return $zenity;
     }
 
     public function listMenu($list, $text = null)
@@ -174,7 +175,7 @@ class Builder
         $zenity->setHideHeader(true);
         $zenity->setText($text);
 
-        $this->run($zenity);
+        $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine($key);
@@ -195,7 +196,7 @@ class Builder
         $zenity->setPrintColumn(2);
         $zenity->setText($text);
 
-        $this->run($zenity);
+        $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine(($selected == $key) ? 'true' : 'false');
@@ -217,7 +218,7 @@ class Builder
         $zenity->setPrintColumn(2);
         $zenity->setText($text);
 
-        $this->run($zenity);
+        $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine(in_array($key, $selected) ? 'true' : 'false');
@@ -247,7 +248,7 @@ class Builder
         }
         $zenity->setText($text);
 
-        $this->run($zenity);
+        $zenity->run();
 
         foreach ($rows as $id => $row) {
             $zenity->writeLine($id);
@@ -262,10 +263,5 @@ class Builder
         }
 
         return $zenity;
-    }
-
-    private function run(Zenity $zenity)
-    {
-        return $zenity->run();
     }
 }
