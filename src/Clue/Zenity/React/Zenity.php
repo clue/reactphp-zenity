@@ -2,11 +2,13 @@
 
 namespace Clue\Zenity\React;
 
+use Clue\Zenity\React\Launcher;
 use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
 
 abstract class Zenity implements PromiseInterface
 {
+    private $launcher;
     private $deferred;
     private $result;
     protected $process;
@@ -20,8 +22,9 @@ abstract class Zenity implements PromiseInterface
     protected $okLabel;
     protected $cancelLabel;
 
-    public function __construct()
+    public function __construct(Launcher $launcher)
     {
+        $this->launcher = $launcher;
         $this->deferred = new Deferred();
     }
 
@@ -65,7 +68,7 @@ abstract class Zenity implements PromiseInterface
         $this->cancelLabel = $label;
     }
 
-    public function run(Launcher $launcher)
+    public function run()
     {
         if ($this->process !== null) {
             return $this;
@@ -73,7 +76,7 @@ abstract class Zenity implements PromiseInterface
 
         $args = $this->getArgs();
 
-        $this->process = $process = $launcher->run($args);
+        $this->process = $process = $this->launcher->run($args);
 
         $result =& $this->result;
         $process->outputStream()->on('data', function ($data) use (&$result) {
@@ -93,9 +96,9 @@ abstract class Zenity implements PromiseInterface
         return $this;
     }
 
-    public function wait(Launcher $launcher)
+    public function wait()
     {
-        return $launcher->wait($this);
+        return $this->launcher->wait($this);
     }
 
     public function getType()
@@ -111,7 +114,7 @@ abstract class Zenity implements PromiseInterface
         );
 
         foreach ($this as $name => $value) {
-            if (!in_array($name, array('deferred', 'result', 'process')) && $value !== null && $value !== false && !is_array($value)) {
+            if (!in_array($name, array('deferred', 'result', 'process', 'launcher')) && $value !== null && $value !== false && !is_array($value)) {
                 $name = $this->decamelize($name);
 
                 if ($name === true) {

@@ -34,7 +34,7 @@ class Launcher
         $this->bin = $bin;
     }
 
-    public function run($args = array())
+    public function run(array $args = array())
     {
         $command = $this->bin;
 

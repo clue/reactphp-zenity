@@ -28,7 +28,7 @@ class Builder
 
     public function info($text, $title = null)
     {
-        $zenity = new Info();
+        $zenity = new Info($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -37,7 +37,7 @@ class Builder
 
     public function warning($text, $title = null)
     {
-        $zenity = new Warning();
+        $zenity = new Warning($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -46,7 +46,7 @@ class Builder
 
     public function error($text, $title = null)
     {
-        $zenity = new Error();
+        $zenity = new Error($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -55,7 +55,7 @@ class Builder
 
     public function question($question, $title = null)
     {
-        $zenity = new Question();
+        $zenity = new Question($this->launcher);
         $zenity->setText($question);
         $zenity->setTitle($title);
 
@@ -64,7 +64,7 @@ class Builder
 
     public function entry($prompt = null, $prefill = null)
     {
-        $zenity = new Entry();
+        $zenity = new Entry($this->launcher);
         $zenity->setText($prompt);
         $zenity->setEntryText($prefill);
 
@@ -73,7 +73,7 @@ class Builder
 
     public function fileSelection($title = null, $multiple = false)
     {
-        $zenity = new FileSelection();
+        $zenity = new FileSelection($this->launcher);
         $zenity->setTitle('Select any file');
         $zenity->setMultiple($multiple);
 
@@ -82,7 +82,7 @@ class Builder
 
     public function fileSave($title, $previous = null)
     {
-        $zenity = new FileSelection();
+        $zenity = new FileSelection($this->launcher);
         $zenity->setTitle($title);
         $zenity->setFilename($previous);
         $zenity->setSave(true);
@@ -93,7 +93,7 @@ class Builder
 
     public function directorySelection($title = null, $multiple = false)
     {
-        $zenity = new FileSelection();
+        $zenity = new FileSelection($this->launcher);
         $zenity->setDirectory(true);
         $zenity->setTitle($title);
         $zenity->setMultiple($multiple);
@@ -103,7 +103,7 @@ class Builder
 
     public function progress($text = null)
     {
-        $zenity = new Progress();
+        $zenity = new Progress($this->launcher);
         $zenity->setText($text);
         $zenity->setAutoClose(true);
 
@@ -112,7 +112,7 @@ class Builder
 
     public function pulsate($text = null)
     {
-        $zenity = new Progress();
+        $zenity = new Progress($this->launcher);
         $zenity->setText($text);
         $zenity->setPulsate(true);
         $zenity->setAutoClose(true);
@@ -122,7 +122,7 @@ class Builder
 
     public function notification($text, $icon = null)
     {
-        $zenity = new Notification();
+        $zenity = new Notification($this->launcher);
         $zenity->setText($text);
         $zenity->setIcon($icon);
 
@@ -131,7 +131,7 @@ class Builder
 
     public function notifier()
     {
-        $zenity = new Notification();
+        $zenity = new Notification($this->launcher);
         $zenity->setListen(true);
 
         return $this->run($zenity);
@@ -148,7 +148,7 @@ class Builder
 
     public function editable($filename, $title = null)
     {
-        $zenity = new TextInfo();
+        $zenity = new TextInfo($this->launcher);
         $zenity->setFilename($filename);
         $zenity->setTitle($title);
         $zenity->setEditable(true);
@@ -158,7 +158,7 @@ class Builder
 
     public function confirmLicense($filename, $confirmation, $title = null)
     {
-        $zenity = new TextInfo();
+        $zenity = new TextInfo($this->launcher);
         $zenity->setFilename($filename);
         $zenity->setCheckbox($confirmation);
         $zenity->setTitle($title);
@@ -168,7 +168,7 @@ class Builder
 
     public function listMenu($list, $text = null)
     {
-        $zenity = new Listing();
+        $zenity = new Listing($this->launcher);
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
         $zenity->setHideHeader(true);
@@ -186,7 +186,7 @@ class Builder
 
     public function listRadio($list, $text = null, $selected = null)
     {
-        $zenity = new Listing();
+        $zenity = new Listing($this->launcher);
         $zenity->addColumn(' ');
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
@@ -208,7 +208,7 @@ class Builder
 
     public function listCheck($list, $text = null, $selected = null)
     {
-        $zenity = new Listing();
+        $zenity = new Listing($this->launcher);
         $zenity->addColumn(' ');
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
@@ -240,7 +240,7 @@ class Builder
         }
         $width = count($columns);
 
-        $zenity = new Listing();
+        $zenity = new Listing($this->launcher);
         $zenity->addColumn('Id', true);
         foreach ($columns as $column) {
             $zenity->addColumn($column);
@@ -266,6 +266,6 @@ class Builder
 
     private function run(Zenity $zenity)
     {
-        return $zenity->run($this->launcher);
+        return $zenity->run();
     }
 }
