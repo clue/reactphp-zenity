@@ -11,18 +11,16 @@ $loop = Factory::create();
 $launcher = new Launcher($loop);
 $builder = new Builder($launcher);
 
-$builder->entry('What\'s your name?', getenv('USER'))->setTitle('Enter your name')->run();
-
-$builder->info('Welcome to the introduction of zenity')->then(function ($ret) use ($builder) {
-    var_dump('info', $ret);
-
-    $builder->question('Do you want to quit?')->then(function () use ($builder) {
-        $builder->error('Oh noes!');
-    }, function() use ($builder) {
-        $builder->warning('You should have selected yes!');
+$builder->entry('What\'s your name?', getenv('USER'))->setTitle('Enter your name')->then(function ($name) use ($builder) {
+    $builder->info('Welcome to the introduction of zenity, ' . $name)->then(function () use ($builder) {
+        $builder->question('Do you want to quit?')->then(function () use ($builder) {
+            $builder->error('Oh noes!')->run();
+        }, function() use ($builder) {
+            $builder->warning('You should have selected yes!')->run();
+        });
     });
+}, function () use ($builder) {
+    $builder->warning('No name given')->run();
 });
-
-$builder->warning('Warn')->run();
 
 $loop->run();
