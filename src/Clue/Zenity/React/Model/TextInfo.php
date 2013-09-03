@@ -12,10 +12,6 @@ class TextInfo extends Zenity
 
     protected $checkbox;
 
-    protected $okLabel;
-
-    protected $cancelLabel;
-
     public function setFilename($filename)
     {
         $this->filename = $filename;
@@ -29,16 +25,6 @@ class TextInfo extends Zenity
     public function setCheckbox($checkbox)
     {
         $this->checkbox = $checkbox;
-    }
-
-    public function setOkLabel($label)
-    {
-        $this->okLabel = $label;
-    }
-
-    public function setCancelLabel($label)
-    {
-        $this->cancelLabel = $label;
     }
 
     public function setText($text)

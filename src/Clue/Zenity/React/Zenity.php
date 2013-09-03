@@ -5,7 +5,7 @@ namespace Clue\Zenity\React;
 use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
 
-class Zenity implements PromiseInterface
+abstract class Zenity implements PromiseInterface
 {
     private $deferred;
     private $result;
@@ -15,6 +15,10 @@ class Zenity implements PromiseInterface
     protected $windowIcon;
     protected $timeout;
     protected $modal = false;
+    protected $width;
+    protected $height;
+    protected $okLabel;
+    protected $cancelLabel;
 
     public function __construct()
     {
@@ -39,6 +43,26 @@ class Zenity implements PromiseInterface
     public function setModal($modal)
     {
         $this->modal = !!$modal;
+    }
+
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public function setOkLabel($label)
+    {
+        $this->okLabel = $label;
+    }
+
+    public function setCancelLabel($label)
+    {
+        $this->cancelLabel = $label;
     }
 
     public function run(Launcher $launcher)
