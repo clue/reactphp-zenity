@@ -84,7 +84,7 @@ class Forms extends Zenity
         return array_merge(parent::getArgs(), $this->fields);
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         // TODO: parse passwords
         return explode($this->separator, $value);

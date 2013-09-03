@@ -110,7 +110,7 @@ class Listing extends Zenity
         return 'list';
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         if (trim($value) === '') {
             // TODO: move logic

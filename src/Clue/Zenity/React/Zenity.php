@@ -10,7 +10,6 @@ abstract class Zenity implements PromiseInterface
 {
     private $launcher;
     private $deferred;
-    private $result;
     private $inbuffer;
     protected $process;
 
@@ -100,20 +99,31 @@ abstract class Zenity implements PromiseInterface
             $this->inbuffer = null;
         }
 
-        $result =& $this->result;
+        $result = null;
         $process->outputStream()->on('data', function ($data) use (&$result) {
             if ($data !== '') {
                 $result .= $data;
             }
         });
 
-        $process->outputStream()->on('end', function() use ($process, &$result) {
+        $deferred = $this->deferred;
+        $that = $this;
+        $process->outputStream()->on('end', function() use ($process, &$result, $that, $deferred) {
             $code = $process->status()->exitCode();
-            if ($result === null) {
-                $result = ($code === 0);
+            if ($code !== 0) {
+                //$deferred->reject($code);
+                $result = false;
+            } else {
+                if ($result === null) {
+                    $result = true;
+                } else {
+                    $result = $this->parseValue(trim($result));
+                }
             }
+
+            $deferred->resolve($result);
+            $that->close();
         });
-        $process->outputStream()->on('end', array($this, 'onEnd'));
 
         return $this;
     }
@@ -172,16 +182,9 @@ abstract class Zenity implements PromiseInterface
         return strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $name));
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         return $value;
-    }
-
-    public function onEnd()
-    {
-        $this->deferred->resolve($this->parseValue(trim($this->result)));
-
-        $this->close();
     }
 
     public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)

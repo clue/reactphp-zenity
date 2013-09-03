@@ -22,7 +22,7 @@ class Password extends Zenity
         return $this;
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         if ($this->username) {
             return explode(self::SEPARATOR, $value, 2);

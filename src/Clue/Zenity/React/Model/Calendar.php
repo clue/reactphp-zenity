@@ -51,7 +51,7 @@ class Calendar extends Zenity
         return $this;
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         return new \DateTime($value);
     }

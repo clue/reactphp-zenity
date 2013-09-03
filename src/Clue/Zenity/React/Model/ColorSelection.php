@@ -23,7 +23,7 @@ class ColorSelection extends Zenity
         return $this;
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         // https://answers.launchpad.net/ubuntu/+source/zenity/+question/204096
 

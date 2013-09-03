@@ -63,7 +63,7 @@ class FileSelection extends Zenity
         return $this;
     }
 
-    protected function parseValue($value)
+    public function parseValue($value)
     {
         if ($this->multiple) {
             $ret = array();
