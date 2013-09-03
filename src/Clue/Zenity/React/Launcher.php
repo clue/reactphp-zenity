@@ -53,7 +53,17 @@ class Launcher
         return $process;
     }
 
-    public function wait(Zenity $zenity)
+    /**
+     * Block while waiting for $zenity dialog to return
+     *
+     * This method should not be called manually! Use Zenity::waitReturn() instead!
+     *
+     * @param Zenity $zenity
+     * @return unknown
+     * @private
+     * @see Zenity::waitReturn() instead
+     */
+    public function waitFor(Zenity $zenity)
     {
         $done = false;
         $ret  = null;
@@ -67,7 +77,7 @@ class Launcher
         });
 
         if (!$done) {
-            $zenity->run($this);
+            $zenity->run();
 
             $loop->run();
         }
