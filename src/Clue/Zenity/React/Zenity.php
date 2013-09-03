@@ -11,6 +11,7 @@ abstract class Zenity implements PromiseInterface
     private $launcher;
     private $deferred;
     private $result;
+    private $inbuffer;
     protected $process;
 
     protected $title;
@@ -78,6 +79,11 @@ abstract class Zenity implements PromiseInterface
 
         $this->process = $process = $this->launcher->run($args);
 
+        if ($this->inbuffer !== null) {
+            $process->inputStream()->write($this->inbuffer);
+            $this->inbuffer = null;
+        }
+
         $result =& $this->result;
         $process->outputStream()->on('data', function ($data) use (&$result) {
             if ($data !== '') {
@@ -131,7 +137,7 @@ abstract class Zenity implements PromiseInterface
         );
 
         foreach ($this as $name => $value) {
-            if (!in_array($name, array('deferred', 'result', 'process', 'launcher')) && $value !== null && $value !== false && !is_array($value)) {
+            if (!in_array($name, array('deferred', 'result', 'process', 'launcher', 'inbuffer')) && $value !== null && $value !== false && !is_array($value)) {
                 $name = $this->decamelize($name);
 
                 if ($name === true) {
@@ -190,6 +196,9 @@ abstract class Zenity implements PromiseInterface
     {
         if ($this->process !== null) {
             $this->process->inputStream()->write($line . PHP_EOL);
+        } else {
+            // process not yet started => buffer input stream temporarily
+            $this->inbuffer .= $line . PHP_EOL;
         }
     }
 }

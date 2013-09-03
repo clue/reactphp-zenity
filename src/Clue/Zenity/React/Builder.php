@@ -175,7 +175,7 @@ class Builder
         $zenity->setHideHeader(true);
         $zenity->setText($text);
 
-        $zenity->run();
+        // $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine($key);
@@ -196,7 +196,7 @@ class Builder
         $zenity->setPrintColumn(2);
         $zenity->setText($text);
 
-        $zenity->run();
+        // $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine(($selected == $key) ? 'true' : 'false');
@@ -218,7 +218,7 @@ class Builder
         $zenity->setPrintColumn(2);
         $zenity->setText($text);
 
-        $zenity->run();
+        // $zenity->run();
 
         foreach ($list as $key => $value) {
             $zenity->writeLine(in_array($key, $selected) ? 'true' : 'false');
@@ -248,7 +248,7 @@ class Builder
         }
         $zenity->setText($text);
 
-        $zenity->run();
+        // $zenity->run();
 
         foreach ($rows as $id => $row) {
             $zenity->writeLine($id);
