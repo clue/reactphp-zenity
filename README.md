@@ -15,20 +15,153 @@ $launcher = new Launcher($loop);
 $builder = new Builder($launcher);
 
 $builder->entry('What\'s your name?', getenv('USER'))->then(function ($name) use ($builder) {
-    $builder->info('Welcome to zenity-react, ' . $name .'!');
+    $builder->info('Welcome to zenity-react, ' . $name .'!')->run();
 });
 
 ```
 
-For more examples, take a look at the `examples` folder.
+For more examples, take a look at the `example` folder.
 
 ## API
 
 The API is modelled closely after Zenity's command line API, so it should be
 familar if you're already using it from within any other command line script.
 
+### Launcher
+
+As shown in the above example, a `Launcher` has to be instantiated once and
+will be passed as a dependency to each `Zenity` dialog. It manages running
+the underlying `zenity` process and its dependencies.
+
+Therefor it assumes your `zenity` binary is located in your system `$PATH`.
+If it's not, you can explicitly set its path via
+```php
+$launcher->setBin('/some/other/path/zenity');
+```
+
+### Builder
+
 Additionally, the `Builder` implements an even simpler interface for commonly
-used dialogs.
+used dialogs. This is mostly for convenience, so you can get started easier.
+The methods should be fairly self-explanatory and map directly to the Zenity 
+dialogs listed below.
+
+For anything more complex, you can also instantiate the below classes directly.
+
+### Zenity
+
+Abstract base class for all zenity dialogs (see below for details on each concrete type).
+
+### Calendar
+
+![https://help.gnome.org/users/zenity/stable/calendar.html](https://help.gnome.org/users/zenity/stable/figures/zenity-calendar-screenshot.png)
+
+### ColorSelection
+
+![https://help.gnome.org/users/zenity/stable/colorselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-colorselection-screenshot.png)
+
+### Entry
+
+```php
+$builder->entry($prompt = null, $prefill = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/entry.html](https://help.gnome.org/users/zenity/stable/figures/zenity-entry-screenshot.png)
+
+### Error
+
+```php
+$builder->error($text, $title = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/error.html](https://help.gnome.org/users/zenity/stable/figures/zenity-error-screenshot.png)
+
+### FileSelection
+
+```php
+$builder->fileSelection($title = null, $multiple = false);
+$builder->fileSave($title = null, $previous = null);
+$builder->directorySelection($title = null, $multiple = false);
+```
+
+![https://help.gnome.org/users/zenity/stable/fileselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-fileselection-screenshot.png)
+
+### Forms
+
+![https://help.gnome.org/users/zenity/stable/forms.html](https://help.gnome.org/users/zenity/stable/figures/zenity-forms-screenshot.png)
+
+### Info
+
+```php
+$builder->info($text, $title = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/info.html](https://help.gnome.org/users/zenity/stable/figures/zenity-information-screenshot.png)
+
+### Listing
+
+```php
+$builder->listCheck(array $list, $text = null, $selected = null);
+$builder->listMenu(array $list, $text = null);
+$builder->listRadio(array $list, $text = null, array $selected = null);
+$builder->table(array $rows, array $columns = null, $text = null);
+```
+
+The name "list" is a reserved keyword in PHP, hence we had to use the name `Listing` instead.
+
+![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
+
+### Notification
+
+```php
+$builder->notification($text, $icon = null);
+$builder->notifier();
+```
+
+![https://help.gnome.org/users/zenity/stable/notification.html](https://help.gnome.org/users/zenity/stable/figures/zenity-notification-screenshot.png)
+
+### Password
+
+![https://help.gnome.org/users/zenity/stable/password.html](https://help.gnome.org/users/zenity/stable/figures/zenity-password-screenshot.png)
+
+### Progress
+
+```php
+$builder->progress($text = null);
+$builder->pulsate($text = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/progress.html](https://help.gnome.org/users/zenity/stable/figures/zenity-progress-screenshot.png)
+
+### Question
+
+```php
+$builder->question($question, $title = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
+
+### Scale
+
+![https://help.gnome.org/users/zenity/stable/scale.html](https://help.gnome.org/users/zenity/stable/figures/zenity-scale-screenshot.png)
+
+### TextInfo
+
+```php
+$builder->text($filename, $title = null);
+$builder->editable($filename, $title = null);
+$builder->confirmLicense($filename, $confirmation, $title = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/text.html](https://help.gnome.org/users/zenity/stable/figures/zenity-text-screenshot.png)
+
+### Warning
+
+```php
+$builder->warning($text, $title = null);
+```
+
+![https://help.gnome.org/users/zenity/stable/warning.html](https://help.gnome.org/users/zenity/stable/figures/zenity-warning-screenshot.png)
 
 ## Install
 
