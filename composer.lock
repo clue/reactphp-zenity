@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a214bcb2e84e5e61f6709f006caadcbb",
+    "hash": "a788fb0fd7a78143b0738c85935d4216",
     "packages": [
         {
             "name": "eloquent/enumeration",
@@ -94,29 +94,26 @@
         },
         {
             "name": "icecave/collections",
-            "version": "0.7.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IcecaveStudios/collections.git",
-                "reference": "f37bff04bbab6f086ce5766629dc9d99d7cc3b41"
+                "reference": "b36f5d1d148ba772753feaae1cee252c706d718c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/collections/zipball/f37bff04bbab6f086ce5766629dc9d99d7cc3b41",
-                "reference": "f37bff04bbab6f086ce5766629dc9d99d7cc3b41",
+                "url": "https://api.github.com/repos/IcecaveStudios/collections/zipball/b36f5d1d148ba772753feaae1cee252c706d718c",
+                "reference": "b36f5d1d148ba772753feaae1cee252c706d718c",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
-                "icecave/parity": "~0.1",
                 "icecave/repr": "~1",
-                "php": ">=5.3"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "eloquent/liberator": "~1",
                 "eloquent/typhoon": "~0.9",
-                "ezzatron/phpunit-extensions": "~1",
-                "icecave/archer": "1.0.0-alpha.2"
+                "icecave/archer": "~0.2"
             },
             "type": "library",
             "extra": {
@@ -143,7 +140,7 @@
                     "homepage": "https://github.com/jmalloc"
                 }
             ],
-            "description": "A PHP collection library loosely inspired by the .NET runtime and the C++ STL.",
+            "description": "A set of PHP collection types loosely inspired by the .NET runtime and the C++ STL.",
             "homepage": "https://github.com/IcecaveStudios/collections",
             "keywords": [
                 "array",
@@ -155,7 +152,7 @@
                 "sequence",
                 "stack"
             ],
-            "time": "2013-08-25 09:13:25"
+            "time": "2013-02-26 04:19:11"
         },
         {
             "name": "icecave/isolator",
@@ -208,32 +205,32 @@
         },
         {
             "name": "icecave/mephisto",
-            "version": "dev-develop",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IcecaveStudios/mephisto.git",
-                "reference": "b7883cbd55b3a59863bf27298d25ecf84b405025"
+                "reference": "737eaae1a42d6e36bee72a41e1ab2981b7a60863"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/mephisto/zipball/b7883cbd55b3a59863bf27298d25ecf84b405025",
-                "reference": "b7883cbd55b3a59863bf27298d25ecf84b405025",
+                "url": "https://api.github.com/repos/IcecaveStudios/mephisto/zipball/737eaae1a42d6e36bee72a41e1ab2981b7a60863",
+                "reference": "737eaae1a42d6e36bee72a41e1ab2981b7a60863",
                 "shasum": ""
             },
             "require": {
                 "eloquent/enumeration": "~3",
                 "ext-pcntl": "*",
                 "ext-posix": "*",
-                "icecave/collections": "~0.6",
+                "icecave/collections": "0.6.*",
                 "icecave/isolator": "~2.2",
                 "php": ">=5.3",
-                "react/event-loop": "~0.3",
-                "react/stream": "~0.3"
+                "react/event-loop": "0.3.*",
+                "react/stream": "0.3.*"
             },
             "require-dev": {
                 "eloquent/liberator": "~1",
-                "eloquent/typhoon": "~0.9",
-                "icecave/archer": "~0.5"
+                "eloquent/typhoon": "0.9.*",
+                "icecave/archer": "1.0.0-alpha.2"
             },
             "type": "library",
             "extra": {
@@ -260,7 +257,7 @@
                     "homepage": "https://github.com/jmalloc"
                 }
             ],
-            "description": "An asynchronous process management library for PHP.",
+            "description": "An asynchronous process management library for ReactPHP.",
             "homepage": "https://github.com/IcecaveStudios/mephisto",
             "keywords": [
                 "background",
@@ -270,68 +267,7 @@
                 "react",
                 "server"
             ],
-            "time": "2013-06-27 11:13:42"
-        },
-        {
-            "name": "icecave/parity",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/IcecaveStudios/parity.git",
-                "reference": "a68a1c645ced693f34cd39b0da1e44d803fcc7f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/parity/zipball/a68a1c645ced693f34cd39b0da1e44d803fcc7f2",
-                "reference": "a68a1c645ced693f34cd39b0da1e44d803fcc7f2",
-                "shasum": ""
-            },
-            "require": {
-                "icecave/repr": "~1",
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "eloquent/typhoon": "~0.9",
-                "icecave/archer": "~0.3"
-            },
-            "type": "library",
-            "extra": {
-                "typhoon": {
-                    "output-path": "lib-typhoon",
-                    "validator-namespace": "Icecave\\Parity\\TypeCheck",
-                    "use-native-callable": false
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Icecave\\Parity": "lib",
-                    "Icecave\\Parity\\TypeCheck": "lib-typhoon"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "A comparator library for PHP.",
-            "homepage": "https://github.com/IcecaveStudios/parity",
-            "keywords": [
-                "compare",
-                "comparison",
-                "equal",
-                "equality",
-                "greater",
-                "less",
-                "sort",
-                "sorting"
-            ],
-            "time": "2013-05-29 08:00:22"
+            "time": "2013-09-06 00:17:36"
         },
         {
             "name": "icecave/repr",
@@ -518,9 +454,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "icecave/mephisto": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

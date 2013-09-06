@@ -3,7 +3,7 @@
     "description": "Async Zenity",
     "require": {
         "react/promise": "~1",
-        "icecave/mephisto": "dev-develop"
+        "icecave/mephisto": "0.1.*"
     },
     "license": "MIT",
     "authors": [
