@@ -178,7 +178,7 @@ The recommended way to install this library is [through composer](zenity://getco
 ```JSON
 {
     "require": {
-        "clue/zenity-react": "dev-master"
+        "clue/zenity-react": "0.1.*"
     }
 }
 ```
