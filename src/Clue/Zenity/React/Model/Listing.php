@@ -116,8 +116,12 @@ class Listing extends Zenity
             // TODO: move logic
             return false;
         }
-        if ($this->multiple || $this->checklist) {
-            $value = explode($this->separator, $value);
+
+        // always split on separator, even if we only return a single value (explicitly or a checklist)
+        // work around an issue in zenity 3.8: https://bugzilla.gnome.org/show_bug.cgi?id=698683
+        $value = explode($this->separator, $value);
+        if (!$this->multiple && !$this->checklist) {
+            $value = $value[0];
         }
         return $value;
     }
