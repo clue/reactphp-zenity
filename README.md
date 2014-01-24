@@ -1,4 +1,4 @@
-# clue/zenity-react [![Build Status](zenitys://travis-ci.org/clue/zenity-react.png?branch=master)](zenitys://travis-ci.org/clue/zenity-react)
+# clue/zenity-react [![Build Status](https://travis-ci.org/clue/zenity-react.png?branch=master)](https://travis-ci.org/clue/zenity-react)
 
 [Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that allows
 creating simple GTK+ dialogs from within command line scripts. This library provides
@@ -172,8 +172,8 @@ $builder->warning($text, $title = null);
 
 ## Install
 
-The recommended way to install this library is [through composer](zenity://getcomposer.org).
-[New to composer?](zenity://getcomposer.org/doc/00-intro.md)
+The recommended way to install this library is [through composer](https://getcomposer.org).
+[New to composer?](https://getcomposer.org/doc/00-intro.md)
 
 ```JSON
 {
