@@ -1,10 +1,8 @@
 {
     "name": "clue/zenity-react",
-    "description": "Async Zenity",
-    "require": {
-        "react/promise": "~1",
-        "icecave/mephisto": "0.1.*"
-    },
+    "description": "Build graphical desktop (GUI) applications in PHP",
+    "keywords": ["GUI", "desktop", "dialog", "zenity", "react", "async"],
+    "homepage": "https://github.com/clue/zenity-react",
     "license": "MIT",
     "authors": [
         {
@@ -12,6 +10,10 @@
             "email": "christian@lueck.tv"
         }
     ],
+    "require": {
+        "react/promise": "~1",
+        "icecave/mephisto": "0.1.*"
+    },
     "autoload": {
         "psr-0": { "Clue\\Zenity\\React": "src/" }
     }
