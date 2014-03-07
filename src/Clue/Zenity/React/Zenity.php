@@ -116,7 +116,7 @@ abstract class Zenity implements PromiseInterface
                 if ($result === null) {
                     $result = true;
                 } else {
-                    $result = $this->parseValue(trim($result));
+                    $result = $that->parseValue(trim($result));
                 }
                 $deferred->resolve($result);
             }
