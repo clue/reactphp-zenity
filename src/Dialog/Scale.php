@@ -1,10 +1,10 @@
 <?php
 
-namespace Clue\React\Zenity\Model;
+namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Zenity;
 
-class Warning extends Zenity
+class Info extends Zenity
 {
     protected $text;
 

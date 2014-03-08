@@ -3,16 +3,16 @@
 namespace Clue\React\Zenity;
 
 use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Model\Question;
-use Clue\React\Zenity\Model\Info;
-use Clue\React\Zenity\Model\Warning;
-use Clue\React\Zenity\Model\Error;
-use Clue\React\Zenity\Model\Entry;
-use Clue\React\Zenity\Model\FileSelection;
-use Clue\React\Zenity\Model\Progress;
-use Clue\React\Zenity\Model\Notification;
-use Clue\React\Zenity\Model\TextInfo;
-use Clue\React\Zenity\Model\Listing;
+use Clue\React\Zenity\Dialog\Question;
+use Clue\React\Zenity\Dialog\Info;
+use Clue\React\Zenity\Dialog\Warning;
+use Clue\React\Zenity\Dialog\Error;
+use Clue\React\Zenity\Dialog\Entry;
+use Clue\React\Zenity\Dialog\FileSelection;
+use Clue\React\Zenity\Dialog\Progress;
+use Clue\React\Zenity\Dialog\Notification;
+use Clue\React\Zenity\Dialog\TextInfo;
+use Clue\React\Zenity\Dialog\Listing;
 
 /**
  * Convenience class used to construct common zenity dialogs

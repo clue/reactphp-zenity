@@ -2,7 +2,7 @@
 
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Model\FileSelection;
+use Clue\React\Zenity\Dialog\FileSelection;
 use Clue\React\Zenity\Builder;
 
 require __DIR__ . '/../vendor/autoload.php';
