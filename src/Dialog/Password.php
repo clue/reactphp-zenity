@@ -2,9 +2,9 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Zenity;
+use Clue\React\Zenity\Dialog\AbstractDialog;
 
-class Password extends Zenity
+class Password extends AbstractDialog
 {
     /**
      * attention: there's no way to chance this separator character

@@ -6,6 +6,7 @@ use React\EventLoop\LoopInterface;
 use Icecave\Mephisto\Factory\ProcessFactory;
 use Icecave\Mephisto\Launcher\CommandLineLauncher;
 use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Dialog\AbstractDialog;
 
 /**
  *
@@ -58,14 +59,14 @@ class Launcher
     /**
      * Block while waiting for $zenity dialog to return
      *
-     * This method should not be called manually! Use Zenity::waitReturn() instead!
+     * This method should not be called manually! Use AbstractDialog::waitReturn() instead!
      *
-     * @param Zenity $zenity
+     * @param AbstractDialog $zenity
      * @return unknown
      * @private
-     * @see Zenity::waitReturn() instead
+     * @see AbstractDialog::waitReturn() instead
      */
-    public function waitFor(Zenity $zenity)
+    public function waitFor(AbstractDialog $zenity)
     {
         $done = false;
         $ret  = null;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Clue\React\Zenity;
+namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Launcher;
 use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
 
-abstract class Zenity implements PromiseInterface
+abstract class AbstractDialog implements PromiseInterface
 {
     private $launcher;
     private $deferred;

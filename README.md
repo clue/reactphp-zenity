@@ -55,7 +55,7 @@ dialogs listed below.
 
 For anything more complex, you can also instantiate the below classes directly.
 
-### Zenity
+### AbstractDialog
 
 Abstract base class for all zenity dialogs (see below for details on each concrete type).
 

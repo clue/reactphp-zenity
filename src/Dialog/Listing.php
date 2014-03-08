@@ -2,14 +2,14 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Zenity;
+use Clue\React\Zenity\Dialog\AbstractDialog;
 
 /**
  *
  *
  * The name 'list' is a reserved keyword in PHP, hence the name 'listing'.
  */
-class Listing extends Zenity
+class Listing extends AbstractDialog
 {
     protected $text;
     protected $checklist = false;
