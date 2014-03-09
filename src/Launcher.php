@@ -37,7 +37,12 @@ class Launcher
         return $this;
     }
 
-    public function run(array $args = array())
+    public function createProcess(AbstractDialog $dialog)
+    {
+        return $this->run($dialog->getArgs());
+    }
+
+    private function run(array $args = array())
     {
         $command = $this->bin;
 
@@ -68,26 +73,6 @@ class Launcher
      */
     public function waitFor(AbstractDialog $zenity)
     {
-        $done = false;
-        $ret  = null;
-        $loop = $this->loop;
-
-        $zenity->then(function ($result) use (&$ret, &$done, $loop) {
-            $ret = $result;
-            $done = true;
-
-            $loop->stop();
-        }, function () use (&$ret, &$done, $loop) {
-            $ret = false;
-            $done = true;
-
-            $loop->stop();
-        });
-
-        if (!$done) {
-            $loop->run();
-        }
-
-        return $ret;
+        return $zenity->waitReturn();
     }
 }
