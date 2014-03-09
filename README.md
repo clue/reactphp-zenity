@@ -121,7 +121,7 @@ $builder->table(array $rows, array $columns = null, $text = null);
 ### NotificationDialog
 
 ```php
-$builder->notification($text, $icon = null);
+$builder->notification($text);
 $builder->notifier();
 ```
 

@@ -112,11 +112,10 @@ class Builder
         return $zenity;
     }
 
-    public function notification($text, $icon = null)
+    public function notification($text)
     {
         $zenity = new NotificationDialog();
         $zenity->setText($text);
-        $zenity->setIcon($icon);
 
         return $zenity;
     }
@@ -125,7 +124,6 @@ class Builder
     {
         $zenity = new NotificationDialog();
         $zenity->setListen(true);
-        //$zenity->run();
 
         return $zenity;
     }
