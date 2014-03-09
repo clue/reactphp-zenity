@@ -12,10 +12,10 @@ $loop = Factory::create();
 $launcher = new Launcher($loop);
 $builder = new Builder($launcher);
 
-$builder->fileSelection()->then(function (SplFileInfo $file) use ($builder, $launcher) {
+$builder->fileSelection()->run()->then(function (SplFileInfo $file) use ($builder, $launcher) {
     var_dump($file);
 
-    $builder->info('Selected "' . $file->getFilename() . '". Re-opening dialog with same selection')->then(function () use ($file, $launcher) {
+    $builder->info('Selected "' . $file->getFilename() . '". Re-opening dialog with same selection')->run()->then(function () use ($file, $launcher) {
         $selection = new FileSelectionDialog($launcher);
         $selection->setFilename($file);
         $selection->setTitle('Pretend we\'re overwriting the file');

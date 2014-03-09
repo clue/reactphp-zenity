@@ -16,19 +16,19 @@ $main = function() use (&$main, $builder) {
     $menu->setWindowIcon('info');
     $menu->setTitle('Main menu');
 
-    $menu->then(function ($selected) use ($builder, $main) {
+    $menu->run()->then(function ($selected) use ($builder, $main) {
         if ($selected === '0') {
             // U+2212 MINUS SIGN for alignment
-            $builder->listRadio(array('+2', '+1', '±0', '−1', '−2'), 'Introduction Level', 2)->then(function ($level) use ($main, $builder) {
-                $builder->info('Level ' . var_export($level, true))->then($main, $main);
+            $builder->listRadio(array('+2', '+1', '±0', '−1', '−2'), 'Introduction Level', 2)->run()->then(function ($level) use ($main, $builder) {
+                $builder->info('Level ' . var_export($level, true))->run()->then($main, $main);
             }, $main);
         } elseif ($selected === '1') {
-            $builder->listCheck(array('Unit', 'Functional', 'Acceptance (slow)'), 'Selected test suits to run', array(0, 1))->then(function ($tests) use ($main, $builder) {
-                $builder->info('Tests: ' . var_export($tests, true))->then($main, $main);
+            $builder->listCheck(array('Unit', 'Functional', 'Acceptance (slow)'), 'Selected test suits to run', array(0, 1))->run()->then(function ($tests) use ($main, $builder) {
+                $builder->info('Tests: ' . var_export($tests, true))->run()->then($main, $main);
             }, $main);
         } elseif ($selected === '2') {
-            $builder->confirmLicense(__DIR__ . '/../README.md', 'I have read the README.md file')->then(function ($checked) use ($main, $builder) {
-                $builder->info('Clicked ' . var_export($checked, true))->then($main, $main);
+            $builder->confirmLicense(__DIR__ . '/../README.md', 'I have read the README.md file')->run()->then(function ($checked) use ($main, $builder) {
+                $builder->info('Clicked ' . var_export($checked, true))->run()->then($main, $main);
             }, $main);
         } elseif ($selected === '3') {
             $builder->table(
@@ -41,12 +41,12 @@ $main = function() use (&$main, $builder) {
                     'Description',
                     'Status'
                 )
-            )->then(function ($bug) use ($main, $builder) {
-                $pulser = $builder->pulsate('Loading bug #' . $bug . '...' . PHP_EOL . '(This will not actually do anything...)');
+            )->run()->then(function ($bug) use ($main, $builder) {
+                $pulser = $builder->pulsate('Loading bug #' . $bug . '...' . PHP_EOL . '(This will not actually do anything...)')->run();
                 $pulser->then($main, $main);
             }, $main);
         } else {
-            $builder->info('Selected ' . var_export($selected, true))->then($main, $main);
+            $builder->info('Selected ' . var_export($selected, true))->run()->then($main, $main);
         }
     });
 };

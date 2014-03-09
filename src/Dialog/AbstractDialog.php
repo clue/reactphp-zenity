@@ -149,7 +149,7 @@ abstract class AbstractDialog
         $ret  = null;
         $loop = $this->loop;
 
-        $process = $this->launch();
+        $process = $this->run();
 
         $process->then(function ($result) use (&$ret, &$done, $loop) {
             $ret = $result;

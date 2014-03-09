@@ -21,6 +21,6 @@ sleep(3);
 $pulser->close();
 
 $packages = array('mink', 'behat', 'phpunit', 'box', 'boris');
-$pid = $builder->listRadio($packages, 'Select package')->waitReturn();
+$pid = $builder->listRadio($packages, 'Select package')->waitFor();
 
 var_dump($packages[$pid]);
