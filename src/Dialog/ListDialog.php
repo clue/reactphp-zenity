@@ -32,6 +32,8 @@ class ListDialog extends AbstractTextDialog
     protected $printColumn;
     protected $hideHeader = false;
 
+    protected $lines = array();
+
     /**
      * Adds a new column (with the given header name) in the list dialog.
      *
@@ -184,7 +186,7 @@ class ListDialog extends AbstractTextDialog
      */
     public function writeLine($line)
     {
-        $this->writeln($line);
+        $this->lines []= $line;
 
         return $this;
     }
@@ -198,7 +200,7 @@ class ListDialog extends AbstractTextDialog
      */
     public function getArgs()
     {
-        return array_merge(parent::getArgs(), $this->columns);
+        return array_merge(parent::getArgs(), $this->columns, $this->lines);
     }
 
     /**
