@@ -12,6 +12,7 @@
     ],
     "require": {
         "react/promise": "~1",
+        "react/event-loop": "0.3.*",
         "icecave/mephisto": "0.1.*"
     },
     "autoload": {
