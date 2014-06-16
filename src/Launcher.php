@@ -1,6 +1,6 @@
 <?php
 
-namespace Clue\Zenity\React;
+namespace Clue\React\Zenity;
 
 use React\EventLoop\LoopInterface;
 use Icecave\Mephisto\Factory\ProcessFactory;

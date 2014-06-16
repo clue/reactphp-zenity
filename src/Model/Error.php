@@ -1,8 +1,8 @@
 <?php
 
-namespace Clue\Zenity\React\Model;
+namespace Clue\React\Zenity\Model;
 
-use Clue\Zenity\React\Zenity;
+use Clue\React\Zenity\Zenity;
 
 class Error extends Zenity
 {

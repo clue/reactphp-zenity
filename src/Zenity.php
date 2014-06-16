@@ -1,8 +1,8 @@
 <?php
 
-namespace Clue\Zenity\React;
+namespace Clue\React\Zenity;
 
-use Clue\Zenity\React\Launcher;
+use Clue\React\Zenity\Launcher;
 use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
 

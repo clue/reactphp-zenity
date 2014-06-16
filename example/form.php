@@ -1,9 +1,9 @@
 <?php
 
 use React\EventLoop\Factory;
-use Clue\Zenity\React\Launcher;
-use Clue\Zenity\React\Model\FileSelection;
-use Clue\Zenity\React\Model\Forms;
+use Clue\React\Zenity\Launcher;
+use Clue\React\Zenity\Model\FileSelection;
+use Clue\React\Zenity\Model\Forms;
 
 require __DIR__ . '/../vendor/autoload.php';
 
