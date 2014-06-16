@@ -16,6 +16,6 @@
         "icecave/mephisto": "0.1.*"
     },
     "autoload": {
-        "psr-0": { "Clue\\Zenity\\React": "src/" }
+        "psr-4": { "Clue\\Zenity\\React\\": "src/" }
     }
 }
