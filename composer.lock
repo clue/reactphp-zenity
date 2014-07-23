@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab28d166d04be533f23e12f441143d9a",
+    "hash": "e269d3975b8865dbfeecc3656a319544",
     "packages": [
         {
             "name": "eloquent/enumeration",

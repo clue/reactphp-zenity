@@ -1,4 +1,4 @@
-# clue/zenity-react [![Build Status](https://travis-ci.org/clue/reactphp-zenity.png?branch=master)](https://travis-ci.org/clue/reactphp-zenity)
+# clue/zenity-react [![Build Status](https://travis-ci.org/clue/php-zenity-react.svg?branch=master)](https://travis-ci.org/clue/php-zenity-react)
 
 [Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that allows
 creating simple GTK+ dialogs from within command line scripts. This library provides

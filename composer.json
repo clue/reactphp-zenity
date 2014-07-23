@@ -2,7 +2,7 @@
     "name": "clue/zenity-react",
     "description": "Build graphical desktop (GUI) applications in PHP",
     "keywords": ["GUI", "desktop", "dialog", "zenity", "react", "async"],
-    "homepage": "https://github.com/clue/reactphp-zenity",
+    "homepage": "https://github.com/clue/php-zenity-react",
     "license": "MIT",
     "authors": [
         {
