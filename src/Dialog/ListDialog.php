@@ -4,11 +4,6 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
 
-/**
- *
- *
- * The name 'list' is a reserved keyword in PHP, hence the name 'listing'.
- */
 class ListDialog extends AbstractDialog
 {
     protected $text;
@@ -103,11 +98,6 @@ class ListDialog extends AbstractDialog
     public function getArgs()
     {
         return array_merge(parent::getArgs(), $this->columns);
-    }
-
-    public function getType()
-    {
-        return 'list';
     }
 
     public function parseValue($value)

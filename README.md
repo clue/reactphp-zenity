@@ -114,8 +114,6 @@ $builder->listRadio(array $list, $text = null, array $selected = null);
 $builder->table(array $rows, array $columns = null, $text = null);
 ```
 
-The name "list" is a reserved keyword in PHP, hence we had to use the name `ListDialog` instead.
-
 ![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
 
 ### NotificationDialog
