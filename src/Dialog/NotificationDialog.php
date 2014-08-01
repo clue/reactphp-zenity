@@ -4,7 +4,7 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
 
-class Notification extends AbstractDialog
+class NotificationDialog extends AbstractDialog
 {
     protected $text;
     protected $listen = false;

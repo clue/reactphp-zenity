@@ -59,15 +59,15 @@ For anything more complex, you can also instantiate the below classes directly.
 
 Abstract base class for all zenity dialogs (see below for details on each concrete type).
 
-### Calendar
+### CalendarDialog
 
 ![https://help.gnome.org/users/zenity/stable/calendar.html](https://help.gnome.org/users/zenity/stable/figures/zenity-calendar-screenshot.png)
 
-### ColorSelection
+### ColorSelectionDialog
 
 ![https://help.gnome.org/users/zenity/stable/colorselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-colorselection-screenshot.png)
 
-### Entry
+### EntryDialog
 
 ```php
 $builder->entry($prompt = null, $prefill = null);
@@ -75,7 +75,7 @@ $builder->entry($prompt = null, $prefill = null);
 
 ![https://help.gnome.org/users/zenity/stable/entry.html](https://help.gnome.org/users/zenity/stable/figures/zenity-entry-screenshot.png)
 
-### Error
+### ErrorDialog
 
 ```php
 $builder->error($text, $title = null);
@@ -83,7 +83,7 @@ $builder->error($text, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/error.html](https://help.gnome.org/users/zenity/stable/figures/zenity-error-screenshot.png)
 
-### FileSelection
+### FileSelectionDialog
 
 ```php
 $builder->fileSelection($title = null, $multiple = false);
@@ -93,11 +93,11 @@ $builder->directorySelection($title = null, $multiple = false);
 
 ![https://help.gnome.org/users/zenity/stable/fileselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-fileselection-screenshot.png)
 
-### Forms
+### FormsDialog
 
 ![https://help.gnome.org/users/zenity/stable/forms.html](https://help.gnome.org/users/zenity/stable/figures/zenity-forms-screenshot.png)
 
-### Info
+### InfoDialog
 
 ```php
 $builder->info($text, $title = null);
@@ -105,7 +105,7 @@ $builder->info($text, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/info.html](https://help.gnome.org/users/zenity/stable/figures/zenity-information-screenshot.png)
 
-### Listing
+### ListDialog
 
 ```php
 $builder->listCheck(array $list, $text = null, $selected = null);
@@ -114,11 +114,11 @@ $builder->listRadio(array $list, $text = null, array $selected = null);
 $builder->table(array $rows, array $columns = null, $text = null);
 ```
 
-The name "list" is a reserved keyword in PHP, hence we had to use the name `Listing` instead.
+The name "list" is a reserved keyword in PHP, hence we had to use the name `ListDialog` instead.
 
 ![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
 
-### Notification
+### NotificationDialog
 
 ```php
 $builder->notification($text, $icon = null);
@@ -127,11 +127,11 @@ $builder->notifier();
 
 ![https://help.gnome.org/users/zenity/stable/notification.html](https://help.gnome.org/users/zenity/stable/figures/zenity-notification-screenshot.png)
 
-### Password
+### PasswordDialog
 
 ![https://help.gnome.org/users/zenity/stable/password.html](https://help.gnome.org/users/zenity/stable/figures/zenity-password-screenshot.png)
 
-### Progress
+### ProgressDialog
 
 ```php
 $builder->progress($text = null);
@@ -140,7 +140,7 @@ $builder->pulsate($text = null);
 
 ![https://help.gnome.org/users/zenity/stable/progress.html](https://help.gnome.org/users/zenity/stable/figures/zenity-progress-screenshot.png)
 
-### Question
+### QuestionDialog
 
 ```php
 $builder->question($question, $title = null);
@@ -152,7 +152,7 @@ $builder->question($question, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/scale.html](https://help.gnome.org/users/zenity/stable/figures/zenity-scale-screenshot.png)
 
-### TextInfo
+### TextInfoDialog
 
 ```php
 $builder->text($filename, $title = null);
@@ -162,7 +162,7 @@ $builder->confirmLicense($filename, $confirmation, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/text.html](https://help.gnome.org/users/zenity/stable/figures/zenity-text-screenshot.png)
 
-### Warning
+### WarningDialog
 
 ```php
 $builder->warning($text, $title = null);

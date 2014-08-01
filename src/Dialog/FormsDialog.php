@@ -4,7 +4,7 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
 
-class Forms extends AbstractDialog
+class FormsDialog extends AbstractDialog
 {
     protected $fields = array();
 

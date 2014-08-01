@@ -2,15 +2,14 @@
 
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Dialog\FileSelection;
-use Clue\React\Zenity\Dialog\Forms;
+use Clue\React\Zenity\Dialog\FormsDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $loop = Factory::create();
 $launcher = new Launcher($loop);
 
-$form = new Forms($launcher);
+$form = new FormsDialog($launcher);
 $form->setWindowIcon('info');
 $form->setText('Enter user information');
 

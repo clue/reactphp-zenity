@@ -152,9 +152,10 @@ abstract class AbstractDialog implements PromiseInterface
         return $this->launcher->waitFor($this);
     }
 
-    public function getType()
+    private function getType()
     {
-        return $this->decamelize(basename(str_replace('\\', '/', get_class($this))));
+        // InfoDialog => info
+        return $this->decamelize(substr(basename(str_replace('\\', '/', get_class($this))), 0, -6));
     }
 
     public function getArgs()
