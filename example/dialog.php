@@ -9,18 +9,18 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
-$builder = new Builder($launcher);
+$builder = new Builder();
 
-$builder->entry('What\'s your name?', getenv('USER'))->setTitle('Enter your name')->run()->then(function ($name) use ($builder) {
-    $builder->info('Welcome to the introduction of zenity, ' . $name)->run()->then(function () use ($builder) {
-        $builder->question('Do you want to quit?')->run()->then(function () use ($builder) {
-            $builder->error('Oh noes!')->run();
-        }, function() use ($builder) {
-            $builder->warning('You should have selected yes!')->run();
+$launcher->launch($builder->entry('What\'s your name?', getenv('USER'))->setTitle('Enter your name'))->then(function ($name) use ($builder, $launcher) {
+    $launcher->launch($builder->info('Welcome to the introduction of zenity, ' . $name))->then(function () use ($builder, $launcher) {
+        $launcher->launch($builder->question('Do you want to quit?'))->then(function () use ($builder, $launcher) {
+            $launcher->launch($builder->error('Oh noes!'));
+        }, function() use ($builder, $launcher) {
+            $launcher->launch($builder->warning('You should have selected yes!'));
         });
     });
-}, function () use ($builder) {
-    $builder->warning('No name given')->run();
+}, function () use ($builder, $launcher) {
+    $launcher->launch($builder->warning('No name given'));
 });
 
 $loop->run();

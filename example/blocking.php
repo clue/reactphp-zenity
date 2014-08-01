@@ -9,18 +9,18 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
-$builder = new Builder($launcher);
+$builder = new Builder();
 
-$name = $builder->entry('Search package')->waitReturn();
+$name = $launcher->waitFor($builder->entry('Search package'));
 if ($name === false) {
     exit;
 }
 
-$pulser = $builder->pulsate('Searching packagist.org for "' . $name . '"...')->run();
+$pulser = $launcher->launch($builder->pulsate('Searching packagist.org for "' . $name . '"...'));
 sleep(3);
 $pulser->close();
 
 $packages = array('mink', 'behat', 'phpunit', 'box', 'boris');
-$pid = $builder->listRadio($packages, 'Select package')->waitFor();
+$pid = $launcher->waitFor($builder->listRadio($packages, 'Select package'));
 
 var_dump($packages[$pid]);
