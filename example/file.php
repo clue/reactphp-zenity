@@ -2,7 +2,7 @@
 
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Model\FileSelection;
+use Clue\React\Zenity\Dialog\FileSelectionDialog;
 use Clue\React\Zenity\Builder;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -16,7 +16,7 @@ $builder->fileSelection()->then(function (SplFileInfo $file) use ($builder, $lau
     var_dump($file);
 
     $builder->info('Selected "' . $file->getFilename() . '". Re-opening dialog with same selection')->then(function () use ($file, $launcher) {
-        $selection = new FileSelection($launcher);
+        $selection = new FileSelectionDialog($launcher);
         $selection->setFilename($file);
         $selection->setTitle('Pretend we\'re overwriting the file');
         $selection->setConfirmOverwrite(true);

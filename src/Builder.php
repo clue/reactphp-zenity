@@ -3,16 +3,16 @@
 namespace Clue\React\Zenity;
 
 use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Model\Question;
-use Clue\React\Zenity\Model\Info;
-use Clue\React\Zenity\Model\Warning;
-use Clue\React\Zenity\Model\Error;
-use Clue\React\Zenity\Model\Entry;
-use Clue\React\Zenity\Model\FileSelection;
-use Clue\React\Zenity\Model\Progress;
-use Clue\React\Zenity\Model\Notification;
-use Clue\React\Zenity\Model\TextInfo;
-use Clue\React\Zenity\Model\Listing;
+use Clue\React\Zenity\Dialog\QuestionDialog;
+use Clue\React\Zenity\Dialog\InfoDialog;
+use Clue\React\Zenity\Dialog\WarningDialog;
+use Clue\React\Zenity\Dialog\ErrorDialog;
+use Clue\React\Zenity\Dialog\EntryDialog;
+use Clue\React\Zenity\Dialog\FileSelectionDialog;
+use Clue\React\Zenity\Dialog\ProgressDialog;
+use Clue\React\Zenity\Dialog\NotificationDialog;
+use Clue\React\Zenity\Dialog\TextInfoDialog;
+use Clue\React\Zenity\Dialog\ListDialog;
 
 /**
  * Convenience class used to construct common zenity dialogs
@@ -28,7 +28,7 @@ class Builder
 
     public function info($text, $title = null)
     {
-        $zenity = new Info($this->launcher);
+        $zenity = new InfoDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -37,7 +37,7 @@ class Builder
 
     public function warning($text, $title = null)
     {
-        $zenity = new Warning($this->launcher);
+        $zenity = new WarningDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -46,7 +46,7 @@ class Builder
 
     public function error($text, $title = null)
     {
-        $zenity = new Error($this->launcher);
+        $zenity = new ErrorDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setTitle($title);
 
@@ -55,7 +55,7 @@ class Builder
 
     public function question($question, $title = null)
     {
-        $zenity = new Question($this->launcher);
+        $zenity = new QuestionDialog($this->launcher);
         $zenity->setText($question);
         $zenity->setTitle($title);
 
@@ -64,7 +64,7 @@ class Builder
 
     public function entry($prompt = null, $prefill = null)
     {
-        $zenity = new Entry($this->launcher);
+        $zenity = new EntryDialog($this->launcher);
         $zenity->setText($prompt);
         $zenity->setEntryText($prefill);
 
@@ -73,7 +73,7 @@ class Builder
 
     public function fileSelection($title = null, $multiple = false)
     {
-        $zenity = new FileSelection($this->launcher);
+        $zenity = new FileSelectionDialog($this->launcher);
         $zenity->setTitle('Select any file');
         $zenity->setMultiple($multiple);
 
@@ -82,7 +82,7 @@ class Builder
 
     public function fileSave($title, $previous = null)
     {
-        $zenity = new FileSelection($this->launcher);
+        $zenity = new FileSelectionDialog($this->launcher);
         $zenity->setTitle($title);
         $zenity->setFilename($previous);
         $zenity->setSave(true);
@@ -93,7 +93,7 @@ class Builder
 
     public function directorySelection($title = null, $multiple = false)
     {
-        $zenity = new FileSelection($this->launcher);
+        $zenity = new FileSelectionDialog($this->launcher);
         $zenity->setDirectory(true);
         $zenity->setTitle($title);
         $zenity->setMultiple($multiple);
@@ -103,7 +103,7 @@ class Builder
 
     public function progress($text = null)
     {
-        $zenity = new Progress($this->launcher);
+        $zenity = new ProgressDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setAutoClose(true);
 
@@ -112,7 +112,7 @@ class Builder
 
     public function pulsate($text = null)
     {
-        $zenity = new Progress($this->launcher);
+        $zenity = new ProgressDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setPulsate(true);
         $zenity->setAutoClose(true);
@@ -122,7 +122,7 @@ class Builder
 
     public function notification($text, $icon = null)
     {
-        $zenity = new Notification($this->launcher);
+        $zenity = new NotificationDialog($this->launcher);
         $zenity->setText($text);
         $zenity->setIcon($icon);
 
@@ -131,7 +131,7 @@ class Builder
 
     public function notifier()
     {
-        $zenity = new Notification($this->launcher);
+        $zenity = new NotificationDialog($this->launcher);
         $zenity->setListen(true);
         $zenity->run();
 
@@ -140,7 +140,7 @@ class Builder
 
     public function text($filename, $title = null)
     {
-        $zenity = new TextInfo();
+        $zenity = new TextInfoDialog();
         $zenity->setFilename($filename);
         $zenity->setTitle($title);
 
@@ -149,7 +149,7 @@ class Builder
 
     public function editable($filename, $title = null)
     {
-        $zenity = new TextInfo($this->launcher);
+        $zenity = new TextInfoDialog($this->launcher);
         $zenity->setFilename($filename);
         $zenity->setTitle($title);
         $zenity->setEditable(true);
@@ -159,7 +159,7 @@ class Builder
 
     public function confirmLicense($filename, $confirmation, $title = null)
     {
-        $zenity = new TextInfo($this->launcher);
+        $zenity = new TextInfoDialog($this->launcher);
         $zenity->setFilename($filename);
         $zenity->setCheckbox($confirmation);
         $zenity->setTitle($title);
@@ -169,7 +169,7 @@ class Builder
 
     public function listMenu($list, $text = null)
     {
-        $zenity = new Listing($this->launcher);
+        $zenity = new ListDialog($this->launcher);
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
         $zenity->setHideHeader(true);
@@ -187,7 +187,7 @@ class Builder
 
     public function listRadio($list, $text = null, $selected = null)
     {
-        $zenity = new Listing($this->launcher);
+        $zenity = new ListDialog($this->launcher);
         $zenity->addColumn(' ');
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
@@ -209,7 +209,7 @@ class Builder
 
     public function listCheck($list, $text = null, $selected = null)
     {
-        $zenity = new Listing($this->launcher);
+        $zenity = new ListDialog($this->launcher);
         $zenity->addColumn(' ');
         $zenity->addColumn('Id', true);
         $zenity->addColumn('Value');
@@ -241,7 +241,7 @@ class Builder
         }
         $width = count($columns);
 
-        $zenity = new Listing($this->launcher);
+        $zenity = new ListDialog($this->launcher);
         $zenity->addColumn('Id', true);
         foreach ($columns as $column) {
             $zenity->addColumn($column);

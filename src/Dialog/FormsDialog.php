@@ -1,10 +1,10 @@
 <?php
 
-namespace Clue\React\Zenity\Model;
+namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Zenity;
+use Clue\React\Zenity\Dialog\AbstractDialog;
 
-class Forms extends Zenity
+class FormsDialog extends AbstractDialog
 {
     protected $fields = array();
 

@@ -1,15 +1,10 @@
 <?php
 
-namespace Clue\React\Zenity\Model;
+namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Zenity;
+use Clue\React\Zenity\Dialog\AbstractDialog;
 
-/**
- *
- *
- * The name 'list' is a reserved keyword in PHP, hence the name 'listing'.
- */
-class Listing extends Zenity
+class ListDialog extends AbstractDialog
 {
     protected $text;
     protected $checklist = false;
@@ -103,11 +98,6 @@ class Listing extends Zenity
     public function getArgs()
     {
         return array_merge(parent::getArgs(), $this->columns);
-    }
-
-    public function getType()
-    {
-        return 'list';
     }
 
     public function parseValue($value)
