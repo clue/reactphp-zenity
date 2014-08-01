@@ -2,16 +2,13 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Launcher;
-use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\BaseZen;
 
-abstract class AbstractDialog implements PromiseInterface
+abstract class AbstractDialog
 {
-    private $launcher;
-    private $deferred;
-    private $inbuffer;
-    protected $process;
+    private $inbuffer = null;
 
     protected $title;
     protected $windowIcon;
@@ -21,12 +18,6 @@ abstract class AbstractDialog implements PromiseInterface
     protected $height;
     protected $okLabel;
     protected $cancelLabel;
-
-    public function __construct(Launcher $launcher)
-    {
-        $this->launcher = $launcher;
-        $this->deferred = new Deferred();
-    }
 
     public function setTitle($title)
     {
@@ -84,74 +75,6 @@ abstract class AbstractDialog implements PromiseInterface
         return $this;
     }
 
-    public function run()
-    {
-        if ($this->process !== null) {
-            return $this;
-        }
-
-        $args = $this->getArgs();
-
-        $this->process = $process = $this->launcher->run($args);
-
-        if ($this->inbuffer !== null) {
-            $process->inputStream()->write($this->inbuffer);
-            $this->inbuffer = null;
-        }
-
-        $result = null;
-        $process->outputStream()->on('data', function ($data) use (&$result) {
-            if ($data !== '') {
-                $result .= $data;
-            }
-        });
-
-        $deferred = $this->deferred;
-        $that = $this;
-        $process->outputStream()->on('end', function() use ($process, &$result, $that, $deferred) {
-            $code = $process->status()->exitCode();
-            if ($code !== 0) {
-                $deferred->reject($code);
-            } else {
-                if ($result === null) {
-                    $result = true;
-                } else {
-                    $result = $that->parseValue(trim($result));
-                }
-                $deferred->resolve($result);
-            }
-
-            $that->close();
-        });
-
-        return $this;
-    }
-
-    /**
-     * Block while waiting for this dialog to return
-     *
-     * If the dialog is already closed, this returns immediately, without doing
-     * much at all. If the dialog is not yet opened, it will be opened and this
-     * method will wait for the dialog to be handled (i.e. either completed or
-     * closed). Clicking "ok" will result in a boolean true value, clicking
-     * "cancel" or hitten escape key will or running into a timeout will result
-     * in a boolean false. For all other input fields, their respective (parsed)
-     * value will be returned.
-     *
-     * For this to work, this method will temporarily start the event loop and
-     * stop it afterwards. Thus, it is *NOT* a good idea to mix this if anything
-     * else is listening on the event loop. The recommended way in this case is
-     * to avoid using this blocking method call and go for a fully async
-     * `self::then()` instead.
-     *
-     * @return boolean|string dialog return value
-     * @uses Launcher::waitFor()
-     */
-    public function waitReturn()
-    {
-        return $this->launcher->waitFor($this);
-    }
-
     private function getType()
     {
         // InfoDialog => info
@@ -166,7 +89,7 @@ abstract class AbstractDialog implements PromiseInterface
         );
 
         foreach ($this as $name => $value) {
-            if (!in_array($name, array('deferred', 'result', 'process', 'launcher', 'inbuffer')) && $value !== null && $value !== false && !is_array($value)) {
+            if (!in_array($name, array('inbuffer')) && $value !== null && $value !== false && !is_array($value)) {
                 $name = $this->decamelize($name);
 
                 if ($name === true) {
@@ -190,39 +113,19 @@ abstract class AbstractDialog implements PromiseInterface
         return $value;
     }
 
-    public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        if ($this->process === null) {
-            $this->run();
-        }
-        return $this->deferred->then($fulfilledHandler, $errorHandler, $progressHandler);
-    }
-
-    public function close()
-    {
-        if ($this->process !== null) {
-            $this->process->kill();
-
-            $streams = array($this->process->outputStream(), $this->process->inputStream(), $this->process->errorStream());
-            foreach ($streams as $stream) {
-                if ($stream !== null) {
-                    $stream->close();
-                }
-            }
-
-            // $this->process = null;
-        }
-
-        return $this;
+        return new BaseZen($deferred, $process);
     }
 
     protected function writeln($line)
     {
-        if ($this->process !== null) {
-            $this->process->inputStream()->write($line . PHP_EOL);
-        } else {
-            // process not yet started => buffer input stream temporarily
-            $this->inbuffer .= $line . PHP_EOL;
-        }
+        // buffer input stream temporarily
+        $this->inbuffer .= $line . PHP_EOL;
+    }
+
+    public function getInBuffer()
+    {
+        return $this->inbuffer;
     }
 }

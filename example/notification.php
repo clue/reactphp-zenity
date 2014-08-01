@@ -9,10 +9,11 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
-$builder = new Builder($launcher);
+$builder = new Builder();
 
 $notification = $builder->notifier();
 $notification->setMessage('Hello world');
+$launcher->launch($notification);
 
 $n = 0;
 $loop->addPeriodicTimer(10.0, function ($timer) use ($notification, &$n) {
