@@ -67,4 +67,13 @@ abstract class AbstractDialogTest extends TestCase
             $dialog
         );
     }
+
+    public function assertParsingValues(array $values)
+    {
+        $dialog = $this->createDialog();
+
+        foreach ($values as $in => $out) {
+            $this->assertEquals($out, $dialog->parseValue($in));
+        }
+    }
 }

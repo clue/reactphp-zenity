@@ -35,4 +35,12 @@ class ScaleDialogTest extends AbstractDialogTest
 
         $this->assertDialogArgs(array(), $dialog);
     }
+
+    public function testParsingValues()
+    {
+        $this->assertParsingValues(array(
+            '100' => 100,
+            '0'   => 0
+        ));
+    }
 }
