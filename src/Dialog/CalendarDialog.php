@@ -3,7 +3,16 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use \DateTime;
 
+/**
+ * Use the --calendar option to create a calendar dialog.
+ *
+ * Zenity returns the selected date. If no date is specified via the following
+ * options, the dialog uses the current date.
+ *
+ * @link https://help.gnome.org/users/zenity/stable/calendar.html
+ */
 class CalendarDialog extends AbstractTextDialog
 {
     protected $year;
@@ -13,6 +22,12 @@ class CalendarDialog extends AbstractTextDialog
     // no setter:
     protected $dateFormat = '%Y-%m-%d';
 
+    /**
+     * Specifies the year that is selected in the calendar dialog.
+     *
+     * @param int $year
+     * @return self chainable
+     */
     public function setYear($year)
     {
         $this->year = $year;
@@ -20,6 +35,14 @@ class CalendarDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * Specifies the month that is selected in the calendar dialog.
+     *
+     * month must be a number between 1 and 12 inclusive.
+     *
+     * @param int $month
+     * @return self chainable
+     */
     public function setMonth($month)
     {
         $this->month = $month;
@@ -27,6 +50,14 @@ class CalendarDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * Specifies the day that is selected in the calendar dialog.
+     *
+     * day must be a number between 1 and 31 inclusive.
+     *
+     * @param int $day
+     * @return self chainable
+     */
     public function setDay($day)
     {
         $this->day = $day;
@@ -34,17 +65,33 @@ class CalendarDialog extends AbstractTextDialog
         return $this;
     }
 
-    public function setDateTime(\DateTime $date)
+    /**
+     * Helper to set the year/month/day from the given DateTime instance
+     *
+     * @param DateTime $date
+     * @return self chainable
+     * @uses self::setYear()
+     * @uses self::setMonth()
+     * @uses self::setDay()
+     */
+    public function setDateTime(DateTime $date)
     {
-        $this->setYear($date->format('Y'));
-        $this->setMonth($date->format('m'));
-        $this->setDay($date->format('d'));
+        $this->setYear((int)$date->format('Y'));
+        $this->setMonth((int)$date->format('m'));
+        $this->setDay((int)$date->format('d'));
 
         return $this;
     }
 
+    /**
+     * Parses the date string returned from the dialog into a DateTime object
+     *
+     * @internal
+     * @see parent::parseValue()
+     * @return \DateTime
+     */
     public function parseValue($value)
     {
-        return new \DateTime($value);
+        return new DateTime($value);
     }
 }
