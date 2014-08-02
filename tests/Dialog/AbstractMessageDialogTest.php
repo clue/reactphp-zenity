@@ -1,11 +1,7 @@
 <?php
 
-abstract class AbstractMessageDialogTest extends TestCase
+abstract class AbstractMessageDialogTest extends AbstractDialogTest
 {
-    abstract protected function createDialog();
-
-    abstract protected function getType();
-
     public function testEmpty()
     {
         $dialog = $this->createDialog();

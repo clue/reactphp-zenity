@@ -1,13 +1,17 @@
 <?php
 
 use Clue\React\Zenity\Dialog\ScaleDialog;
-class ScaleDialogTest extends TestCase
-{
-    public function testEmptyDialog()
-    {
-        $dialog = new ScaleDialog();
 
-        $this->assertEquals(array('--scale'), $dialog->getArgs());
+class ScaleDialogTest extends AbstractDialogTest
+{
+    protected function createDialog()
+    {
+        return new ScaleDialog();
+    }
+
+    protected function getType()
+    {
+        return '--scale';
     }
 
     public function testArgs()
