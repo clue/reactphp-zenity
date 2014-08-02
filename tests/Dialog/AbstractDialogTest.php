@@ -11,11 +11,24 @@ abstract class AbstractDialogTest extends TestCase
 
     abstract protected function getType();
 
+    protected function getFixedArgs()
+    {
+        return array();
+    }
+
+    protected function assertDialogArgs(array $expected, AbstractDialog $dialog)
+    {
+        $this->assertEquals(
+            array($this->getType()) + $expected + $this->getFixedArgs(),
+            $dialog->getArgs()
+        );
+    }
+
     public function testEmptyDialog()
     {
         $dialog = $this->createDialog();
 
-        $this->assertEquals(array($this->getType()), $dialog->getArgs());
+        $this->assertDialogArgs(array(), $dialog);
     }
 
     public function testDefaultArgs()
@@ -31,9 +44,8 @@ abstract class AbstractDialogTest extends TestCase
         $this->assertSame($dialog, $dialog->setOkLabel('Next'));
         $this->assertSame($dialog, $dialog->setCancelLabel('Previous'));
 
-        $this->assertEquals(
+        $this->assertDialogArgs(
             array(
-                $this->getType(),
                 'title' => 'title',
                 'window-icon' => 'icon',
                 'timeout' => 10,
@@ -43,7 +55,7 @@ abstract class AbstractDialogTest extends TestCase
                 'ok-label' => 'Next',
                 'cancel-label' => 'Previous'
             ),
-            $dialog->getArgs()
+            $dialog
         );
     }
 }

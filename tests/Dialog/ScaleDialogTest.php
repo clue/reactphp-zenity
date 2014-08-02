@@ -24,7 +24,7 @@ class ScaleDialogTest extends AbstractDialogTest
         $dialog->setStep(10);
         $dialog->setHideValue();
 
-        $this->assertEquals(array('--scale', 'text' => 'test', 'value' => 1500, 'min-value' => 1000, 'max-value' => 2000, 'step' => 10, 'hide-value' => true), $dialog->getArgs());
+        $this->assertDialogArgs(array('text' => 'test', 'value' => 1500, 'min-value' => 1000, 'max-value' => 2000, 'step' => 10, 'hide-value' => true), $dialog);
     }
 
     public function testHideValue()
@@ -33,6 +33,6 @@ class ScaleDialogTest extends AbstractDialogTest
         $dialog->setHideValue(true);
         $dialog->setHideValue(false);
 
-        $this->assertEquals(array('--scale'), $dialog->getArgs());
+        $this->assertDialogArgs(array(), $dialog);
     }
 }
