@@ -14,7 +14,7 @@ $form->setWindowIcon('info');
 $form->setText('Enter user information');
 
 $form->addEntry('Name');
-$form->addPassword('Password');
+$form->addPassword('Password Confirmation');
 $form->addCalendar('Birthday');
 //$form->addList('Group', array('Admin', 'User', 'Random'));
 $form->addEntry('Nickname');

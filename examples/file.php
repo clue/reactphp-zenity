@@ -3,15 +3,15 @@
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Dialog\FileSelectionDialog;
-use Clue\React\Zenity\Builder;
 use Clue\React\Zenity\Dialog\InfoDialog;
+use Clue\React\Zenity\Builder\FileSelectionBuilder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
-$builder = new Builder();
+$builder = new FileSelectionBuilder();
 
 $launcher->launch($builder->fileSelection())->then(function (SplFileInfo $file) use ($launcher) {
     var_dump($file);
