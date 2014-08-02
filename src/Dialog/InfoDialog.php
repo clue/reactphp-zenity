@@ -2,16 +2,13 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractMessageDialog;
 
-class InfoDialog extends AbstractDialog
+/**
+ * Use the --info option to create an information dialog.
+ *
+ * @link https://help.gnome.org/users/zenity/stable/info.html
+ */
+class InfoDialog extends AbstractMessageDialog
 {
-    protected $text;
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 }
