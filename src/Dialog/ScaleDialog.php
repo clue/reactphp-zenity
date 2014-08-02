@@ -98,4 +98,16 @@ class ScaleDialog extends AbstractDialog
 
         return $this;
     }
+
+    /**
+     * Converts the scale string returned from the dialog to an integer
+     *
+     * @internal
+     * @see parent::parseValue()
+     * @return int
+     */
+    public function parseValue($value)
+    {
+        return (int)$value;
+    }
 }
