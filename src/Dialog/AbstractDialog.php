@@ -164,7 +164,7 @@ abstract class AbstractDialog
      * Internally, this will automatically fetch all properties of the current
      * instance and format them accordingly to zenity arguments.
      *
-     * @return array
+     * @return string[]
      * @internal
      */
     public function getArgs()
@@ -177,11 +177,13 @@ abstract class AbstractDialog
             if (!in_array($name, array('inbuffer')) && $value !== null && $value !== false && !is_array($value)) {
                 $name = $this->decamelize($name);
 
-                if ($name === true) {
-                    $args[] = $value;
-                } else {
-                    $args[$name] = $value;
+                if ($value !== true) {
+                    // append value if this is not a boolean arg
+                    $name .= '=' . $value;
                 }
+
+                // all arguments start with a double dash
+                $args []= '--' . $name;
             }
         }
 

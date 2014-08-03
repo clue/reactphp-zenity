@@ -18,18 +18,15 @@ abstract class AbstractDialogTest extends TestCase
 
     protected function assertDialogArgs(array $expected, AbstractDialog $dialog)
     {
-        $all = array($this->getType()) + $this->getFixedArgs();
-        foreach ($expected as $key => $value) {
-            if (is_int($key)) {
-                $all []= $value;
-            } else {
-                $all[$key] = $value;
-            }
-        }
+        $all = array_merge($expected, array($this->getType()), $this->getFixedArgs());
+        sort($all);
+
+        $got = $dialog->getArgs();
+        sort($got);
 
         $this->assertEquals(
             $all,
-            $dialog->getArgs()
+            $got
         );
     }
 
@@ -55,14 +52,14 @@ abstract class AbstractDialogTest extends TestCase
 
         $this->assertDialogArgs(
             array(
-                'title' => 'title',
-                'window-icon' => 'icon',
-                'timeout' => 10,
-                'modal' => true,
-                'width' => 200,
-                'height' => 100,
-                'ok-label' => 'Next',
-                'cancel-label' => 'Previous'
+                '--title=title',
+                '--window-icon=icon',
+                '--timeout=10',
+                '--modal',
+                '--width=200',
+                '--height=100',
+                '--ok-label=Next',
+                '--cancel-label=Previous'
             ),
             $dialog
         );

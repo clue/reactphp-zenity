@@ -7,6 +7,6 @@ abstract class AbstractMessageDialogTest extends AbstractDialogTest
         $dialog = $this->createDialog();
         $dialog->setText('test');
 
-        $this->assertDialogArgs(array('text' => 'test'), $dialog);
+        $this->assertDialogArgs(array('--text=test'), $dialog);
     }
 }
