@@ -2,16 +2,13 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractMessageDialog;
 
-class ErrorDialog extends AbstractDialog
+/**
+ * Use the --error option to create an error dialog.
+ *
+ * @link https://help.gnome.org/users/zenity/stable/error.html
+ */
+class ErrorDialog extends AbstractMessageDialog
 {
-    protected $text;
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 }
