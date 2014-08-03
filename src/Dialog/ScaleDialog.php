@@ -2,16 +2,17 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
 /**
  * Use the --scale option to create a scale dialog.
  *
+ * The default dialog text is "Adjust the scale value" (depending on locale).
+ *
  * @link https://help.gnome.org/users/zenity/stable/scale.html
  */
-class ScaleDialog extends AbstractDialog
+class ScaleDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $value;
     protected $minValue;
     protected $maxValue;
@@ -20,19 +21,6 @@ class ScaleDialog extends AbstractDialog
     // protected $printPartial = false;
 
     protected $hideValue = false;
-
-    /**
-     * Set the dialog text. (Default: Adjust the scale value)
-     *
-     * @param string $text
-     * @return self chainable
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     /**
      * Set initial value. (Default: 0) You must specify value between minimum value to maximum value.

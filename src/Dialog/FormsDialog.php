@@ -2,24 +2,16 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class FormsDialog extends AbstractDialog
+
+class FormsDialog extends AbstractTextDialog
 {
     protected $fields = array();
-
-    protected $text;
 
     // no setter:
     protected $formsDateFormat = '%Y-%m-%d';
     protected $separator = '|||';
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     public function addEntry($name)
     {

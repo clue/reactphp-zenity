@@ -2,19 +2,11 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class NotificationDialog extends AbstractDialog
+class NotificationDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $listen = false;
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     public function setListen($listen)
     {
