@@ -15,16 +15,18 @@ Once [installed](#install), you can use the following code to open a prompt
 asking the user for his name and presenting it in another info dialog.
 
 ```php
-
 $loop = Factory::create();
-
 $launcher = new Launcher($loop);
-$builder = new Builder($launcher);
 
-$builder->entry('What\'s your name?', getenv('USER'))->then(function ($name) use ($builder) {
-    $builder->info('Welcome to zenity-react, ' . $name .'!')->run();
+$entry = new EntryDialog();
+$entry->setText('What\'s your name?');
+$entry->setEntryText(getenv('USER')); // prefill with current user
+
+$launcher->launch($entry)->then(function ($name) use ($launcher) {
+    $launcher->launch(new InfoDialog('Welcome to zenity-react, ' . $name .'!'));
 });
 
+$loop->run();
 ```
 
 Looking for more examples? Take a look at the [examples](examples) folder.
@@ -37,8 +39,8 @@ familar if you're already using it from within any other command line script.
 ### Launcher
 
 As shown in the above example, a `Launcher` has to be instantiated once and
-will be passed as a dependency to each `Zenity` dialog. It manages running
-the underlying `zenity` process and its dependencies.
+is response for launching each zenity dialog. It manages running
+the underlying `zenity` process and reports back its state and user interaction.
 
 Therefor it assumes your `zenity` binary is located in your system `$PATH`.
 If it's not, you can explicitly set its path via
