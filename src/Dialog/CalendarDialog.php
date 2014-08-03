@@ -2,24 +2,16 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class CalendarDialog extends AbstractDialog
+class CalendarDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $year;
     protected $month;
     protected $day;
 
     // no setter:
     protected $dateFormat = '%Y-%m-%d';
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     public function setYear($year)
     {

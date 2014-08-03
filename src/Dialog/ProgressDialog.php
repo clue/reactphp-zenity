@@ -2,11 +2,10 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class ProgressDialog extends AbstractDialog
+class ProgressDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $percentage;
     protected $autoClose = false;
 
@@ -17,11 +16,9 @@ class ProgressDialog extends AbstractDialog
 
     public function setText($text)
     {
-        $this->text = $text;
-
         $this->writeln('#' . $text);
 
-        return $this;
+        return parent::setText($text);
     }
 
     public function setPercentage($percentage)

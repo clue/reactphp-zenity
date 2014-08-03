@@ -8,23 +8,13 @@ use Clue\React\Zenity\Dialog\AbstractDialog;
  * Abstract base for message dialogs: Error, Info, Question, Warning
  *
  * For each type, use the --text option to specify the text that is displayed in the dialog.
+ * The text is the main information presented to the user.
+ *
+ * Also inherits all properties and options from common AbstractMessageDialog
+ * and AbstractDialog base classes.
  *
  * @link https://help.gnome.org/users/zenity/stable/message.html
  */
-abstract class AbstractMessageDialog extends AbstractDialog
+abstract class AbstractMessageDialog extends AbstractTextDialog
 {
-    protected $text;
-
-    /**
-     * Specifies the text that is displayed in the dialog.
-     *
-     * @param string $text
-     * @return self chainable
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 }

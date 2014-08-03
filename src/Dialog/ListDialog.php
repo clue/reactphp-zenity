@@ -2,11 +2,10 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class ListDialog extends AbstractDialog
+class ListDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $checklist = false;
     protected $radiolist = false;
     protected $imagelist = false;
@@ -28,13 +27,6 @@ class ListDialog extends AbstractDialog
             // this will break
             $this->columns[] = '--hide-column=' . count($this->columns);
         }
-
-        return $this;
-    }
-
-    public function setText($text)
-    {
-        $this->text = $text;
 
         return $this;
     }

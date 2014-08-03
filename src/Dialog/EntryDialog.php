@@ -2,20 +2,12 @@
 
 namespace Clue\React\Zenity\Dialog;
 
-use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
-class EntryDialog extends AbstractDialog
+class EntryDialog extends AbstractTextDialog
 {
-    protected $text;
     protected $entryText;
     protected $hideText = false;
-
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     public function setEntryText($text)
     {
