@@ -3,6 +3,7 @@
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Builder;
+use Clue\React\Zenity\Dialog\EntryDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -11,7 +12,7 @@ $loop = Factory::create();
 $launcher = new Launcher($loop);
 $builder = new Builder();
 
-$name = $launcher->waitFor($builder->entry('Search package'));
+$name = $launcher->waitFor(new EntryDialog('Search package'));
 if ($name === false) {
     exit;
 }

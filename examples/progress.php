@@ -3,6 +3,7 @@
 use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Builder;
+use Clue\React\Zenity\Dialog\InfoDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -35,7 +36,7 @@ $loop->addTimer(6, function() use ($pulsate) {
     $pulsate->complete();
 });
 
-$launcher->launch($builder->info('Quit "Processing"?'))->then(function () use ($pulsate) {
+$launcher->launch(new InfoDialog('Quit "Processing"?'))->then(function () use ($pulsate) {
     $pulsate->close();
 });
 
