@@ -1,13 +1,17 @@
 <?php
 
 use Clue\React\Zenity\Dialog\ScaleDialog;
-class ScaleDialogTest extends TestCase
-{
-    public function testEmptyDialog()
-    {
-        $dialog = new ScaleDialog();
 
-        $this->assertEquals(array('--scale'), $dialog->getArgs());
+class ScaleDialogTest extends AbstractDialogTest
+{
+    protected function createDialog()
+    {
+        return new ScaleDialog();
+    }
+
+    protected function getType()
+    {
+        return '--scale';
     }
 
     public function testArgs()
@@ -20,7 +24,7 @@ class ScaleDialogTest extends TestCase
         $dialog->setStep(10);
         $dialog->setHideValue();
 
-        $this->assertEquals(array('--scale', 'text' => 'test', 'value' => 1500, 'min-value' => 1000, 'max-value' => 2000, 'step' => 10, 'hide-value' => true), $dialog->getArgs());
+        $this->assertDialogArgs(array('--text=test', '--value=1500', '--min-value=1000', '--max-value=2000', '--step=10', '--hide-value'), $dialog);
     }
 
     public function testHideValue()
@@ -29,6 +33,14 @@ class ScaleDialogTest extends TestCase
         $dialog->setHideValue(true);
         $dialog->setHideValue(false);
 
-        $this->assertEquals(array('--scale'), $dialog->getArgs());
+        $this->assertDialogArgs(array(), $dialog);
+    }
+
+    public function testParsingValues()
+    {
+        $this->assertParsingValues(array(
+            '100' => 100,
+            '0'   => 0
+        ));
     }
 }

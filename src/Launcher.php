@@ -134,12 +134,8 @@ class Launcher
     {
         $command = $this->bin;
 
-        foreach ($args as $name => $value) {
-            if (is_int($name)) {
-                $command .= ' ' . escapeshellarg($value);
-            } else {
-                $command .= ' --' . $name . '=' . escapeshellarg($value);
-            }
+        foreach ($args as $value) {
+            $command .= ' ' . escapeshellarg($value);
         }
 
         // var_dump($command);
