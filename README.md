@@ -27,7 +27,7 @@ $builder->entry('What\'s your name?', getenv('USER'))->then(function ($name) use
 
 ```
 
-For more examples, take a look at the `example` folder.
+Looking for more examples? Take a look at the [examples](examples) folder.
 
 ## API
 
