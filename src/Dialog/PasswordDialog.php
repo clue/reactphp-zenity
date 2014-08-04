@@ -4,17 +4,45 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
 
+/**
+ * Use the --password option to create a password entry dialog.
+ *
+ * The contents of the password field will be reported back as a string.
+ *
+ * If the `setUsername(true)` flag is used, the dialog will use two fields for
+ * the username and password. The contents of both both fields will be reported
+ * back as an array with two strings.
+ * <code>
+ * $ret = array($username, $password);
+ * </code>
+ *
+ * Internally, Zenity will separate both values with "|" character. As such,
+ * there's no way to reliably tell where the username ends and the password
+ * starts in a string like "user|name|pass|word". Because it's common to have
+ * special characters in the password and usernames tend to be restricted, this
+ * library assumes the username ends after the first occurance:
+ * <code>
+ * $ret = array('user', 'name|pass|word');
+ * </code>
+ *
+ * This is only a concern if you actually permit the "|" character in passwords.
+ * Unfortunately, there does not appear to be a way to change this behavior.
+ *
+ * @link https://help.gnome.org/users/zenity/stable/password.html.en
+ */
 class PasswordDialog extends AbstractDialog
 {
-    /**
-     * attention: there's no way to chance this separator character
-     *
-     * @var string
-     */
+    /** @var string */
     const SEPARATOR = '|';
 
     protected $username = false;
 
+    /**
+     * Display the username field.
+     *
+     * @param boolean $username
+     * @return self chainable
+     */
     public function setUsername($username)
     {
         $this->username = !!$username;
@@ -22,6 +50,19 @@ class PasswordDialog extends AbstractDialog
         return $this;
     }
 
+    /**
+     * Parses the string returned from the dialog
+     *
+     * Usually, this will return a single password string.
+     *
+     * If the `setUsername(true)` option is active, this will return an array
+     * of string username and string password.
+     *
+     * @internal
+     * @see parent::parseValue()
+     * @return string|string[] a single password string or an array($user, $pass) depending on the username setting
+     * @see self::setUsername()
+     */
     public function parseValue($value)
     {
         if ($this->username) {
