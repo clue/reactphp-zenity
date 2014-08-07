@@ -4,6 +4,15 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 
+/**
+ *  Use the --progress option to create a progress dialog.
+ *
+ *  Zenity reads data from standard input line by line.
+ *  If a line is prefixed with #, the text is updated with the text on that line.
+ *  If a line contains only a number, the percentage is updated with that number.
+ *
+ * @link https://help.gnome.org/users/zenity/stable/progress.html
+ */
 class ProgressDialog extends AbstractTextDialog
 {
     protected $percentage;
@@ -14,6 +23,11 @@ class ProgressDialog extends AbstractTextDialog
     protected $pulsate = false;
     protected $noCancel = false;
 
+    /**
+     * Specifies the text that is displayed in the progress dialog.
+     *
+     * @see \Clue\React\Zenity\Dialog\AbstractTextDialog::setText()
+     */
     public function setText($text)
     {
         $this->writeln('#' . $text);
@@ -21,6 +35,12 @@ class ProgressDialog extends AbstractTextDialog
         return parent::setText($text);
     }
 
+    /**
+     * Specifies the initial percentage that is set in the progress dialog.
+     *
+     * @param int $percentage
+     * @return self chainable
+     */
     public function setPercentage($percentage)
     {
         $this->percentage = $percentage;
@@ -30,6 +50,12 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * Closes the progress dialog when 100% has been reached.
+     *
+     * @param boolean $auto
+     * @return self chainable
+     */
     public function setAutoClose($auto)
     {
         $this->autoClose = !!$auto;
@@ -37,6 +63,12 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * Specifies that the progress bar pulsates until an EOF character is read from standard input.
+     *
+     * @param boolean $pulsate
+     * @return self chainable
+     */
     public function setPulsate($pulsate)
     {
         $this->pulsate = !!$pulsate;
@@ -44,6 +76,12 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * Hide cancel button.
+     *
+     * @param boolean $noc
+     * @return self chainable
+     */
     public function setNoCancel($noc)
     {
         $this->noCancel = !!$noc;
@@ -51,6 +89,12 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * advance progress by $by percent
+     *
+     * @param int $by
+     * @return self chainable
+     */
     public function advance($by)
     {
         $this->setPercentage($this->percentage + $by);
@@ -58,6 +102,11 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * complete progress dialog by setting percentage to 100%
+     *
+     * @return self chainable
+     */
     public function complete()
     {
         $this->setPercentage(100);
@@ -65,6 +114,11 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
+    /**
+     * get current percentage
+     *
+     * @return int
+     */
     public function getPercentage()
     {
         return $this->percentage;
