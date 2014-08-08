@@ -21,8 +21,8 @@ class TextInfoDialogTest extends AbstractDialogTest
         $this->assertSame($dialog, $dialog->setEditable(true));
         $this->assertSame($dialog, $dialog->setCheckbox('Confirmed'));
 
-        $this->assertSame($dialog, $dialog->writeLine('hello'));
-        $this->assertSame($dialog, $dialog->writeLine('world'));
+        $this->assertSame($dialog, $dialog->addLine('hello'));
+        $this->assertSame($dialog, $dialog->addLine('world'));
 
         $this->assertDialogArgs(array('--filename=filename', '--editable', '--checkbox=Confirmed'), $dialog);
         $this->assertEquals('hello' . PHP_EOL . 'world' . PHP_EOL, $dialog->getInBuffer());
@@ -34,5 +34,19 @@ class TextInfoDialogTest extends AbstractDialogTest
         $this->assertSame($dialog, $dialog->setEditable(true)->setEditable(false));
 
         $this->assertDialogArgs(array(), $dialog);
+    }
+
+    public function testZen()
+    {
+        $dialog = new TextInfoDialog();
+        $dialog->addLine('hello');
+        $dialog->addLine('world');
+
+        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        // TODO: assert writeline hello, world
+
+        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
+
+        $this->assertInstanceOf('Clue\React\Zenity\Zen\TextInfoZen', $zen);
     }
 }
