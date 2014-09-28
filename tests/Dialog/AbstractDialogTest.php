@@ -37,6 +37,17 @@ abstract class AbstractDialogTest extends TestCase
         $this->assertDialogArgs(array(), $dialog);
     }
 
+    public function testCreatesZen()
+    {
+        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        $deferred = $this->getMock('React\Promise\Deferred');
+
+        $dialog = $this->createDialog();
+        $zen = $dialog->createZen($deferred, $process);
+
+        $this->assertInstanceOf('Clue\React\Zenity\Zen\BaseZen', $zen);
+    }
+
     public function testDefaultArgs()
     {
         $dialog = $this->createDialog();
