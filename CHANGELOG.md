@@ -4,7 +4,7 @@ This file is a manually maintained list of changes for each release. Feel free
 to add your changes here when sending pull requests. Also send corrections if
 you spot any mistakes.
 
-## 0.3.0 (2014-09-xx)
+## 0.3.0 (2014-09-29)
 
 * BC break: Rename all classes in `Clue\Zenity\React\Model\Name` to `Clue\Zenity\React\Dialog\NameDialog`
   (#10)
