@@ -9,6 +9,18 @@ abstract class AbstractDialogTest extends TestCase
      */
     abstract protected function createDialog();
 
+    protected function createZen(AbstractDialog $dialog = null)
+    {
+        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        $deferred = $this->getMock('React\Promise\Deferred');
+
+        if ($dialog === null) {
+            $dialog = $this->createDialog();
+        }
+
+        return $dialog->createZen($deferred, $process);
+    }
+
     abstract protected function getType();
 
     protected function getFixedArgs()
@@ -39,13 +51,7 @@ abstract class AbstractDialogTest extends TestCase
 
     public function testCreatesZen()
     {
-        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
-        $deferred = $this->getMock('React\Promise\Deferred');
-
-        $dialog = $this->createDialog();
-        $zen = $dialog->createZen($deferred, $process);
-
-        $this->assertInstanceOf('Clue\React\Zenity\Zen\BaseZen', $zen);
+        $this->assertInstanceOf('Clue\React\Zenity\Zen\BaseZen', $this->createZen());
     }
 
     public function testDefaultArgs()
@@ -78,10 +84,10 @@ abstract class AbstractDialogTest extends TestCase
 
     public function assertParsingValues(array $values)
     {
-        $dialog = $this->createDialog();
+        $zen = $this->createZen();
 
         foreach ($values as $in => $out) {
-            $this->assertEquals($out, $dialog->parseValue($in));
+            $this->assertEquals($out, $zen->parseValue($in));
         }
     }
 }

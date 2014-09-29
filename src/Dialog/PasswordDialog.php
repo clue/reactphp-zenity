@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\PasswordZen;
 
 /**
  * Use the --password option to create a password entry dialog.
@@ -32,9 +35,6 @@ use Clue\React\Zenity\Dialog\AbstractDialog;
  */
 class PasswordDialog extends AbstractDialog
 {
-    /** @var string */
-    const SEPARATOR = '|';
-
     protected $username = false;
 
     /**
@@ -50,24 +50,8 @@ class PasswordDialog extends AbstractDialog
         return $this;
     }
 
-    /**
-     * Parses the string returned from the dialog
-     *
-     * Usually, this will return a single password string.
-     *
-     * If the `setUsername(true)` option is active, this will return an array
-     * of string username and string password.
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return string|string[] a single password string or an array($user, $pass) depending on the username setting
-     * @see self::setUsername()
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        if ($this->username) {
-            return explode(self::SEPARATOR, $value, 2);
-        }
-        return $value;
+        return new PasswordZen($deferred, $process, $this->username);
     }
 }

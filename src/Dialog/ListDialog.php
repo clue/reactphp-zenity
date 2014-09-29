@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\ListZen;
 
 /**
  * Use the --list option to create a list dialog.
@@ -201,33 +204,10 @@ class ListDialog extends AbstractTextDialog
         return array_merge(parent::getArgs(), $this->columns);
     }
 
-    /**
-     * Parses the string returned from the dialog
-     *
-     * Usually, this will return a single string.
-     *
-     * If the `setMultiple(true)` option is active or this is a checklist, this
-     * will return an array of strings instead. The size of the array depends on
-     * the number of rows selected by the user.
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return string|string[] a single or any number of SplFileInfo objects depending on the multiple setting
-     * @see self::setMultiple()
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        if (trim($value) === '') {
-            // TODO: move logic
-            return false;
-        }
+        $single = (!$this->multiple && !$this->checklist);
 
-        // always split on separator, even if we only return a single value (explicitly or a checklist)
-        // work around an issue in zenity 3.8: https://bugzilla.gnome.org/show_bug.cgi?id=698683
-        $value = explode($this->separator, $value);
-        if (!$this->multiple && !$this->checklist) {
-            $value = $value[0];
-        }
-        return $value;
+        return new ListZen($deferred, $process, $single, $this->separator);
     }
 }

@@ -79,14 +79,14 @@ class ListDialogTest extends AbstractDialogTest
     {
         $dialog = new ListDialog();
 
-        $this->assertEquals('Nobody', $dialog->parseValue('Nobody'));
+        $this->assertEquals('Nobody', $this->createZen($dialog)->parseValue('Nobody'));
     }
 
     public function testParsingSingleValueWithBuggedZenity()
     {
         $dialog = new ListDialog();
 
-        $this->assertEquals('Nobody', $dialog->parseValue('Nobody|||nobody@example.com|||20'));
+        $this->assertEquals('Nobody', $this->createZen($dialog)->parseValue('Nobody|||nobody@example.com|||20'));
     }
 
     public function testParsingMultipleValues()
@@ -94,13 +94,13 @@ class ListDialogTest extends AbstractDialogTest
         $dialog = new ListDialog();
         $dialog->setMultiple(true);
 
-        $this->assertEquals(array('Nobody', 'Somebody'), $dialog->parseValue('Nobody|||Somebody'));
+        $this->assertEquals(array('Nobody', 'Somebody'), $this->createZen($dialog)->parseValue('Nobody|||Somebody'));
     }
 
     public function testParsingNoValue()
     {
         $dialog = new ListDialog();
 
-        $this->assertEquals(false, $dialog->parseValue(''));
+        $this->assertEquals(false, $this->createZen($dialog)->parseValue(''));
     }
 }

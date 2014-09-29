@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\FormsZen;
 
 /**
  * Use the --forms option to create a forms dialog.
@@ -150,15 +153,8 @@ class FormsDialog extends AbstractTextDialog
         return array_merge(parent::getArgs(), $this->fields);
     }
 
-    /**
-     * Parses the input string returned from the dialog into an array of string values
-     *
-     * @return string[]
-     * @internal
-     * @see parent::parseValue()
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        return explode($this->separator, $value);
+        return new FormsZen($deferred, $process, $this->separator);
     }
 }

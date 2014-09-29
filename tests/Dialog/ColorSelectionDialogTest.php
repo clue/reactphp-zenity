@@ -32,11 +32,4 @@ class ColorSelectionDialogTest extends AbstractDialogTest
 
         $this->assertDialogArgs(array(), $dialog);
     }
-
-    public function testParsingValues()
-    {
-        $this->assertParsingValues(array(
-            '#121234345656' => '#123456'
-        ));
-    }
 }
