@@ -44,18 +44,16 @@ class ProgressDialogTest extends AbstractDialogTest
         $this->assertDialogArgs(array(), $dialog);
     }
 
-    public function testPercentage()
+    public function testZen()
     {
         $dialog = new ProgressDialog();
-        $this->assertEquals(0, $dialog->getPercentage());
+        $dialog->setPercentage(50);
 
-        $this->assertSame($dialog, $dialog->setPercentage(20));
-        $this->assertEquals(20, $dialog->getPercentage());
+        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        // TODO: assert writeline 50
 
-        $this->assertSame($dialog, $dialog->advance(30));
-        $this->assertEquals(50, $dialog->getPercentage());
+        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
 
-        $this->assertSame($dialog, $dialog->complete());
-        $this->assertEquals(100, $dialog->getPercentage());
+        $this->assertInstanceOf('Clue\React\Zenity\Zen\ProgressZen', $zen);
     }
 }

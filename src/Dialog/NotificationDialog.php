@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use Clue\React\Zenity\Zen\NotificationZen;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
 
 /**
  * Use the --notification option to create a notification icon.
@@ -29,55 +32,8 @@ class NotificationDialog extends AbstractTextDialog
         return $this;
     }
 
-    /**
-     * Sends "icon" command.
-     *
-     * @param string $icon
-     * @return self chainable
-     */
-    public function setIcon($icon)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        $this->writeln('icon:' . $icon);
-
-        return $this;
-    }
-
-    /**
-     * Sends "visible" command.
-     *
-     * @param boolean $visible
-     * @return self chainable
-     */
-    public function setVisible($visible)
-    {
-        $this->writeln('visible:' . ($visible ? 'true' : 'false'));
-
-        return $this;
-    }
-
-    /**
-     * Sends "message" command.
-     *
-     * @param string $message
-     * @return self chainable
-     */
-    public function setMessage($message)
-    {
-        $this->writeln('message:' . $message);
-
-        return $this;
-    }
-
-    /**
-     * Sends "tooltip" command.
-     *
-     * @param string $tooltip
-     * @return self chainable
-     */
-    public function setTooltip($tooltip)
-    {
-        $this->writeln('tooltip:' . $tooltip);
-
-        return $this;
+        return new NotificationZen($deferred, $process);
     }
 }

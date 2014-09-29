@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use Clue\React\Zenity\Zen\ProgressZen;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
 
 /**
  *  Use the --progress option to create a progress dialog.
@@ -23,17 +26,6 @@ class ProgressDialog extends AbstractTextDialog
     protected $pulsate = false;
     protected $noCancel = false;
 
-    /**
-     * Specifies the text that is displayed in the progress dialog.
-     *
-     * @see \Clue\React\Zenity\Dialog\AbstractTextDialog::setText()
-     */
-    public function setText($text)
-    {
-        $this->writeln('#' . $text);
-
-        return parent::setText($text);
-    }
 
     /**
      * Specifies the initial percentage that is set in the progress dialog.
@@ -44,8 +36,6 @@ class ProgressDialog extends AbstractTextDialog
     public function setPercentage($percentage)
     {
         $this->percentage = $percentage;
-
-        $this->writeln($percentage);
 
         return $this;
     }
@@ -89,38 +79,8 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
-    /**
-     * advance progress by $by percent
-     *
-     * @param int $by
-     * @return self chainable
-     */
-    public function advance($by)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        $this->setPercentage($this->percentage + $by);
-
-        return $this;
-    }
-
-    /**
-     * complete progress dialog by setting percentage to 100%
-     *
-     * @return self chainable
-     */
-    public function complete()
-    {
-        $this->setPercentage(100);
-
-        return $this;
-    }
-
-    /**
-     * get current percentage
-     *
-     * @return int
-     */
-    public function getPercentage()
-    {
-        return $this->percentage;
+        return new ProgressZen($deferred, $process, $this->percentage);
     }
 }

@@ -31,15 +31,14 @@ class NotificationDialogTest extends AbstractDialogTest
         $this->assertDialogArgs(array(), $dialog);
     }
 
-    public function testCommands()
+    public function testZen()
     {
         $dialog = new NotificationDialog();
 
-        $this->assertSame($dialog, $dialog->setIcon('icon'));
-        $this->assertSame($dialog, $dialog->setVisible(true));
-        $this->assertSame($dialog, $dialog->setMessage('message'));
-        $this->assertSame($dialog, $dialog->setTooltip('tooltip'));
+        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
 
-        $this->assertEquals('icon:icon' . PHP_EOL . 'visible:true' . PHP_EOL . 'message:message' . PHP_EOL . 'tooltip:tooltip' . PHP_EOL, $dialog->getInBuffer());
+        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
+
+        $this->assertInstanceOf('Clue\React\Zenity\Zen\NotificationZen', $zen);
     }
 }
