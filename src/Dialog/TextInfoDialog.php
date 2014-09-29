@@ -5,7 +5,7 @@ namespace Clue\React\Zenity\Dialog;
 use Clue\React\Zenity\Dialog\AbstractDialog;
 use Clue\React\Zenity\Zen\TextInfoZen;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 
 /**
  * Use the --text-info option to create a text information dialog.
@@ -81,7 +81,7 @@ class TextInfoDialog extends AbstractDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new TextInfoZen($deferred, $process);
     }

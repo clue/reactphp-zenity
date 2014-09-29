@@ -3,11 +3,9 @@
 namespace Clue\React\Zenity;
 
 use React\EventLoop\LoopInterface;
-use Icecave\Mephisto\Factory\ProcessFactory;
-use Icecave\Mephisto\Launcher\CommandLineLauncher;
-use Icecave\Mephisto\Process\ProcessInterface;
 use Clue\React\Zenity\Dialog\AbstractDialog;
 use React\Promise\Deferred;
+use React\ChildProcess\Process;
 
 /**
  *
@@ -20,11 +18,12 @@ class Launcher
     private $processLauncher;
     private $bin = 'zenity';
 
-    public function __construct(LoopInterface $loop, CommandLineLauncher $processLauncher = null)
+    public function __construct(LoopInterface $loop, $processLauncher = null)
     {
         if ($processLauncher === null) {
-            $processFactory = new ProcessFactory($loop);
-            $processLauncher = new CommandLineLauncher($processFactory);
+            $processLauncher = function ($cmd) {
+                return new Process($cmd);
+            };
         }
 
         $this->processLauncher = $processLauncher;
@@ -44,13 +43,13 @@ class Launcher
 
         $inbuffer = $dialog->getInBuffer();
         if ($inbuffer !== null) {
-            $process->inputStream()->write($inbuffer);
+            $process->stdin->write($inbuffer);
         }
 
         $deferred = new Deferred();
 
         $result = null;
-        $process->outputStream()->on('data', function ($data) use (&$result) {
+        $process->stdout->on('data', function ($data) use (&$result) {
             if ($data !== '') {
                 $result .= $data;
             }
@@ -58,8 +57,9 @@ class Launcher
 
         $zen = $dialog->createZen($deferred, $process);
 
-        $process->outputStream()->on('end', function() use ($process, $zen, &$result, $deferred) {
-            $code = $process->status()->exitCode();
+        $process->on('exit', function() use ($process, $zen, &$result, $deferred) {
+            $code = $process->getExitCode();
+
             if ($code !== 0) {
                 $deferred->reject($code);
             } else {
@@ -140,8 +140,9 @@ class Launcher
 
         // var_dump($command);
 
-        $process = $this->processLauncher->runCommandLine($command);
-        /* @var $process ProcessInterface */
+        $process = new Process($command);
+        $process->start($this->loop);
+
         return $process;
     }
 }

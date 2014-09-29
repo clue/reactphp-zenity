@@ -3,7 +3,7 @@
 namespace Clue\React\Zenity\Dialog;
 
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\BaseZen;
 
 /**
@@ -205,11 +205,11 @@ abstract class AbstractDialog
      * Create a dialog handler to process the results for this dialog.
      *
      * @param Deferred $deferred
-     * @param ProcessInterface $process
+     * @param Process $process
      * @return BaseZen
      * @internal
      */
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new BaseZen($deferred, $process);
     }

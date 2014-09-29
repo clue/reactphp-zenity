@@ -4,55 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c0f0871d14277c489e2c48494f6e1ad0",
+    "hash": "4d665efd1f111152f32d232d8f5ddc0c",
     "packages": [
-        {
-            "name": "eloquent/enumeration",
-            "version": "3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/eloquent/enumeration.git",
-                "reference": "ee87a3062d71a00cb61167f2d59dd479a129caf6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/enumeration/zipball/ee87a3062d71a00cb61167f2d59dd479a129caf6",
-                "reference": "ee87a3062d71a00cb61167f2d59dd479a129caf6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "icecave/archer": "~0.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Eloquent\\Enumeration": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Erin Millard",
-                    "email": "ezzatron@gmail.com",
-                    "homepage": "http://ezzatron.com/"
-                }
-            ],
-            "description": "An enumeration implementation for PHP.",
-            "homepage": "https://github.com/eloquent/enumeration",
-            "keywords": [
-                "class",
-                "enum",
-                "enumeration",
-                "set"
-            ],
-            "time": "2013-03-04 09:52:52"
-        },
         {
             "name": "evenement/evenement",
             "version": "v1.0.0",
@@ -94,235 +47,48 @@
             "time": "2012-05-30 15:01:08"
         },
         {
-            "name": "icecave/collections",
-            "version": "0.6.0",
+            "name": "react/child-process",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/IcecaveStudios/collections.git",
-                "reference": "b36f5d1d148ba772753feaae1cee252c706d718c"
+                "url": "https://github.com/reactphp/child-process.git",
+                "reference": "36f4b2996437d5b19e7a7801a7070f94a882b4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/collections/zipball/b36f5d1d148ba772753feaae1cee252c706d718c",
-                "reference": "b36f5d1d148ba772753feaae1cee252c706d718c",
+                "url": "https://api.github.com/repos/reactphp/child-process/zipball/36f4b2996437d5b19e7a7801a7070f94a882b4b5",
+                "reference": "36f4b2996437d5b19e7a7801a7070f94a882b4b5",
                 "shasum": ""
             },
             "require": {
-                "icecave/repr": "~1",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "eloquent/liberator": "~1",
-                "eloquent/typhoon": "~0.9",
-                "icecave/archer": "~0.2"
-            },
-            "type": "library",
-            "extra": {
-                "typhoon": {
-                    "output-path": "lib-typhoon",
-                    "validator-namespace": "Icecave\\Collections\\TypeCheck",
-                    "use-native-callable": false
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Icecave\\Collections": "lib",
-                    "Icecave\\Collections\\TypeCheck": "lib-typhoon"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "A set of PHP collection types loosely inspired by the .NET runtime and the C++ STL.",
-            "homepage": "https://github.com/IcecaveStudios/collections",
-            "keywords": [
-                "array",
-                "collection",
-                "container",
-                "hash",
-                "map",
-                "queue",
-                "sequence",
-                "stack"
-            ],
-            "time": "2013-02-26 04:19:11"
-        },
-        {
-            "name": "icecave/isolator",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/IcecaveStudios/isolator.git",
-                "reference": "97c51fafa39c57a8f1a31f978a48fbe6cea4a5d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/isolator/zipball/97c51fafa39c57a8f1a31f978a48fbe6cea4a5d5",
-                "reference": "97c51fafa39c57a8f1a31f978a48fbe6cea4a5d5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "icecave/archer": "~1"
-            },
-            "suggest": {
-                "eloquent/asplode": "Drop-in exception-based error handling."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Icecave\\Isolator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "Dependency injection for global functions.",
-            "homepage": "https://github.com/IcecaveStudios/isolator",
-            "keywords": [
-                "fake",
-                "mock",
-                "phake",
-                "phpunit",
-                "test",
-                "unit"
-            ],
-            "time": "2014-08-12 03:16:11"
-        },
-        {
-            "name": "icecave/mephisto",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/IcecaveStudios/mephisto.git",
-                "reference": "737eaae1a42d6e36bee72a41e1ab2981b7a60863"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/mephisto/zipball/737eaae1a42d6e36bee72a41e1ab2981b7a60863",
-                "reference": "737eaae1a42d6e36bee72a41e1ab2981b7a60863",
-                "shasum": ""
-            },
-            "require": {
-                "eloquent/enumeration": "~3",
-                "ext-pcntl": "*",
-                "ext-posix": "*",
-                "icecave/collections": "0.6.*",
-                "icecave/isolator": "~2.2",
-                "php": ">=5.3",
+                "evenement/evenement": "~1.0",
+                "php": ">=5.3.0",
                 "react/event-loop": "0.3.*",
                 "react/stream": "0.3.*"
             },
             "require-dev": {
-                "eloquent/liberator": "~1",
-                "eloquent/typhoon": "0.9.*",
-                "icecave/archer": "1.0.0-alpha.2"
+                "sebastian/environment": "~1.0"
             },
             "type": "library",
             "extra": {
-                "typhoon": {
-                    "output-path": "lib-typhoon",
-                    "validator-namespace": "Icecave\\Mephisto\\TypeCheck",
-                    "use-native-callable": false
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
                 }
             },
-            "autoload": {
-                "psr-0": {
-                    "Icecave\\Mephisto": "lib",
-                    "Icecave\\Mephisto\\TypeCheck": "lib-typhoon"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "An asynchronous process management library for ReactPHP.",
-            "homepage": "https://github.com/IcecaveStudios/mephisto",
-            "keywords": [
-                "background",
-                "daemon",
-                "fork",
-                "process",
-                "react",
-                "server"
-            ],
-            "time": "2013-09-06 00:17:36"
-        },
-        {
-            "name": "icecave/repr",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/IcecaveStudios/repr.git",
-                "reference": "8a3d2953adf5f464a06e3e2587aeacc97e2bed07"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/repr/zipball/8a3d2953adf5f464a06e3e2587aeacc97e2bed07",
-                "reference": "8a3d2953adf5f464a06e3e2587aeacc97e2bed07",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "icecave/archer": "~1"
-            },
-            "suggest": {
-                "eloquent/asplode": "Drop-in exception-based error handling."
-            },
-            "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Icecave\\Repr\\": "src"
+                    "React\\ChildProcess\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "A library for generating string representations of any value, inspired by Python's reprlib library.",
-            "homepage": "https://github.com/IcecaveStudios/repr",
+            "description": "Library for executing child processes.",
             "keywords": [
-                "human",
-                "readable",
-                "repr",
-                "representation",
-                "string"
+                "process"
             ],
-            "time": "2014-07-25 05:44:41"
+            "time": "2014-07-31 18:33:38"
         },
         {
             "name": "react/event-loop",

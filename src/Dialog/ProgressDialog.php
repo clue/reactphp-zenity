@@ -5,7 +5,7 @@ namespace Clue\React\Zenity\Dialog;
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 use Clue\React\Zenity\Zen\ProgressZen;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 
 /**
  *  Use the --progress option to create a progress dialog.
@@ -79,7 +79,7 @@ class ProgressDialog extends AbstractTextDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new ProgressZen($deferred, $process, $this->percentage);
     }

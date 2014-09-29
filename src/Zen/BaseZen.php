@@ -4,14 +4,14 @@ namespace Clue\React\Zenity\Zen;
 
 use React\Promise\PromiseInterface;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 
 class BaseZen implements PromiseInterface
 {
     private $deferred;
     private $process;
 
-    public function __construct(Deferred $deferred, ProcessInterface $process)
+    public function __construct(Deferred $deferred, Process $process)
     {
         $this->deferred = $deferred;
         $this->process = $process;
@@ -25,16 +25,7 @@ class BaseZen implements PromiseInterface
     public function close()
     {
         if ($this->process !== null) {
-            $this->process->kill();
-
-            $streams = array($this->process->outputStream(), $this->process->inputStream(), $this->process->errorStream());
-            foreach ($streams as $stream) {
-                if ($stream !== null) {
-                    $stream->close();
-                }
-            }
-
-            // $this->process = null;
+            $this->process->close();
         }
 
         return $this;
@@ -42,7 +33,7 @@ class BaseZen implements PromiseInterface
 
     protected function writeln($line)
     {
-        $this->process->inputStream()->write($line . PHP_EOL);
+        $this->process->stdin->write($line . PHP_EOL);
     }
 
     /**

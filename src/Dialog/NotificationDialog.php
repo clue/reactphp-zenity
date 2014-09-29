@@ -5,7 +5,7 @@ namespace Clue\React\Zenity\Dialog;
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 use Clue\React\Zenity\Zen\NotificationZen;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 
 /**
  * Use the --notification option to create a notification icon.
@@ -32,7 +32,7 @@ class NotificationDialog extends AbstractTextDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new NotificationZen($deferred, $process);
     }
