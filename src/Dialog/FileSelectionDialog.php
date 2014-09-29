@@ -3,7 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
-use SplFileInfo;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\FileSelectionZen;
 
 /**
  * Use the --file-selection option to create a file selection dialog.
@@ -120,31 +122,8 @@ class FileSelectionDialog extends AbstractDialog
         return $this;
     }
 
-    /**
-     * Parses the path string returned from the dialog into a SplFileInfo object
-     *
-     * Usually, this will return a single SplFileInfo object.
-     *
-     * If the `setMultiple(true)` option is active, this will return an array
-     * of SplFileInfo objects instead. The size of the array depends on the
-     * number of files selected by the user.
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return SplFileInfo|SplFileInfo[] a single or any number of SplFileInfo objects depending on the multiple setting
-     * @see self::setMultiple()
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        if ($this->multiple) {
-            $ret = array();
-
-            foreach(explode($this->separator, $value) as $path) {
-                $ret[] = new SplFileInfo($path);
-            }
-
-            return $ret;
-        }
-        return new SplFileInfo($value);
+        return new FileSelectionZen($deferred, $process, $this->multiple, $this->separator);
     }
 }

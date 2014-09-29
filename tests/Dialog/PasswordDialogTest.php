@@ -43,7 +43,7 @@ class PasswordDialogTest extends AbstractDialogTest
         $dialog = new PasswordDialog();
         $dialog->setUsername(true);
 
-        $this->assertEquals(array('username', 'password'), $dialog->parseValue('username|password'));
-        $this->assertEquals(array('user', 'name|pass|word'), $dialog->parseValue('user|name|pass|word'));
+        $this->assertEquals(array('username', 'password'), $this->createZen($dialog)->parseValue('username|password'));
+        $this->assertEquals(array('user', 'name|pass|word'), $this->createZen($dialog)->parseValue('user|name|pass|word'));
     }
 }

@@ -58,7 +58,7 @@ class Launcher
 
         $zen = $dialog->createZen($deferred, $process);
 
-        $process->outputStream()->on('end', function() use ($process, $zen, &$result, $dialog, $deferred) {
+        $process->outputStream()->on('end', function() use ($process, $zen, &$result, $deferred) {
             $code = $process->status()->exitCode();
             if ($code !== 0) {
                 $deferred->reject($code);
@@ -66,7 +66,7 @@ class Launcher
                 if ($result === null) {
                     $result = true;
                 } else {
-                    $result = $dialog->parseValue(trim($result));
+                    $result = $zen->parseValue(trim($result));
                 }
                 $deferred->resolve($result);
             }

@@ -74,7 +74,7 @@ class FileSelectionDialogTest extends AbstractDialogTest
             new SplFileInfo('CHANGELOG.md')
         );
 
-        $this->assertEquals($expected, $dialog->parseValue($selection));
+        $this->assertEquals($expected, $this->createZen($dialog)->parseValue($selection));
     }
 
     public function testParsingSingleValueInMultipleSelection()
@@ -87,6 +87,6 @@ class FileSelectionDialogTest extends AbstractDialogTest
             new SplFileInfo('README.md')
         );
 
-        $this->assertEquals($expected, $dialog->parseValue($selection));
+        $this->assertEquals($expected, $this->createZen($dialog)->parseValue($selection));
     }
 }

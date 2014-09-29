@@ -3,7 +3,10 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
-use \DateTime;
+use DateTime;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\CalendarZen;
 
 /**
  * Use the --calendar option to create a calendar dialog.
@@ -83,15 +86,8 @@ class CalendarDialog extends AbstractTextDialog
         return $this;
     }
 
-    /**
-     * Parses the date string returned from the dialog into a DateTime object
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return \DateTime
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        return new DateTime($value);
+        return new CalendarZen($deferred, $process);
     }
 }

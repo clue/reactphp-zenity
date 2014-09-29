@@ -44,4 +44,16 @@ class BaseZen implements PromiseInterface
     {
         $this->process->inputStream()->write($line . PHP_EOL);
     }
+
+    /**
+     * Parse the given value from the dialog to the appropriate return value for this dialog
+     *
+     * @param string $value The raw value received from the dialog window
+     * @return mixed The logical value presented to the user
+     * @internal
+     */
+    public function parseValue($value)
+    {
+        return $value;
+    }
 }

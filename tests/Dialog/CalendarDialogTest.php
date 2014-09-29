@@ -39,11 +39,4 @@ class CalendarDialogTest extends AbstractDialogTest
 
         $this->assertDialogArgs(array('--year=2014', '--month=8', '--day=2'), $dialog);
     }
-
-    public function testParsingValues()
-    {
-        $this->assertParsingValues(array(
-            '2014-08-02' => new DateTime('2014-08-02')
-        ));
-    }
 }

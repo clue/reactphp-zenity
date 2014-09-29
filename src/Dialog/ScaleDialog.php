@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\ScaleZen;
 
 /**
  * Use the --scale option to create a scale dialog.
@@ -87,15 +90,8 @@ class ScaleDialog extends AbstractTextDialog
         return $this;
     }
 
-    /**
-     * Converts the scale string returned from the dialog to an integer
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return int
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        return (int)$value;
+        return new ScaleZen($deferred, $process);
     }
 }

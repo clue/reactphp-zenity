@@ -202,18 +202,6 @@ abstract class AbstractDialog
     }
 
     /**
-     * Parse the given value from the dialog to the appropriate return value for this dialog
-     *
-     * @param string $value The raw value received from the dialog window
-     * @return mixed The logical value presented to the user
-     * @internal
-     */
-    public function parseValue($value)
-    {
-        return $value;
-    }
-
-    /**
      * Create a dialog handler to process the results for this dialog.
      *
      * @param Deferred $deferred

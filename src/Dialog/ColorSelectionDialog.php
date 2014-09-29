@@ -3,6 +3,9 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
+use React\Promise\Deferred;
+use Icecave\Mephisto\Process\ProcessInterface;
+use Clue\React\Zenity\Zen\ColorSelectionZen;
 
 /**
  * Use the --color-selection option to create a color selection dialog.
@@ -40,17 +43,8 @@ class ColorSelectionDialog extends AbstractDialog
         return $this;
     }
 
-    /**
-     * Parses the color string returned from the dialog into a #rrggbb string
-     *
-     * @internal
-     * @see parent::parseValue()
-     * @return string
-     * @link https://answers.launchpad.net/ubuntu/+source/zenity/+question/204096
-     */
-    public function parseValue($value)
+    public function createZen(Deferred $deferred, ProcessInterface $process)
     {
-        // convert zenity's #rrrrggggbbbb to #rrggbb by skipping duplicate info
-        return '#' . substr($value, 1, 2) . substr($value, 5, 2) . substr($value, 9, 2);
+        return new ColorSelectionZen($deferred, $process);
     }
 }
