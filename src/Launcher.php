@@ -57,9 +57,7 @@ class Launcher
 
         $zen = $dialog->createZen($deferred, $process);
 
-        $process->on('exit', function() use ($process, $zen, &$result, $deferred) {
-            $code = $process->getExitCode();
-
+        $process->on('exit', function($code) use ($process, $zen, &$result, $deferred) {
             if ($code !== 0) {
                 $deferred->reject($code);
             } else {
