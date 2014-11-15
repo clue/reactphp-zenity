@@ -236,6 +236,25 @@ The recommended way to install this library is [through composer](https://getcom
 }
 ```
 
+Obviously, this library requires the Zenity binary itself.
+Zenity already ships with Ubuntu-based distributions and should not require any installation there.
+On Debian- and Ubuntu-based distributions you can make sure it's installed like this:
+
+```bash
+# usually not required
+$ sudo apt-get install zenity
+```
+
+Otherwise you may have to install Zenity yourself (use your favorite search engine, download the appropriate realease tarball or compile from soure).
+Zenity it not officially supported on other platforms, however several non-official releases exist.
+
+This library assume Zenity is installed in your PATH. If it is not, you can explicitly set its path like this:
+
+```php
+$launcher = new Launcher($loop);
+$launcher->setBin('/path/to/zenity');
+```
+
 ## License
 
 MIT
