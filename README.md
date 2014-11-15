@@ -39,13 +39,61 @@ familar if you're already using it from within any other command line script.
 ### Launcher
 
 As shown in the above example, a `Launcher` has to be instantiated once and
-is response for launching each zenity dialog. It manages running
+is responsible for launching each zenity dialog. It manages running
 the underlying `zenity` process and reports back its state and user interaction.
 
-Therefor it assumes your `zenity` binary is located in your system `$PATH`.
-If it's not, you can explicitly set its path via
+It uses the [react/event-loop](https://github.com/reactphp/event-loop) component
+to enable an async workflow where you can launch multiple dialogs while simultaneously
+doing more I/O work. This library exposes both a simple blocking API and a more
+advanced async API.
+
+```php
+$loop = React\EventLoop\Factory::create();
+$launcher = new Launcher($loop);
+```
+
+For launching the process it assumes your `zenity` binary is located in your system `$PATH`.
+If it's not, you can explicitly set its path like this:
+
 ```php
 $launcher->setBin('/some/other/path/zenity');
+```
+
+The `waitFor($dialog)` method can be used to launch a given dialog and
+wait for the zenity process to return its result.
+This simple blocking API allows you to get started quickly without exposing
+all nifty async details - and lacking some of its advanced features:
+
+```php
+$result = $launcher->waitFor($dialog);
+```
+
+The `launch($dialog)` method can be used to asynchronously launch a given dialog
+and return a [Promise](https://github.com/reactphp/promise) that will be fulfilled
+when the zenity process returns.
+This async API enables you to launch multiple dialogs simultaneously while simultaneously
+doing more I/O work.
+
+```php
+$launcher->launch($dialog)->then(
+    function ($result) {
+        // info dialogs complete with a boolean true result
+        // text dialogs complete with their respective text
+    },
+    function ($reason) {
+        // dialog was cancelled or their was an error launching the process
+    }
+});
+```
+
+The launched zenity process exposes methods to control the process while waiting for the results.
+Some dialog types also support modifying the information presented to the user.
+
+```php
+$zen = $launcher->launch($dialog);
+$loop->addTimer(3.0, function () use ($zen) {
+    $zen->close();
+});
 ```
 
 ### Builder
@@ -54,6 +102,11 @@ Additionally, the `Builder` implements an even simpler interface for commonly
 used dialogs. This is mostly for convenience, so you can get started easier.
 The methods should be fairly self-explanatory and map directly to the Zenity 
 dialogs listed below.
+
+```php
+$builder = new Builder();
+$dialog = $builder->info('Hello world');
+```
 
 For anything more complex, you can also instantiate the below classes directly.
 
@@ -148,7 +201,7 @@ $builder->question($question, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
 
-### Scale
+### ScaleDialog
 
 ![https://help.gnome.org/users/zenity/stable/scale.html](https://help.gnome.org/users/zenity/stable/figures/zenity-scale-screenshot.png)
 
