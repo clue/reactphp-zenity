@@ -4,13 +4,13 @@ namespace Clue\React\Zenity\Zen;
 
 use Clue\React\Zenity\Zen\BaseZen;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 
 class FormsZen extends BaseZen
 {
     private $separator;
 
-    public function __construct(Deferred $deferred, ProcessInterface $process, $separator)
+    public function __construct(Deferred $deferred, Process $process, $separator)
     {
         parent::__construct($deferred, $process);
 

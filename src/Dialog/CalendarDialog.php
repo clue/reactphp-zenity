@@ -5,7 +5,7 @@ namespace Clue\React\Zenity\Dialog;
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 use DateTime;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\CalendarZen;
 
 /**
@@ -86,7 +86,7 @@ class CalendarDialog extends AbstractTextDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new CalendarZen($deferred, $process);
     }

@@ -4,7 +4,7 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\ScaleZen;
 
 /**
@@ -90,7 +90,7 @@ class ScaleDialog extends AbstractTextDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         return new ScaleZen($deferred, $process);
     }

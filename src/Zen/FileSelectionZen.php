@@ -4,7 +4,7 @@ namespace Clue\React\Zenity\Zen;
 
 use Clue\React\Zenity\Zen\BaseZen;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 use SplFileInfo;
 
 class FileSelectionZen extends BaseZen
@@ -12,7 +12,7 @@ class FileSelectionZen extends BaseZen
     private $multiple;
     private $separator;
 
-    public function __construct(Deferred $deferred, ProcessInterface $process, $multiple, $separator)
+    public function __construct(Deferred $deferred, Process $process, $multiple, $separator)
     {
         parent::__construct($deferred, $process);
 

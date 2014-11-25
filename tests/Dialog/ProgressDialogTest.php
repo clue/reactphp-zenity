@@ -49,7 +49,7 @@ class ProgressDialogTest extends AbstractDialogTest
         $dialog = new ProgressDialog();
         $dialog->setPercentage(50);
 
-        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         // TODO: assert writeline 50
 
         $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);

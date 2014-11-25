@@ -11,7 +11,7 @@ abstract class AbstractDialogTest extends TestCase
 
     protected function createZen(AbstractDialog $dialog = null)
     {
-        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         $deferred = $this->getMock('React\Promise\Deferred');
 
         if ($dialog === null) {

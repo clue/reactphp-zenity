@@ -4,7 +4,7 @@ namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
 use React\Promise\Deferred;
-use Icecave\Mephisto\Process\ProcessInterface;
+use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\ListZen;
 
 /**
@@ -204,7 +204,7 @@ class ListDialog extends AbstractTextDialog
         return array_merge(parent::getArgs(), $this->columns);
     }
 
-    public function createZen(Deferred $deferred, ProcessInterface $process)
+    public function createZen(Deferred $deferred, Process $process)
     {
         $single = (!$this->multiple && !$this->checklist);
 

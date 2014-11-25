@@ -42,7 +42,7 @@ class TextInfoDialogTest extends AbstractDialogTest
         $dialog->addLine('hello');
         $dialog->addLine('world');
 
-        $process = $this->getMock('Icecave\Mephisto\Process\ProcessInterface');
+        $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         // TODO: assert writeline hello, world
 
         $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);

@@ -14,7 +14,7 @@
         "php": ">=5.3",
         "react/promise": "~1",
         "react/event-loop": "0.3.*",
-        "icecave/mephisto": "0.1.*"
+        "react/child-process": "0.3.*"
     },
     "autoload": {
         "psr-4": { "Clue\\React\\Zenity\\": "src/" }
