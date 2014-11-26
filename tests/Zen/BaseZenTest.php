@@ -5,7 +5,7 @@ abstract class BaseZenTest extends TestCase
 {
     protected $instream;
     protected $process;
-    protected $deferred;
+    protected $promise;
     protected $stdin = '';
 
     public function setUp()
@@ -19,23 +19,25 @@ abstract class BaseZenTest extends TestCase
         $this->process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         $this->process->stdin = $this->instream;
 
-        $this->deferred = $this->getMock('React\Promise\Deferred');
+        $this->promise = $this->getMock('React\Promise\PromiseInterface');
     }
 
     public function testClose()
     {
         //$this->instream->expects($this->once())->method('close');
 
-        $zen = new BaseZen($this->deferred, $this->process);
+        $zen = new BaseZen();
+        $zen->go($this->promise, $this->process);
 
         $zen->close();
     }
 
     public function testThen()
     {
-        $this->deferred->expects($this->once())->method('then');
+        $this->promise->expects($this->once())->method('then');
 
-        $zen = new BaseZen($this->deferred, $this->process);
+        $zen = new BaseZen();
+        $zen->go($this->promise, $this->process);
 
         $zen->then();
     }

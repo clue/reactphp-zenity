@@ -3,8 +3,6 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
-use React\Promise\Deferred;
-use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\ColorSelectionZen;
 
 /**
@@ -43,8 +41,8 @@ class ColorSelectionDialog extends AbstractDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, Process $process)
+    public function createZen()
     {
-        return new ColorSelectionZen($deferred, $process);
+        return new ColorSelectionZen();
     }
 }

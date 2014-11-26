@@ -3,8 +3,6 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractTextDialog;
-use React\Promise\Deferred;
-use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\FormsZen;
 
 /**
@@ -153,8 +151,8 @@ class FormsDialog extends AbstractTextDialog
         return array_merge(parent::getArgs(), $this->fields);
     }
 
-    public function createZen(Deferred $deferred, Process $process)
+    public function createZen()
     {
-        return new FormsZen($deferred, $process, $this->separator);
+        return new FormsZen($this->separator);
     }
 }

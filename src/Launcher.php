@@ -55,7 +55,8 @@ class Launcher
             }
         });
 
-        $zen = $dialog->createZen($deferred, $process);
+        $zen = $dialog->createZen();
+        $zen->go($deferred->promise(), $process);
 
         $process->on('exit', function($code) use ($process, $zen, &$result, $deferred) {
             if ($code !== 0) {

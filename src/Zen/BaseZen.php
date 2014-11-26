@@ -3,23 +3,22 @@
 namespace Clue\React\Zenity\Zen;
 
 use React\Promise\PromiseInterface;
-use React\Promise\Deferred;
 use React\ChildProcess\Process;
 
 class BaseZen implements PromiseInterface
 {
-    private $deferred;
-    private $process;
+    protected $promise;
+    protected $process;
 
-    public function __construct(Deferred $deferred, Process $process)
+    public function go(PromiseInterface $promise, Process $process)
     {
-        $this->deferred = $deferred;
+        $this->promise = $promise;
         $this->process = $process;
     }
 
     public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)
     {
-        return $this->deferred->then($fulfilledHandler, $errorHandler, $progressHandler);
+        return $this->promise->then($fulfilledHandler, $errorHandler, $progressHandler);
     }
 
     public function close()
@@ -33,6 +32,7 @@ class BaseZen implements PromiseInterface
 
     protected function writeln($line)
     {
+        if ($this->process === null) return;
         $this->process->stdin->write($line . PHP_EOL);
     }
 
