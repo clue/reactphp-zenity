@@ -8,17 +8,21 @@ class TestCase extends PHPUnit_Framework_TestCase
     {
         $mock = $this->createCallableMock();
 
+        $mock
+            ->expects($this->once())
+            ->method('__invoke');
 
-        if (func_num_args() > 0) {
-            $mock
-                ->expects($this->once())
-                ->method('__invoke')
-                ->with($this->equalTo(func_get_arg(0)));
-        } else {
-            $mock
-                ->expects($this->once())
-                ->method('__invoke');
-        }
+        return $mock;
+    }
+
+    protected function expectCallableOnceWith($value)
+    {
+        $mock = $this->createCallableMock();
+
+        $mock
+            ->expects($this->once())
+            ->method('__invoke')
+            ->with($this->equalTo($value));
 
         return $mock;
     }
@@ -29,17 +33,6 @@ class TestCase extends PHPUnit_Framework_TestCase
         $mock
             ->expects($this->never())
             ->method('__invoke');
-
-        return $mock;
-    }
-
-    protected function expectCallableOnceParameter($type)
-    {
-        $mock = $this->createCallableMock();
-        $mock
-            ->expects($this->once())
-            ->method('__invoke')
-            ->with($this->isInstanceOf($type));
 
         return $mock;
     }
