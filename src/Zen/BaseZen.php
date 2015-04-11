@@ -9,38 +9,39 @@ use React\Promise\Deferred;
 class BaseZen implements PromiseInterface
 {
     protected $promise;
+    protected $deferred;
     protected $process;
 
     /** @internal */
     public function go(Process $process)
     {
-        $deferred = new Deferred();
+        $this->deferred = $deferred = new Deferred();
+        $this->process = $process;
 
-        $result = null;
-        $process->stdout->on('data', function ($data) use (&$result) {
+        $buffered = null;
+        $process->stdout->on('data', function ($data) use (&$buffered) {
             if ($data !== '') {
-                $result .= $data;
+                $buffered .= $data;
+            }
+        });
+
+        $process->on('exit', function($code) use ($deferred) {
+            if ($code !== 0) {
+                $deferred->reject($code);
+            } else {
+                $deferred->resolve();
             }
         });
 
         $that = $this;
-        $process->on('exit', function($code) use ($process, $that, &$result, $deferred) {
-            if ($code !== 0) {
-                $deferred->reject($code);
+        $this->promise = $deferred->promise()->then(function () use (&$buffered, $that) {
+            if ($buffered === null) {
+                $buffered = true;
             } else {
-                if ($result === null) {
-                    $result = true;
-                } else {
-                    $result = $that->parseValue(trim($result));
-                }
-                $deferred->resolve($result);
+                $buffered = $that->parseValue(trim($buffered));
             }
-
-            $that->close();
+            return $buffered;
         });
-
-        $this->promise = $deferred->promise();
-        $this->process = $process;
     }
 
     public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)
@@ -50,8 +51,10 @@ class BaseZen implements PromiseInterface
 
     public function close()
     {
-        if ($this->process !== null) {
-            $this->process->close();
+        $this->deferred->resolve();
+
+        if ($this->process !== null && $this->process->isRunning()) {
+            $this->process->terminate(SIGKILL);
         }
 
         return $this;
