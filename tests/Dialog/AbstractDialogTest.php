@@ -12,13 +12,12 @@ abstract class AbstractDialogTest extends TestCase
     protected function createZen(AbstractDialog $dialog = null)
     {
         $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
-        $deferred = $this->getMock('React\Promise\Deferred');
 
         if ($dialog === null) {
             $dialog = $this->createDialog();
         }
 
-        return $dialog->createZen($deferred, $process);
+        return $dialog->createZen($process);
     }
 
     abstract protected function getType();

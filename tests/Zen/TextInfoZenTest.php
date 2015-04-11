@@ -7,7 +7,7 @@ class TextInfoZenTest extends BaseZenTest
     public function testAddLine()
     {
         $zen = new TextInfoZen();
-        $zen->go($this->promise, $this->process);
+        $zen->go($this->process);
 
         $this->assertSame($zen, $zen->addLine('hello'));
         $this->assertSame($zen, $zen->addLine('world'));

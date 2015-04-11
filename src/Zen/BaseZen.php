@@ -4,15 +4,42 @@ namespace Clue\React\Zenity\Zen;
 
 use React\Promise\PromiseInterface;
 use React\ChildProcess\Process;
+use React\Promise\Deferred;
 
 class BaseZen implements PromiseInterface
 {
     protected $promise;
     protected $process;
 
-    public function go(PromiseInterface $promise, Process $process)
+    /** @internal */
+    public function go(Process $process)
     {
-        $this->promise = $promise;
+        $deferred = new Deferred();
+
+        $result = null;
+        $process->stdout->on('data', function ($data) use (&$result) {
+            if ($data !== '') {
+                $result .= $data;
+            }
+        });
+
+        $that = $this;
+        $process->on('exit', function($code) use ($process, $that, &$result, $deferred) {
+            if ($code !== 0) {
+                $deferred->reject($code);
+            } else {
+                if ($result === null) {
+                    $result = true;
+                } else {
+                    $result = $that->parseValue(trim($result));
+                }
+                $deferred->resolve($result);
+            }
+
+            $that->close();
+        });
+
+        $this->promise = $deferred->promise();
         $this->process = $process;
     }
 

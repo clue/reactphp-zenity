@@ -7,7 +7,7 @@ class ProgressZenTest extends BaseZenTest
     public function testPercentage()
     {
         $zen = new ProgressZen(0);
-        $zen->go($this->promise, $this->process);
+        $zen->go($this->process);
 
         $this->assertEquals(0, $zen->getPercentage());
 

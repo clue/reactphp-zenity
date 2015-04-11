@@ -52,7 +52,7 @@ class ProgressDialogTest extends AbstractDialogTest
         $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         // TODO: assert writeline 50
 
-        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
+        $zen = $dialog->createZen();
 
         $this->assertInstanceOf('Clue\React\Zenity\Zen\ProgressZen', $zen);
     }
