@@ -11,7 +11,7 @@ $loop = Factory::create();
 $launcher = new Launcher($loop);
 $builder = new Builder();
 
-$progress = $launcher->launch($builder->pulsate('Pseudo-processing...'));
+$progress = $launcher->launchZen($builder->pulsate('Pseudo-processing...'));
 
 $texts = array(
     'Preparing',
@@ -37,13 +37,13 @@ $timer = $loop->addPeriodicTimer(2.0, function ($timer) use ($progress, $texts) 
     }
 });
 
-$progress->then(function () use ($timer, $builder, $launcher) {
+$progress->promise()->then(function () use ($timer, $builder, $launcher) {
     $timer->cancel();
 
     $launcher->launch($builder->info('Done'));
 });
 
-$progress->then(null, function() use ($timer, $builder, $launcher) {
+$progress->promise()->then(null, function() use ($timer, $builder, $launcher) {
     $timer->cancel();
 
     $launcher->launch($builder->error('Canceled'));

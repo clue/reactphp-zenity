@@ -2,11 +2,11 @@
 
 namespace Clue\React\Zenity\Zen;
 
-use React\Promise\PromiseInterface;
+use React\Promise\PromisorInterface;
 use React\ChildProcess\Process;
 use React\Promise\Deferred;
 
-class BaseZen implements PromiseInterface
+class BaseZen implements PromisorInterface
 {
     protected $promise;
     protected $deferred;
@@ -44,9 +44,9 @@ class BaseZen implements PromiseInterface
         });
     }
 
-    public function then($fulfilledHandler = null, $errorHandler = null, $progressHandler = null)
+    public function promise()
     {
-        return $this->promise->then($fulfilledHandler, $errorHandler, $progressHandler);
+        return $this->promise;
     }
 
     public function close()

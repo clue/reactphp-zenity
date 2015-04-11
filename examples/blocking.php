@@ -17,7 +17,7 @@ if ($name === false) {
     exit;
 }
 
-$pulser = $launcher->launch($builder->pulsate('Searching packagist.org for "' . $name . '"...'));
+$pulser = $launcher->launchZen($builder->pulsate('Searching packagist.org for "' . $name . '"...'));
 sleep(3);
 $pulser->close();
 

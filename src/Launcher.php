@@ -37,7 +37,7 @@ class Launcher
         return $this;
     }
 
-    public function launch(AbstractDialog $dialog)
+    public function launchZen(AbstractDialog $dialog)
     {
         $process = $this->createProcess($dialog);
 
@@ -50,6 +50,11 @@ class Launcher
         $zen->go($process);
 
         return $zen;
+    }
+
+    public function launch(AbstractDialog $dialog)
+    {
+        return $this->launchZen($dialog)->promise();
     }
 
     /**

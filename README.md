@@ -89,13 +89,21 @@ $launcher->launch($dialog)->then(
 });
 ```
 
-The launched zenity process exposes methods to control the process while waiting for the results.
+#### launchZen()
+
+The `launchZen($dialog)` method can be used to asynchronously launch a given dialog
+and return an instance of the `BaseZen` class.
+This instance exposes methods to control the zenity process while waiting for the results.
 Some dialog types also support modifying the information presented to the user.
 
 ```php
-$zen = $launcher->launch($dialog);
+$zen = $launcher->launchZen($dialog);
 $loop->addTimer(3.0, function () use ($zen) {
     $zen->close();
+});
+
+$zen->promise()->then(function ($result) {
+    // dialog completed
 });
 ```
 
