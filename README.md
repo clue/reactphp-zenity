@@ -31,10 +31,7 @@ $loop->run();
 
 Looking for more examples? Take a look at the [examples](examples) folder.
 
-## API
-
-The API is modelled closely after Zenity's command line API, so it should be
-familar if you're already using it from within any other command line script.
+## Usage
 
 ### Launcher
 
@@ -52,12 +49,16 @@ $loop = React\EventLoop\Factory::create();
 $launcher = new Launcher($loop);
 ```
 
+#### setBin()
+
 For launching the process it assumes your `zenity` binary is located in your system `$PATH`.
 If it's not, you can explicitly set its path like this:
 
 ```php
 $launcher->setBin('/some/other/path/zenity');
 ```
+
+#### waitFor()
 
 The `waitFor($dialog)` method can be used to launch a given dialog and
 wait for the zenity process to return its result.
@@ -67,6 +68,8 @@ all nifty async details - and lacking some of its advanced features:
 ```php
 $result = $launcher->waitFor($dialog);
 ```
+
+#### launch()
 
 The `launch($dialog)` method can be used to asynchronously launch a given dialog
 and return a [Promise](https://github.com/reactphp/promise) that will be fulfilled
@@ -110,19 +113,24 @@ $dialog = $builder->info('Hello world');
 
 For anything more complex, you can also instantiate the below classes directly.
 
-### AbstractDialog
+### Dialog
+
+The `Dialog` API is modelled closely after Zenity's command line API, so it should be
+familar if you're already using it from within any other command line script.
+
+#### AbstractDialog
 
 Abstract base class for all zenity dialogs (see below for details on each concrete type).
 
-### CalendarDialog
+#### CalendarDialog
 
 ![https://help.gnome.org/users/zenity/stable/calendar.html](https://help.gnome.org/users/zenity/stable/figures/zenity-calendar-screenshot.png)
 
-### ColorSelectionDialog
+#### ColorSelectionDialog
 
 ![https://help.gnome.org/users/zenity/stable/colorselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-colorselection-screenshot.png)
 
-### EntryDialog
+#### EntryDialog
 
 ```php
 $builder->entry($prompt = null, $prefill = null);
@@ -130,7 +138,7 @@ $builder->entry($prompt = null, $prefill = null);
 
 ![https://help.gnome.org/users/zenity/stable/entry.html](https://help.gnome.org/users/zenity/stable/figures/zenity-entry-screenshot.png)
 
-### ErrorDialog
+#### ErrorDialog
 
 ```php
 $builder->error($text, $title = null);
@@ -138,7 +146,7 @@ $builder->error($text, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/error.html](https://help.gnome.org/users/zenity/stable/figures/zenity-error-screenshot.png)
 
-### FileSelectionDialog
+#### FileSelectionDialog
 
 ```php
 $builder->fileSelection($title = null, $multiple = false);
@@ -148,11 +156,11 @@ $builder->directorySelection($title = null, $multiple = false);
 
 ![https://help.gnome.org/users/zenity/stable/fileselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-fileselection-screenshot.png)
 
-### FormsDialog
+#### FormsDialog
 
 ![https://help.gnome.org/users/zenity/stable/forms.html](https://help.gnome.org/users/zenity/stable/figures/zenity-forms-screenshot.png)
 
-### InfoDialog
+#### InfoDialog
 
 ```php
 $builder->info($text, $title = null);
@@ -160,7 +168,7 @@ $builder->info($text, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/info.html](https://help.gnome.org/users/zenity/stable/figures/zenity-information-screenshot.png)
 
-### ListDialog
+#### ListDialog
 
 ```php
 $builder->listCheck(array $list, $text = null, $selected = null);
@@ -171,7 +179,7 @@ $builder->table(array $rows, array $columns = null, $text = null);
 
 ![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
 
-### NotificationDialog
+#### NotificationDialog
 
 ```php
 $builder->notification($text);
@@ -180,11 +188,11 @@ $builder->notifier();
 
 ![https://help.gnome.org/users/zenity/stable/notification.html](https://help.gnome.org/users/zenity/stable/figures/zenity-notification-screenshot.png)
 
-### PasswordDialog
+#### PasswordDialog
 
 ![https://help.gnome.org/users/zenity/stable/password.html](https://help.gnome.org/users/zenity/stable/figures/zenity-password-screenshot.png)
 
-### ProgressDialog
+#### ProgressDialog
 
 ```php
 $builder->progress($text = null);
@@ -193,7 +201,7 @@ $builder->pulsate($text = null);
 
 ![https://help.gnome.org/users/zenity/stable/progress.html](https://help.gnome.org/users/zenity/stable/figures/zenity-progress-screenshot.png)
 
-### QuestionDialog
+#### QuestionDialog
 
 ```php
 $builder->question($question, $title = null);
@@ -201,11 +209,11 @@ $builder->question($question, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
 
-### ScaleDialog
+#### ScaleDialog
 
 ![https://help.gnome.org/users/zenity/stable/scale.html](https://help.gnome.org/users/zenity/stable/figures/zenity-scale-screenshot.png)
 
-### TextInfoDialog
+#### TextInfoDialog
 
 ```php
 $builder->text($filename, $title = null);
@@ -215,7 +223,7 @@ $builder->confirmLicense($filename, $confirmation, $title = null);
 
 ![https://help.gnome.org/users/zenity/stable/text.html](https://help.gnome.org/users/zenity/stable/figures/zenity-text-screenshot.png)
 
-### WarningDialog
+#### WarningDialog
 
 ```php
 $builder->warning($text, $title = null);
