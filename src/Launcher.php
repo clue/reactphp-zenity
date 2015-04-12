@@ -46,31 +46,8 @@ class Launcher
             $process->stdin->write($inbuffer);
         }
 
-        $deferred = new Deferred();
-
-        $result = null;
-        $process->stdout->on('data', function ($data) use (&$result) {
-            if ($data !== '') {
-                $result .= $data;
-            }
-        });
-
-        $zen = $dialog->createZen($deferred, $process);
-
-        $process->on('exit', function($code) use ($process, $zen, &$result, $deferred) {
-            if ($code !== 0) {
-                $deferred->reject($code);
-            } else {
-                if ($result === null) {
-                    $result = true;
-                } else {
-                    $result = $zen->parseValue(trim($result));
-                }
-                $deferred->resolve($result);
-            }
-
-            $zen->close();
-        });
+        $zen = $dialog->createZen();
+        $zen->go($process);
 
         return $zen;
     }

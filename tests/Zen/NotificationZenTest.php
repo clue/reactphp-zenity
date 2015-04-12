@@ -6,7 +6,8 @@ class NotificationZenTest extends BaseZenTest
 {
     public function testCommands()
     {
-        $zen = new NotificationZen($this->deferred, $this->process);
+        $zen = new NotificationZen();
+        $zen->go($this->process);
 
         $this->assertSame($zen, $zen->setIcon('icon'));
         $this->assertSame($zen, $zen->setVisible(true));

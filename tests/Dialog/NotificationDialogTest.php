@@ -33,11 +33,7 @@ class NotificationDialogTest extends AbstractDialogTest
 
     public function testZen()
     {
-        $dialog = new NotificationDialog();
-
-        $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
-
-        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
+        $zen = $this->createZen();
 
         $this->assertInstanceOf('Clue\React\Zenity\Zen\NotificationZen', $zen);
     }

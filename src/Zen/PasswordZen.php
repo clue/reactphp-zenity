@@ -3,8 +3,6 @@
 namespace Clue\React\Zenity\Zen;
 
 use Clue\React\Zenity\Zen\BaseZen;
-use React\Promise\Deferred;
-use React\ChildProcess\Process;
 
 class PasswordZen extends BaseZen
 {
@@ -13,10 +11,8 @@ class PasswordZen extends BaseZen
 
     private $username;
 
-    public function __construct(Deferred $deferred, Process $process, $username)
+    public function __construct($username)
     {
-        parent::__construct($deferred, $process);
-
         $this->username = $username;
     }
 

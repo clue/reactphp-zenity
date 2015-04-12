@@ -45,7 +45,7 @@ class TextInfoDialogTest extends AbstractDialogTest
         $process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         // TODO: assert writeline hello, world
 
-        $zen = $dialog->createZen($this->getMock('React\Promise\Deferred'), $process);
+        $zen = $dialog->createZen();
 
         $this->assertInstanceOf('Clue\React\Zenity\Zen\TextInfoZen', $zen);
     }

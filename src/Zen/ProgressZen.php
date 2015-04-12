@@ -2,17 +2,14 @@
 
 namespace Clue\React\Zenity\Zen;
 
-use React\Promise\Deferred;
-use React\ChildProcess\Process;
+use Clue\React\Zenity\Zen\BaseZen;
 
 class ProgressZen extends BaseZen
 {
     private $percentage;
 
-    public function __construct(Deferred $deferred, Process $process, $percentage)
+    public function __construct($percentage)
     {
-        parent::__construct($deferred, $process);
-
         $this->percentage = $percentage;
     }
 

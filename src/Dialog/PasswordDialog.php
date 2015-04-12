@@ -3,8 +3,6 @@
 namespace Clue\React\Zenity\Dialog;
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
-use React\Promise\Deferred;
-use React\ChildProcess\Process;
 use Clue\React\Zenity\Zen\PasswordZen;
 
 /**
@@ -50,8 +48,8 @@ class PasswordDialog extends AbstractDialog
         return $this;
     }
 
-    public function createZen(Deferred $deferred, Process $process)
+    public function createZen()
     {
-        return new PasswordZen($deferred, $process, $this->username);
+        return new PasswordZen($this->username);
     }
 }

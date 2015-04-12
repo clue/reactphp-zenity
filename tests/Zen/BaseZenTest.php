@@ -1,11 +1,13 @@
 <?php
 
 use Clue\React\Zenity\Zen\BaseZen;
+use React\EventLoop\Factory;
+use React\ChildProcess\Process;
+
 abstract class BaseZenTest extends TestCase
 {
     protected $instream;
     protected $process;
-    protected $deferred;
     protected $stdin = '';
 
     public function setUp()
@@ -19,24 +21,17 @@ abstract class BaseZenTest extends TestCase
         $this->process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         $this->process->stdin = $this->instream;
 
-        $this->deferred = $this->getMock('React\Promise\Deferred');
+        $this->process->stdout = $this->getMock('React\Stream\ReadableStreamInterface');
     }
 
-    public function testClose()
+    public function testClosingZenTerminatesProcess()
     {
-        //$this->instream->expects($this->once())->method('close');
+        $this->process->expects($this->once())->method('isRunning')->will($this->returnValue(true));
+        $this->process->expects($this->once())->method('terminate');
 
-        $zen = new BaseZen($this->deferred, $this->process);
+        $zen = new BaseZen();
+        $zen->go($this->process);
 
         $zen->close();
-    }
-
-    public function testThen()
-    {
-        $this->deferred->expects($this->once())->method('then');
-
-        $zen = new BaseZen($this->deferred, $this->process);
-
-        $zen->then();
     }
 }
