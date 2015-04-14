@@ -12,7 +12,7 @@ $launcher = new Launcher($loop);
 $builder = new Builder();
 
 $notification = $builder->notifier();
-$zen = $launcher->launch($notification);
+$zen = $launcher->launchZen($notification);
 
 $zen->setMessage('Hello world');
 
@@ -20,6 +20,5 @@ $n = 0;
 $loop->addPeriodicTimer(10.0, function ($timer) use ($zen, &$n) {
     $notification->setMessage('Hi' . ++$n);
 });
-
 
 $loop->run();

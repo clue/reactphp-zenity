@@ -20,7 +20,7 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->run();
 
-        $zen->then($this->expectCallableOnceWith('okay'));
+        $zen->promise()->then($this->expectCallableOnceWith('okay'));
     }
 
     public function testZenResolvesWithTrueWhenProcessHasNoOutput()
@@ -33,7 +33,7 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->run();
 
-        $zen->then($this->expectCallableOnceWith(true));
+        $zen->promise()->then($this->expectCallableOnceWith(true));
     }
 
     public function testZenRejectsWhenProcessReturnsError()
@@ -46,7 +46,7 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->run();
 
-        $zen->then(null, $this->expectCallableOnceWith(1));
+        $zen->promise()->then(null, $this->expectCallableOnceWith(1));
     }
 
     public function testClosingZenResolvesWithOutputSoFar()
@@ -63,7 +63,7 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->run();
 
-        $zen->then($this->expectCallableOnceWith('okay'));
+        $zen->promise()->then($this->expectCallableOnceWith('okay'));
     }
 
     public function testTerminatingProcessReturnsError()
@@ -80,6 +80,6 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->run();
 
-        $zen->then(null, $this->expectCallableOnce());
+        $zen->promise()->then(null, $this->expectCallableOnce());
     }
 }

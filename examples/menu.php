@@ -17,7 +17,7 @@ $main = function() use (&$main, $builder, $launcher) {
     $menu->setWindowIcon('info');
     $menu->setTitle('Main menu');
 
-   $launcher->launch($menu)->then(function ($selected) use ($builder, $main, $launcher) {
+    $launcher->launch($menu)->then(function ($selected) use ($builder, $main, $launcher) {
         if ($selected === '0') {
             // U+2212 MINUS SIGN for alignment
             $launcher->launch($builder->listRadio(array('+2', '+1', '±0', '−1', '−2'), 'Introduction Level', 2))->then(function ($level) use ($main, $launcher) {
