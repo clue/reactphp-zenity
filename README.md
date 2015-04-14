@@ -247,7 +247,7 @@ The recommended way to install this library is [through composer](https://getcom
 ```JSON
 {
     "require": {
-        "clue/zenity-react": "~0.3.0"
+        "clue/zenity-react": "~0.4.0"
     }
 }
 ```

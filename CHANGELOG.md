@@ -1,8 +1,19 @@
-# CHANGELOG
+# Changelog
 
-This file is a manually maintained list of changes for each release. Feel free
-to add your changes here when sending pull requests. Also send corrections if
-you spot any mistakes.
+## 0.4.0 (2015-04-14)
+
+* BC break: Separate `launch()` and `launchZen()`.
+  `BaseZen` now *exposes* a `Promise` instead of *being* a `Promise`.
+  (#34)
+
+* BC break: Improve `close()` handling, now resolves and cleanly terminates process
+  (#33)
+
+* Now uses react/child-process and no longer depends on any extensions
+  (#32)
+
+* Support React v0.4 (while keeping BC) and first class support for HHVM
+  (#35 and #36)
 
 ## 0.3.0 (2014-09-29)
 
