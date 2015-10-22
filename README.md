@@ -2,12 +2,14 @@
 
 [Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that allows
 creating simple GTK+ dialogs from within command line scripts. This library provides
-an easy to use wrapper to spawn zenity processes to build graphical desktop applications
+an easy to use wrapper to spawn Zenity processes to build graphical desktop applications
 with PHP.
 
 Zenity already ships with Ubuntu-based distributions and does not require any installation
-there - so this library should work out of the box. Otherwise you may have to install
-zenity yourself.
+there - so this library should work out of the box. Otherwise you may have to [install
+Zenity](#install) yourself.
+
+![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
 
 ## Quickstart example
 
@@ -36,7 +38,7 @@ Looking for more examples? Take a look at the [examples](examples) folder.
 ### Launcher
 
 As shown in the above example, a `Launcher` has to be instantiated once and
-is responsible for launching each zenity dialog. It manages running
+is responsible for launching each Zenity dialog. It manages running
 the underlying `zenity` process and reports back its state and user interaction.
 
 It uses the [react/event-loop](https://github.com/reactphp/event-loop) component
@@ -61,7 +63,7 @@ $launcher->setBin('/some/other/path/zenity');
 #### waitFor()
 
 The `waitFor($dialog)` method can be used to launch a given dialog and
-wait for the zenity process to return its result.
+wait for the Zenity process to return its result.
 This simple blocking API allows you to get started quickly without exposing
 all nifty async details - and lacking some of its advanced features:
 
@@ -73,7 +75,7 @@ $result = $launcher->waitFor($dialog);
 
 The `launch($dialog)` method can be used to asynchronously launch a given dialog
 and return a [Promise](https://github.com/reactphp/promise) that will be fulfilled
-when the zenity process returns.
+when the Zenity process returns.
 This async API enables you to launch multiple dialogs simultaneously while simultaneously
 doing more I/O work.
 
@@ -84,7 +86,7 @@ $launcher->launch($dialog)->then(
         // text dialogs complete with their respective text
     },
     function ($reason) {
-        // dialog was cancelled or their was an error launching the process
+        // dialog was cancelled or there was an error launching the process
     }
 });
 ```
@@ -93,7 +95,7 @@ $launcher->launch($dialog)->then(
 
 The `launchZen($dialog)` method can be used to asynchronously launch a given dialog
 and return an instance of the `BaseZen` class.
-This instance exposes methods to control the zenity process while waiting for the results.
+This instance exposes methods to control the Zenity process while waiting for the results.
 Some dialog types also support modifying the information presented to the user.
 
 ```php
@@ -128,7 +130,7 @@ familar if you're already using it from within any other command line script.
 
 #### AbstractDialog
 
-Abstract base class for all zenity dialogs (see below for details on each concrete type).
+Abstract base class for all Zenity dialogs (see below for details on each concrete type).
 
 #### CalendarDialog
 
