@@ -18,7 +18,7 @@ $zen->setMessage('Hello world');
 
 $n = 0;
 $loop->addPeriodicTimer(10.0, function ($timer) use ($zen, &$n) {
-    $notification->setMessage('Hi' . ++$n);
+    $zen->setMessage('Hi' . ++$n);
 });
 
 $loop->run();
