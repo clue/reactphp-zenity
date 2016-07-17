@@ -183,9 +183,11 @@ $builder->info($text, $title = null);
 ```php
 $builder->listCheck(array $list, $text = null, $selected = null);
 $builder->listMenu(array $list, $text = null);
-$builder->listRadio(array $list, $text = null, array $selected = null);
+$builder->listRadio(array $list, $text = null, $selected = null);
 $builder->table(array $rows, array $columns = null, $text = null);
 ```
+
+Where `$selected` is the key of the item from `$list` you want to preselect.
 
 ![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
 
