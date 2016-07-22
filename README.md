@@ -109,6 +109,27 @@ $zen->promise()->then(function ($result) {
 });
 ```
 
+#### Mixing synchronous and asynchronous PHP ####
+ReactPHP expects all PHP to be non-blocking. Therefore it's not easily possible to use launch or launchZen followed by regular blocking events in PHP. Currently there is a simple but dirty workaround. It's possible to manually tick the loop to have changes on zen-objects take effect. 
+
+```php
+$progress = new ProgressDialog('Step 1');
+$progress->setPulsate(TRUE);
+$progress->setAutoClose(TRUE);
+$progress_zen = $launcher->launchZen($progress);
+
+// This regular command is blocking and breaks the asynchronous workflow
+$hostname = gethostname();
+
+$progress_zen->setText('Step 2');
+$loop->tick();
+
+// SQL is also regular blocking PHP
+$get_sync = $db_serv->prepare('SELECT last_sync FROM tbl_sync WHERE hostname=?');
+$get_sync->execute(array($hostname));
+$result_sync = $get_sync->fetch();
+```
+
 ### Builder
 
 Additionally, the `Builder` implements an even simpler interface for commonly
