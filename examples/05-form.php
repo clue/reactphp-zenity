@@ -9,7 +9,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 $launcher = new Launcher($loop);
 
-$form = new FormsDialog($launcher);
+$form = new FormsDialog();
 $form->setWindowIcon('info');
 $form->setText('Enter user information');
 

@@ -10,7 +10,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = Factory::create();
 
 $launcher = new Launcher($loop);
-$builder = new Builder($launcher);
+$builder = new Builder();
 
 $main = function() use (&$main, $builder, $launcher) {
     $menu = $builder->listMenu(array('Introduction', 'Tests', 'License', 'Bugs / Issues'), 'Main menu');
