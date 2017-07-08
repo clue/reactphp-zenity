@@ -22,6 +22,7 @@ abstract class BaseZenTest extends TestCase
         $this->process->stdin = $this->instream;
 
         $this->process->stdout = $this->getMock('React\Stream\ReadableStreamInterface');
+        $this->process->stderr = $this->getMock('React\Stream\ReadableStreamInterface');
     }
 
     public function testClosingZenTerminatesProcess()
