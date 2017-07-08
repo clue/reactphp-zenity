@@ -15,7 +15,7 @@ class FunctionalLauncherTest extends TestCase
     {
         $this->loop = Factory::create();
 
-        $this->dialog = $this->getMock('Clue\React\Zenity\Dialog\AbstractDialog');
+        $this->dialog = $this->getMockBuilder('Clue\React\Zenity\Dialog\AbstractDialog')->getMock();
         $this->dialog->expects($this->once())->method('createZen')->will($this->returnValue(new BaseZen()));
 
         $this->launcher = new Launcher($this->loop);
