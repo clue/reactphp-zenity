@@ -1,8 +1,10 @@
 <?php
 
+use Clue\React\Block;
+use Clue\React\Zenity\Zen\BaseZen;
 use React\EventLoop\Factory;
 use React\ChildProcess\Process;
-use Clue\React\Zenity\Zen\BaseZen;
+
 class FunctionalBaseZenTest extends TestCase
 {
     public function setUp()
@@ -18,9 +20,9 @@ class FunctionalBaseZenTest extends TestCase
         $zen = new BaseZen();
         $zen->go($process);
 
-        $this->loop->run();
+        $result = Block\await($zen->promise(), $this->loop, 1.0);
 
-        $zen->promise()->then($this->expectCallableOnceWith('okay'));
+        $this->assertEquals('okay', $result);
     }
 
     public function testZenResolvesWithTrueWhenProcessHasNoOutput()
@@ -31,9 +33,9 @@ class FunctionalBaseZenTest extends TestCase
         $zen = new BaseZen();
         $zen->go($process);
 
-        $this->loop->run();
+        $result = Block\await($zen->promise(), $this->loop, 1.0);
 
-        $zen->promise()->then($this->expectCallableOnceWith(true));
+        $this->assertTrue($result);
     }
 
     public function testZenRejectsWhenProcessReturnsError()
@@ -44,9 +46,7 @@ class FunctionalBaseZenTest extends TestCase
         $zen = new BaseZen();
         $zen->go($process);
 
-        $this->loop->run();
-
-        $zen->promise()->then(null, $this->expectCallableOnceWith(1));
+        Block\await($zen->promise()->then(null, $this->expectCallableOnceWith(1)), $this->loop, 1.0);
     }
 
     public function testClosingZenResolvesWithOutputSoFar()
@@ -61,9 +61,9 @@ class FunctionalBaseZenTest extends TestCase
             $zen->close();
         });
 
-        $this->loop->run();
+        $result = Block\await($zen->promise(), $this->loop, 1.0);
 
-        $zen->promise()->then($this->expectCallableOnceWith('okay'));
+        $this->assertEquals('okay', $result);
     }
 
     public function testTerminatingProcessReturnsError()
@@ -76,10 +76,9 @@ class FunctionalBaseZenTest extends TestCase
 
         $this->loop->addTimer(0.1, function() use ($process) {
             $process->terminate(SIGKILL);
+            $process->stdin->end();
         });
 
-        $this->loop->run();
-
-        $zen->promise()->then(null, $this->expectCallableOnce());
+        Block\await($zen->promise()->then(null, $this->expectCallableOnce()), $this->loop, 1.0);
     }
 }

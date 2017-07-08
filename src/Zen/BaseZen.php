@@ -51,10 +51,16 @@ class BaseZen implements PromisorInterface
 
     public function close()
     {
+        // resolve with whatever is currently buffered
         $this->deferred->resolve();
 
         if ($this->process !== null && $this->process->isRunning()) {
             $this->process->terminate(SIGKILL);
+
+            // explicitly close all streams immediately
+            $this->process->stdin->close();
+            $this->process->stdout->close();
+            $this->process->stderr->close();
         }
 
         return $this;

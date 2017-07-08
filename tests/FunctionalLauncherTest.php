@@ -1,10 +1,11 @@
 <?php
 
+use Clue\React\Block;
 use Clue\React\Zenity\Launcher;
-use React\EventLoop\Factory;
 use Clue\React\Zenity\Zen\BaseZen;
+use React\EventLoop\Factory;
 
-class LauncherTest extends TestCase
+class FunctionalLauncherTest extends TestCase
 {
     private $loop;
     private $dialog;
@@ -27,9 +28,9 @@ class LauncherTest extends TestCase
 
         $promise = $this->launcher->launch($this->dialog);
 
-        $this->loop->run();
+        $result = Block\await($promise, $this->loop, 1.0);
 
-        $promise->then($this->expectCallableOnceWith('--hello --world'));
+        $this->assertEquals('--hello --world', $result);
     }
 
     public function testDoesPassStdin()
@@ -44,9 +45,9 @@ class LauncherTest extends TestCase
             $zen->close();
         });
 
-        $this->loop->run();
+        $result = Block\await($zen->promise(), $this->loop, 1.0);
 
-        $zen->promise()->then($this->expectCallableOnceWith('okay'));
+        $this->assertEquals('okay', $result);
     }
 
     public function testWaitForOutput()

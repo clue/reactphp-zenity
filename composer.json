@@ -16,6 +16,9 @@
         "react/event-loop": "~0.4.0|~0.3.0",
         "react/child-process": "~0.4.0|~0.3.0"
     },
+    "require-dev": {
+        "clue/block-react": "^1.1"
+    },
     "autoload": {
         "psr-4": { "Clue\\React\\Zenity\\": "src/" }
     }
