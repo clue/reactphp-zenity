@@ -13,7 +13,7 @@ abstract class BaseZenTest extends TestCase
     public function setUp()
     {
         $inbuffer =& $this->stdin;
-        $this->instream = $this->getMock('React\Stream\WritableStreamInterface');
+        $this->instream = $this->getMockBuilder('React\Stream\WritableStreamInterface')->getMock();
         $this->instream->expects($this->any())->method('write')->will($this->returnCallback(function ($value) use (&$inbuffer) {
             $inbuffer .= $value;
         }));
@@ -21,8 +21,8 @@ abstract class BaseZenTest extends TestCase
         $this->process = $this->getMockBuilder('React\ChildProcess\Process')->disableOriginalConstructor()->getMock();
         $this->process->stdin = $this->instream;
 
-        $this->process->stdout = $this->getMock('React\Stream\ReadableStreamInterface');
-        $this->process->stderr = $this->getMock('React\Stream\ReadableStreamInterface');
+        $this->process->stdout = $this->getMockBuilder('React\Stream\ReadableStreamInterface')->getMock();
+        $this->process->stderr = $this->getMockBuilder('React\Stream\ReadableStreamInterface')->getMock();
     }
 
     public function testClosingZenTerminatesProcess()

@@ -11,6 +11,36 @@ Zenity](#install) yourself.
 
 ![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
 
+**Table of contents**
+
+* [Quickstart example](#quickstart-example)
+* [Usage](#usage)
+  * [Launcher](#launcher)
+    * [setBin()](#setbin)
+    * [waitFor()](#waitfor)
+    * [launch()](#launch)
+    * [launchZen()](#launchzen)
+    * [Mixing synchronous and asynchronous PHP](#mixing-synchronous-and-asynchronous-php)
+  * [Builder](#builder)
+  * [Dialog](#dialog)
+    * [AbstractDialog](#abstractdialog)
+    * [CalendarDialog](#calendardialog)
+    * [ColorSelectionDialog](#colorselectiondialog)
+    * [EntryDialog](#entrydialog)
+    * [ErrorDialog](#errordialog)
+    * [FileSelectionDialog](#fileselectiondialog)
+    * [FormsDialog](#formsdialog)
+    * [InfoDialog](#infodialog)
+    * [ListDialog](#listdialog)
+    * [NotificationDialog](#notificationdialog)
+    * [PasswordDialog](#passworddialog)
+    * [QuestionDialog](#questiondialog)
+    * [ScaleDialog](#scaledialog)
+    * [TextInfoDialog](#textinfodialog)
+    * [WarningDialog](#warningdialog)
+* [Install](#install)
+* [License](#license)
+
 ## Quickstart example
 
 Once [installed](#install), you can use the following code to open a prompt
@@ -295,6 +325,21 @@ This library assumes Zenity is installed in your PATH. If it is not, you can exp
 ```php
 $launcher = new Launcher($loop);
 $launcher->setBin('/path/to/zenity');
+```
+
+## Tests
+
+To run the test suite, you first need to clone this repo and then install all
+dependencies [through Composer](https://getcomposer.org):
+
+```bash
+$ composer install
+```
+
+To run the test suite, go to the project root and run:
+
+```bash
+$ php vendor/bin/phpunit
 ```
 
 ## License
