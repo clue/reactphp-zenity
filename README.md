@@ -297,16 +297,16 @@ $builder->warning($text, $title = null);
 
 ## Install
 
-The recommended way to install this library is [through composer](https://getcomposer.org).
-[New to composer?](https://getcomposer.org/doc/00-intro.md)
+The recommended way to install this library is [through Composer](http://getcomposer.org).
+[New to Composer?](http://getcomposer.org/doc/00-intro.md)
 
-```JSON
-{
-    "require": {
-        "clue/zenity-react": "~0.4.0"
-    }
-}
+This will install the latest supported version:
+
+```bash
+$ composer require clue/zenity-react:^0.4.1
 ```
+
+See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 
 Obviously, this library requires the Zenity binary itself.
 Zenity already ships with Ubuntu-based distributions and should not require any installation there.

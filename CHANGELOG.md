@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.1 (2017-07-08)
+
+* Fix: Explicitly close all STDIO streams when terminating
+  (#45 by @clue)
+
+* First class support for legacy PHP 5.3 through PHP 7.1 and HHVM
+  (#47 and #44 by @clue)
+
+* Improve testsuite by adding PHPUnit to require-dev and
+  Fix HHVM build for now again and ignore future HHVM build errors
+  (#44 and #46 by @clue)
+
+* Improve documentation for mixing asynchronous and synchronous code
+  and fix documentation for $selected argument for radio and checkbox dialogs
+  and restructure examples to ease getting started
+  (#42 and #41 by @bertvandepoel and #48 by @clue)
+
 ## 0.4.0 (2015-04-14)
 
 * BC break: Separate `launch()` and `launchZen()`.
