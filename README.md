@@ -308,6 +308,10 @@ $ composer require clue/zenity-react:^0.4.1
 
 See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 
+This project aims to run on any platform and thus does not require any PHP
+extensions and supports running on legacy PHP 5.3 through current PHP 7+ and
+HHVM.
+
 Obviously, this library requires the Zenity binary itself.
 Zenity already ships with Ubuntu-based distributions and should not require any installation there.
 On Debian- and Ubuntu-based distributions you can make sure it's installed like this:
@@ -319,6 +323,8 @@ $ sudo apt-get install zenity
 
 Otherwise you may have to install Zenity yourself (use your favorite search engine, download the appropriate realease tarball or compile from soure).
 Zenity it not officially supported on other platforms, however several non-official releases exist.
+
+*Running on [Windows is currently not supported](https://github.com/reactphp/child-process/issues/9)*
 
 This library assumes Zenity is installed in your PATH. If it is not, you can explicitly set its path like this:
 
