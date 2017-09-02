@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.2 (2017-09-02)
+
+* Feature: Forward compatibility with ChildProcess v0.5 and new ReactPHP components
+  (#50 by @clue)
+
+* Improve test suite by locking Travis distro so new defaults will not break the build
+  (#49 by @clue)
+
 ## 0.4.1 (2017-07-08)
 
 * Fix: Explicitly close all STDIO streams when terminating
