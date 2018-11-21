@@ -1,15 +1,16 @@
-# clue/zenity-react [![Build Status](https://travis-ci.org/clue/php-zenity-react.svg?branch=master)](https://travis-ci.org/clue/php-zenity-react)
+# clue/reactphp-zenity [![Build Status](https://travis-ci.org/clue/reactphp-zenity.svg?branch=master)](https://travis-ci.org/clue/reactphp-zenity)
 
-[Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that allows
-creating simple GTK+ dialogs from within command line scripts. This library provides
-an easy to use wrapper to spawn Zenity processes to build graphical desktop applications
-with PHP.
-
-Zenity already ships with Ubuntu-based distributions and does not require any installation
-there - so this library should work out of the box. Otherwise you may have to [install
-Zenity](#install) yourself.
+Zenity allows you to build graphical desktop (GUI) applications in PHP, built on top of [ReactPHP](https://reactphp.org/).
 
 ![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
+
+[Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that
+allows creating simple GTK+ dialogs from within command line scripts. Zenity
+already ships with Ubuntu-based distributions and does not require any
+installation there - so this library should work out of the box. Otherwise you
+may have to [install Zenity](#install) yourself. This library provides an easy
+to use wrapper to spawn Zenity processes to build graphical desktop applications
+with PHP.
 
 **Table of contents**
 
