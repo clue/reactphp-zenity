@@ -1,15 +1,16 @@
-# clue/zenity-react [![Build Status](https://travis-ci.org/clue/php-zenity-react.svg?branch=master)](https://travis-ci.org/clue/php-zenity-react)
+# clue/reactphp-zenity [![Build Status](https://travis-ci.org/clue/reactphp-zenity.svg?branch=master)](https://travis-ci.org/clue/reactphp-zenity)
 
-[Zenity](https://help.gnome.org/users/zenity/stable/) is a small program that allows
-creating simple GTK+ dialogs from within command line scripts. This library provides
-an easy to use wrapper to spawn Zenity processes to build graphical desktop applications
+Zenity allows you to build graphical desktop (GUI) applications in PHP, built on top of [ReactPHP](https://reactphp.org/).
+
+![https://help.gnome.org/users/zenity/3.24/question.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-question-screenshot.png)
+
+[Zenity](https://help.gnome.org/users/zenity/3.24/) is a small program that
+allows creating simple GTK+ dialogs from within command line scripts. Zenity
+already ships with Ubuntu-based distributions and does not require any
+installation there - so this library should work out of the box. Otherwise you
+may have to [install Zenity](#install) yourself. This library provides an easy
+to use wrapper to spawn Zenity processes to build graphical desktop applications
 with PHP.
-
-Zenity already ships with Ubuntu-based distributions and does not require any installation
-there - so this library should work out of the box. Otherwise you may have to [install
-Zenity](#install) yourself.
-
-![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
 
 **Table of contents**
 
@@ -185,11 +186,11 @@ Abstract base class for all Zenity dialogs (see below for details on each concre
 
 #### CalendarDialog
 
-![https://help.gnome.org/users/zenity/stable/calendar.html](https://help.gnome.org/users/zenity/stable/figures/zenity-calendar-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/calendar.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-calendar-screenshot.png)
 
 #### ColorSelectionDialog
 
-![https://help.gnome.org/users/zenity/stable/colorselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-colorselection-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/colorselection.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-colorselection-screenshot.png)
 
 #### EntryDialog
 
@@ -197,7 +198,7 @@ Abstract base class for all Zenity dialogs (see below for details on each concre
 $builder->entry($prompt = null, $prefill = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/entry.html](https://help.gnome.org/users/zenity/stable/figures/zenity-entry-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/entry.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-entry-screenshot.png)
 
 #### ErrorDialog
 
@@ -205,7 +206,7 @@ $builder->entry($prompt = null, $prefill = null);
 $builder->error($text, $title = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/error.html](https://help.gnome.org/users/zenity/stable/figures/zenity-error-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/error.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-error-screenshot.png)
 
 #### FileSelectionDialog
 
@@ -215,11 +216,11 @@ $builder->fileSave($title = null, $previous = null);
 $builder->directorySelection($title = null, $multiple = false);
 ```
 
-![https://help.gnome.org/users/zenity/stable/fileselection.html](https://help.gnome.org/users/zenity/stable/figures/zenity-fileselection-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/fileselection.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-fileselection-screenshot.png)
 
 #### FormsDialog
 
-![https://help.gnome.org/users/zenity/stable/forms.html](https://help.gnome.org/users/zenity/stable/figures/zenity-forms-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/forms.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-forms-screenshot.png)
 
 #### InfoDialog
 
@@ -227,7 +228,7 @@ $builder->directorySelection($title = null, $multiple = false);
 $builder->info($text, $title = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/info.html](https://help.gnome.org/users/zenity/stable/figures/zenity-information-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/info.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-information-screenshot.png)
 
 #### ListDialog
 
@@ -241,7 +242,7 @@ $builder->table(array $rows, array $columns = null, $text = null);
 Where `$selected` in case of listCheck is an array of keys of the items from `$list` you want to preselect.
 Where `$selected` in case of listRadio is the key of the item from `$list` you want to preselect.
 
-![https://help.gnome.org/users/zenity/stable/list.html](https://help.gnome.org/users/zenity/stable/figures/zenity-list-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/list.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-list-screenshot.png)
 
 #### NotificationDialog
 
@@ -250,11 +251,11 @@ $builder->notification($text);
 $builder->notifier();
 ```
 
-![https://help.gnome.org/users/zenity/stable/notification.html](https://help.gnome.org/users/zenity/stable/figures/zenity-notification-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/notification.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-notification-screenshot.png)
 
 #### PasswordDialog
 
-![https://help.gnome.org/users/zenity/stable/password.html](https://help.gnome.org/users/zenity/stable/figures/zenity-password-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/password.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-password-screenshot.png)
 
 #### ProgressDialog
 
@@ -263,7 +264,7 @@ $builder->progress($text = null);
 $builder->pulsate($text = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/progress.html](https://help.gnome.org/users/zenity/stable/figures/zenity-progress-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/progress.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-progress-screenshot.png)
 
 #### QuestionDialog
 
@@ -271,11 +272,11 @@ $builder->pulsate($text = null);
 $builder->question($question, $title = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/question.html](https://help.gnome.org/users/zenity/stable/figures/zenity-question-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/question.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-question-screenshot.png)
 
 #### ScaleDialog
 
-![https://help.gnome.org/users/zenity/stable/scale.html](https://help.gnome.org/users/zenity/stable/figures/zenity-scale-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/scale.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-scale-screenshot.png)
 
 #### TextInfoDialog
 
@@ -285,7 +286,7 @@ $builder->editable($filename, $title = null);
 $builder->confirmLicense($filename, $confirmation, $title = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/text.html](https://help.gnome.org/users/zenity/stable/figures/zenity-text-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/text.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-text-screenshot.png)
 
 #### WarningDialog
 
@@ -293,7 +294,7 @@ $builder->confirmLicense($filename, $confirmation, $title = null);
 $builder->warning($text, $title = null);
 ```
 
-![https://help.gnome.org/users/zenity/stable/warning.html](https://help.gnome.org/users/zenity/stable/figures/zenity-warning-screenshot.png)
+![https://help.gnome.org/users/zenity/3.24/warning.html](https://help.gnome.org/users/zenity/3.24/figures/zenity-warning-screenshot.png)
 
 ## Install
 
