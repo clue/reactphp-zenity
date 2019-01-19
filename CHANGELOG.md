@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.3 (2019-01-19)
+
+*   Feature: Forward compatibility with ChildProcess v0.6.
+    (#54 by @clue)
+
+*   Improve test suite by testing against PHP 7.2 and PHP 7.3.
+    (#51 by @andreybolonin and #52 by @BenMorel)
+
+*   Update project homepage.
+    (#53 by @clue)
+
 ## 0.4.2 (2017-09-02)
 
 * Feature: Forward compatibility with ChildProcess v0.5 and new ReactPHP components
