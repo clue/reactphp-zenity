@@ -22,5 +22,8 @@
     },
     "autoload": {
         "psr-4": { "Clue\\React\\Zenity\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Clue\\Tests\\React\\Zenity\\": "tests/" }
     }
 }
