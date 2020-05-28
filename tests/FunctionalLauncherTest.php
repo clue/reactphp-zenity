@@ -1,5 +1,7 @@
 <?php
 
+namespace Clue\Tests\React\Zenity;
+
 use Clue\React\Block;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Zen\BaseZen;

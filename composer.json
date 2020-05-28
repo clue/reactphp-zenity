@@ -18,9 +18,12 @@
     },
     "require-dev": {
         "clue/block-react": "^1.1",
-        "phpunit/phpunit": "^5.0 || ^4.8"
+        "phpunit/phpunit": "^7.0 || ^5.0 || ^4.8"
     },
     "autoload": {
         "psr-4": { "Clue\\React\\Zenity\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Clue\\Tests\\React\\Zenity\\": "tests/" }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Clue\React\Zenity\Dialog\AbstractDialog;
+use Clue\Tests\React\Zenity\TestCase;
 
 abstract class AbstractDialogTest extends TestCase
 {

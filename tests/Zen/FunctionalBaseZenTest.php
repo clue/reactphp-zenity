@@ -4,6 +4,7 @@ use Clue\React\Block;
 use Clue\React\Zenity\Zen\BaseZen;
 use React\EventLoop\Factory;
 use React\ChildProcess\Process;
+use Clue\Tests\React\Zenity\TestCase;
 
 class FunctionalBaseZenTest extends TestCase
 {

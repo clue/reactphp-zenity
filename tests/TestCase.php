@@ -1,8 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace Clue\Tests\React\Zenity;
 
-class TestCase extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase as BaseTestCase;
+
+class TestCase extends BaseTestCase
 {
     protected function expectCallableOnce()
     {
@@ -42,7 +44,7 @@ class TestCase extends PHPUnit_Framework_TestCase
      */
     protected function createCallableMock()
     {
-        return $this->getMockBuilder('CallableStub')->getMock();
+        return $this->getMockBuilder('stdClass')->setMethods(array('__invoke'))->getMock();
     }
 
     protected function expectPromiseResolve($promise)
@@ -63,11 +65,3 @@ class TestCase extends PHPUnit_Framework_TestCase
         return $promise;
     }
 }
-
-class CallableStub
-{
-    public function __invoke()
-    {
-    }
-}
-
