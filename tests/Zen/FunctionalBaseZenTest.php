@@ -76,7 +76,7 @@ class FunctionalBaseZenTest extends TestCase
         $zen->go($process);
 
         $this->loop->addTimer(0.1, function() use ($process) {
-            $process->terminate(SIGKILL);
+            $process->terminate(defined('SIGKILL') ? SIGKILL : null);
             $process->stdin->end();
         });
 
