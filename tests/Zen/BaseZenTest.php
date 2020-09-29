@@ -11,7 +11,10 @@ abstract class BaseZenTest extends TestCase
     protected $process;
     protected $stdin = '';
 
-    public function setUp()
+    /**
+     * @before
+     */
+    public function setUpMocks()
     {
         $inbuffer =& $this->stdin;
         $this->instream = $this->getMockBuilder('React\Stream\WritableStreamInterface')->getMock();
