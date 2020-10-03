@@ -55,7 +55,7 @@ class BaseZen implements PromisorInterface
         $this->deferred->resolve();
 
         if ($this->process !== null && $this->process->isRunning()) {
-            $this->process->terminate(SIGKILL);
+            $this->process->terminate(defined('SIGKILL') ? SIGKILL : null);
 
             // explicitly close all streams immediately
             $this->process->stdin->close();
