@@ -13,7 +13,10 @@ class FunctionalLauncherTest extends TestCase
     private $dialog;
     private $launcher;
 
-    public function setUp()
+    /**
+     * @before
+     */
+    public function setUpLauncher()
     {
         $this->loop = Factory::create();
 
