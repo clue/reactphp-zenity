@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.4 (2020-12-13)
+
+*   Improve test suite and add `.gitattributes` to exclude dev files from exports.
+    Prepare PHP 8 support, update to PHPUnit 9 and simplify test matrix.
+    (#56, #57 and #58 by @SimonFrings and #59 by @clue)
+
 ## 0.4.3 (2019-01-19)
 
 *   Feature: Forward compatibility with ChildProcess v0.6.
