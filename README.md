@@ -1,4 +1,6 @@
-# clue/reactphp-zenity [![Build Status](https://travis-ci.org/clue/reactphp-zenity.svg?branch=master)](https://travis-ci.org/clue/reactphp-zenity)
+# clue/reactphp-zenity
+
+[![CI status](https://github.com/clue/reactphp-zenity/workflows/CI/badge.svg)](https://github.com/clue/reactphp-zenity/actions)
 
 Zenity allows you to build graphical desktop (GUI) applications in PHP, built on top of [ReactPHP](https://reactphp.org/).
 
