@@ -1,6 +1,7 @@
 # clue/reactphp-zenity
 
 [![CI status](https://github.com/clue/reactphp-zenity/workflows/CI/badge.svg)](https://github.com/clue/reactphp-zenity/actions)
+[![installs on Packagist](https://img.shields.io/packagist/dt/clue/zenity-react?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/clue/zenity-react)
 
 Zenity allows you to build graphical desktop (GUI) applications in PHP, built on top of [ReactPHP](https://reactphp.org/).
 
