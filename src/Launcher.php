@@ -2,6 +2,7 @@
 
 namespace Clue\React\Zenity;
 
+use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use Clue\React\Zenity\Dialog\AbstractDialog;
 use React\Promise\Deferred;
@@ -14,11 +15,17 @@ use React\ChildProcess\Process;
  */
 class Launcher
 {
+    /** @var LoopInterface */
     private $loop;
+
     private $processLauncher;
     private $bin = 'zenity';
 
-    public function __construct(LoopInterface $loop, $processLauncher = null)
+    /**
+     * @param ?LoopInterface $loop
+     * @param ?Callable $processLauncher
+     */
+    public function __construct(LoopInterface $loop = null, $processLauncher = null)
     {
         if ($processLauncher === null) {
             $processLauncher = function ($cmd) {
@@ -26,8 +33,8 @@ class Launcher
             };
         }
 
+        $this->loop = $loop ?: Loop::get();
         $this->processLauncher = $processLauncher;
-        $this->loop = $loop;
     }
 
     public function setBin($bin)

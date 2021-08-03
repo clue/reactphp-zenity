@@ -1,8 +1,6 @@
 <?php
 
 use Clue\React\Zenity\Zen\BaseZen;
-use React\EventLoop\Factory;
-use React\ChildProcess\Process;
 use Clue\Tests\React\Zenity\TestCase;
 
 abstract class BaseZenTest extends TestCase
