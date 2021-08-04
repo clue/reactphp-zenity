@@ -1,13 +1,11 @@
 <?php
 
-use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Dialog\FormsDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$loop = Factory::create();
-$launcher = new Launcher($loop);
+$launcher = new Launcher();
 
 $form = new FormsDialog();
 $form->setWindowIcon('info');
@@ -25,5 +23,3 @@ $launcher->launch($form)->then(function($result) {
 }, function() {
     var_dump('form canceled');
 });
-
-$loop->run();

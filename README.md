@@ -25,7 +25,6 @@ with PHP.
     * [waitFor()](#waitfor)
     * [launch()](#launch)
     * [launchZen()](#launchzen)
-    * [Mixing synchronous and asynchronous PHP](#mixing-synchronous-and-asynchronous-php)
   * [Builder](#builder)
   * [Dialog](#dialog)
     * [AbstractDialog](#abstractdialog)
@@ -62,8 +61,7 @@ Once [installed](#install), you can use the following code to open a prompt
 asking the user for his name and presenting it in another info dialog.
 
 ```php
-$loop = Factory::create();
-$launcher = new Launcher($loop);
+$launcher = new Clue\React\Zenity\Launcher();
 
 $entry = new EntryDialog();
 $entry->setText('What\'s your name?');
@@ -72,8 +70,6 @@ $entry->setEntryText(getenv('USER')); // prefill with current user
 $launcher->launch($entry)->then(function ($name) use ($launcher) {
     $launcher->launch(new InfoDialog('Welcome to zenity-react, ' . $name .'!'));
 });
-
-$loop->run();
 ```
 
 Looking for more examples? Take a look at the [examples](examples) folder.
@@ -91,9 +87,14 @@ to enable an async workflow where you can launch multiple dialogs while simultan
 doing more I/O work. This library exposes both a simple blocking API and a more
 advanced async API.
 
+This class takes an optional `LoopInterface|null $loop` parameter that can be used to
+pass the event loop instance to use for this object. You can use a `null` value
+here in order to use the [default loop](https://github.com/reactphp/event-loop#loop).
+This value SHOULD NOT be given unless you're sure you want to explicitly use a
+given event loop instance.
+
 ```php
-$loop = React\EventLoop\Factory::create();
-$launcher = new Launcher($loop);
+$launcher = new Clue\React\Zenity\Launcher();
 ```
 
 #### setBin()
@@ -145,34 +146,13 @@ Some dialog types also support modifying the information presented to the user.
 
 ```php
 $zen = $launcher->launchZen($dialog);
-$loop->addTimer(3.0, function () use ($zen) {
+Loop::addTimer(3.0, function () use ($zen) {
     $zen->close();
 });
 
 $zen->promise()->then(function ($result) {
     // dialog completed
 });
-```
-
-#### Mixing synchronous and asynchronous PHP ####
-ReactPHP expects all PHP to be non-blocking. Therefore it's not easily possible to use launch or launchZen followed by regular blocking events in PHP. Currently there is a simple but dirty workaround. It's possible to manually tick the loop to have changes on zen-objects take effect. 
-
-```php
-$progress = new ProgressDialog('Step 1');
-$progress->setPulsate(TRUE);
-$progress->setAutoClose(TRUE);
-$progress_zen = $launcher->launchZen($progress);
-
-// This regular command is blocking and breaks the asynchronous workflow
-$hostname = gethostname();
-
-$progress_zen->setText('Step 2');
-$loop->tick();
-
-// SQL is also regular blocking PHP
-$get_sync = $db_serv->prepare('SELECT last_sync FROM tbl_sync WHERE hostname=?');
-$get_sync->execute(array($hostname));
-$result_sync = $get_sync->fetch();
 ```
 
 ### Builder
@@ -345,7 +325,7 @@ Zenity it not officially supported on other platforms, however several non-offic
 This library assumes Zenity is installed in your PATH. If it is not, you can explicitly set its path like this:
 
 ```php
-$launcher = new Launcher($loop);
+$launcher = new Clue\React\Zenity\Launcher();
 $launcher->setBin('/path/to/zenity');
 ```
 

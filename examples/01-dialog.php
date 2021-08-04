@@ -1,6 +1,5 @@
 <?php
 
-use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Dialog\InfoDialog;
 use Clue\React\Zenity\Dialog\QuestionDialog;
@@ -10,9 +9,7 @@ use Clue\React\Zenity\Dialog\WarningDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$loop = Factory::create();
-
-$launcher = new Launcher($loop);
+$launcher = new Launcher();
 
 $q = new EntryDialog('What\'s your name?');
 $q->setEntryText(getenv('USER'));
@@ -29,5 +26,3 @@ $launcher->launch($q)->then(function ($name) use ($launcher) {
 }, function () use ($launcher) {
     $launcher->launch(new WarningDialog('No name given'));
 });
-
-$loop->run();

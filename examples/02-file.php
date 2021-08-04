@@ -1,6 +1,5 @@
 <?php
 
-use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Dialog\FileSelectionDialog;
 use Clue\React\Zenity\Builder;
@@ -8,9 +7,7 @@ use Clue\React\Zenity\Dialog\InfoDialog;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$loop = Factory::create();
-
-$launcher = new Launcher($loop);
+$launcher = new Launcher();
 $builder = new Builder();
 
 $launcher->launch($builder->fileSelection())->then(function (SplFileInfo $file) use ($launcher) {
@@ -26,5 +23,3 @@ $launcher->launch($builder->fileSelection())->then(function (SplFileInfo $file) 
         $launcher->launch($selection);
     });
 });
-
-$loop->run();

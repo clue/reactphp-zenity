@@ -1,14 +1,12 @@
 <?php
 
-use React\EventLoop\Factory;
 use Clue\React\Zenity\Launcher;
 use Clue\React\Zenity\Builder;
+use React\EventLoop\Loop;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$loop = Factory::create();
-
-$launcher = new Launcher($loop);
+$launcher = new Launcher();
 $builder = new Builder();
 
 $progress = $launcher->launchZen($builder->pulsate('Pseudo-processing...'));
@@ -24,7 +22,7 @@ $texts = array(
     'Finishing'
 );
 
-$timer = $loop->addPeriodicTimer(2.0, function ($timer) use ($progress, $texts) {
+$timer = Loop::addPeriodicTimer(2.0, function ($timer) use ($progress, $texts) {
     static $i = 0;
 
     if (isset($texts[$i])) {
@@ -48,5 +46,3 @@ $progress->promise()->then(null, function() use ($timer, $builder, $launcher) {
 
     $launcher->launch($builder->error('Canceled'));
 });
-
-$loop->run();
