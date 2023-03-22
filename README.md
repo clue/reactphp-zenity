@@ -1,6 +1,6 @@
 # clue/reactphp-zenity
 
-[![CI status](https://github.com/clue/reactphp-zenity/workflows/CI/badge.svg)](https://github.com/clue/reactphp-zenity/actions)
+[![CI status](https://github.com/clue/reactphp-zenity/actions/workflows/ci.yml/badge.svg)](https://github.com/clue/reactphp-zenity/actions)
 [![installs on Packagist](https://img.shields.io/packagist/dt/clue/zenity-react?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/clue/zenity-react)
 
 Zenity allows you to build graphical desktop (GUI) applications in PHP, built on top of [ReactPHP](https://reactphp.org/).
@@ -292,13 +292,13 @@ $builder->warning($text, $title = null);
 
 ## Install
 
-The recommended way to install this library is [through Composer](https://getcomposer.org).
+The recommended way to install this library is [through Composer](https://getcomposer.org/).
 [New to Composer?](https://getcomposer.org/doc/00-intro.md)
 
 This will install the latest supported version:
 
 ```bash
-$ composer require clue/zenity-react:^0.4.4
+composer require clue/zenity-react:^0.4.4
 ```
 
 See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
@@ -306,7 +306,7 @@ See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 This project aims to run on any platform and thus does not require any PHP
 extensions and supports running on legacy PHP 5.3 through current PHP 8+ and
 HHVM.
-It's *highly recommended to use PHP 7+* for this project.
+It's *highly recommended to use the latest supported PHP version* for this project.
 
 Obviously, this library requires the Zenity binary itself.
 Zenity already ships with Ubuntu-based distributions and should not require any installation there.
@@ -314,7 +314,7 @@ On Debian- and Ubuntu-based distributions you can make sure it's installed like 
 
 ```bash
 # usually not required
-$ sudo apt-get install zenity
+sudo apt-get install zenity
 ```
 
 Otherwise you may have to install Zenity yourself (use your favorite search engine, download the appropriate realease tarball or compile from soure).
@@ -332,16 +332,16 @@ $launcher->setBin('/path/to/zenity');
 ## Tests
 
 To run the test suite, you first need to clone this repo and then install all
-dependencies [through Composer](https://getcomposer.org):
+dependencies [through Composer](https://getcomposer.org/):
 
 ```bash
-$ composer install
+composer install
 ```
 
 To run the test suite, go to the project root and run:
 
 ```bash
-$ php vendor/bin/phpunit
+php vendor/bin/phpunit
 ```
 
 ## License
