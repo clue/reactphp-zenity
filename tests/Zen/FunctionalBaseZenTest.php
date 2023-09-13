@@ -8,6 +8,8 @@ use Clue\Tests\React\Zenity\TestCase;
 
 class FunctionalBaseZenTest extends TestCase
 {
+    private $loop;
+
     /**
      * @before
      */
