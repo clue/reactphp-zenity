@@ -172,7 +172,7 @@ For anything more complex, you can also instantiate the below classes directly.
 ### Dialog
 
 The `Dialog` API is modelled closely after Zenity's command line API, so it should be
-familar if you're already using it from within any other command line script.
+familiar if you're already using it from within any other command line script.
 
 #### AbstractDialog
 
@@ -317,7 +317,7 @@ On Debian- and Ubuntu-based distributions you can make sure it's installed like 
 $ sudo apt-get install zenity
 ```
 
-Otherwise you may have to install Zenity yourself (use your favorite search engine, download the appropriate realease tarball or compile from soure).
+Otherwise you may have to install Zenity yourself (use your favorite search engine, download the appropriate release tarball or compile from source).
 Zenity it not officially supported on other platforms, however several non-official releases exist.
 
 *Running on [Windows is currently not supported](https://github.com/reactphp/child-process/issues/9)*

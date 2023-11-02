@@ -17,7 +17,7 @@ class NotificationDialog extends AbstractTextDialog
     /**
      * Listens for commands at standard input.
      *
-     * At least one command must be specified. Commands are comma seperated.
+     * At least one command must be specified. Commands are comma separated.
      * A command must be followed by a colon and a value.
      *
      * @param unknown $listen
