@@ -21,7 +21,7 @@ use Clue\React\Zenity\Zen\PasswordZen;
  * there's no way to reliably tell where the username ends and the password
  * starts in a string like "user|name|pass|word". Because it's common to have
  * special characters in the password and usernames tend to be restricted, this
- * library assumes the username ends after the first occurance:
+ * library assumes the username ends after the first occurrence:
  * <code>
  * $ret = array('user', 'name|pass|word');
  * </code>

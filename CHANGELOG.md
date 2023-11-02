@@ -68,7 +68,7 @@
 
 * BC break: Move launching logic from `Dialog` to `Launcher`
   (#11)
-  * The `Dialog` now reprents the dialog option setup, the `Launcher` represents a running instance (process) of the given dialog setup. Clear distinction between setup and the actual process.
+  * The `Dialog` now represents the dialog option setup, the `Launcher` represents a running instance (process) of the given dialog setup. Clear distinction between setup and the actual process.
   * Running a single `Dialog` setup multiple times or changing settings after launching the first instance is now handled gracefully.
   * Simplified `Builder` and `Dialog` constructors to no longer require a `Launcher` instance.
   * Moved `Dialog::run()` to `Launcher::launch($dialog)`
