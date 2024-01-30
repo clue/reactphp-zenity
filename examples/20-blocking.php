@@ -1,15 +1,11 @@
 <?php
 
-use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Builder;
-use Clue\React\Zenity\Dialog\EntryDialog;
-
 require __DIR__ . '/../vendor/autoload.php';
 
-$launcher = new Launcher();
-$builder = new Builder();
+$launcher = new Clue\React\Zenity\Launcher();
+$builder = new Clue\React\Zenity\Builder();
 
-$name = $launcher->waitFor(new EntryDialog('Search package'));
+$name = $launcher->waitFor(new Clue\React\Zenity\Dialog\EntryDialog('Search package'));
 if ($name === false) {
     exit;
 }
