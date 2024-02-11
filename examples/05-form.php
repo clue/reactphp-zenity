@@ -1,13 +1,10 @@
 <?php
 
-use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Dialog\FormsDialog;
-
 require __DIR__ . '/../vendor/autoload.php';
 
-$launcher = new Launcher();
+$launcher = new Clue\React\Zenity\Launcher();
 
-$form = new FormsDialog();
+$form = new Clue\React\Zenity\Dialog\FormsDialog();
 $form->setWindowIcon('info');
 $form->setText('Enter user information');
 

@@ -1,13 +1,11 @@
 <?php
 
-use Clue\React\Zenity\Launcher;
-use Clue\React\Zenity\Builder;
 use React\EventLoop\Loop;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$launcher = new Launcher();
-$builder = new Builder();
+$launcher = new Clue\React\Zenity\Launcher();
+$builder = new Clue\React\Zenity\Builder();
 
 $progress = $launcher->launchZen($builder->pulsate('Pseudo-processing...'));
 
@@ -39,6 +37,8 @@ $progress->promise()->then(function () use ($timer, $builder, $launcher) {
     $timer->cancel();
 
     $launcher->launch($builder->info('Done'));
+}, function (Exception $e) {
+    echo 'Error: ' . $e->getMessage() . PHP_EOL;
 });
 
 $progress->promise()->then(null, function() use ($timer, $builder, $launcher) {
